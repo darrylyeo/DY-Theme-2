@@ -1,0 +1,169 @@
+dy-button {
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	vertical-align: middle;
+
+	cursor: pointer;
+	
+	position: relative;
+	text-align: center;
+	white-space: nowrap;
+	transition: 0.2s;
+
+	-webkit-appearance: none;
+	border: none;
+	color: inherit;
+	font: inherit;
+
+	--border-radius: 0.5em;
+}
+
+dy-button {
+	border-radius:
+		var(--border-top-left-radius, var(--border-radius))
+		var(--border-top-right-radius, var(--border-radius))
+		var(--border-bottom-right-radius, var(--border-radius))
+		var(--border-bottom-left-radius, var(--border-radius));
+}
+
+dy-button:disabled, dy-button[disabled] {
+	cursor: default;
+	opacity: 0.75;
+	pointer-events: none;
+	filter: grayscale();
+}
+
+dy-button[theme~=plain] {
+	background-color: rgba(255,255,255,.5);
+	color: rgba(0,0,0,.75);
+	
+	--border-radius: 1ch;
+	font-size: .8em;
+	padding: 0 1.5ch;
+	vertical-align: .15em;
+	line-height: 2;
+}
+dy-button[theme~=plain]:hover,
+dy-button[theme~=plain].active {
+	background-color: var(--color-1);
+	color: #fff;
+}
+dy-button[theme~=plain].active {
+	opacity: 1;
+}
+dy-button[theme~=plain][disabled] {
+	background-color: rgba(0, 0, 0, .05);
+	opacity: 0.3;
+}
+
+dy-button[theme~=accented] {
+	background-color: var(--color-1-light);
+	color: rgba(255, 255, 255, 0.95);
+	text-shadow: rgba(0, 0, 0, 0.1) 0 1px 1px;
+}
+
+dy-button[theme~=colored] {
+	background-color: var(--color-1-light);
+	color: rgba(255, 255, 255, 0.95);
+	text-shadow: rgba(0, 0, 0, 0.1) 0 1px 1px;
+}
+
+dy-button[theme~=small] {
+	font-size: 0.75em;
+}
+
+dy-button[theme~=heavy] {
+	font-weight: bold;
+	line-height: 1;
+	padding: 1ch 1em;
+	text-transform: uppercase;
+}
+
+dy-button[theme~='3D'] {
+	--button-height: 4px;
+	box-shadow: var(--color-1) 0 var(--button-height);
+	margin-bottom: calc(var(--button-height) / 2);
+	top: calc(var(--button-height) / -2);
+}
+dy-button[theme~='3D']:active {
+	box-shadow: var(--color-1) 0 0, var(--color-1-quarter) 0 0;
+	top: calc(var(--button-height) / 2);
+}
+dy-button[theme~='3D']:focus {
+	box-shadow: var(--color-1) 0 0 2px 2px;
+}
+dy-button[theme~='3D']:not(:active):focus {
+	box-shadow: var(--color-1) 0 var(--button-height);
+}
+
+dy-button[theme~=animated]:focus {
+	--jump-height: 1.02;
+	--jump-bounce: 0.98;
+	--jump-shake: 0.15;
+
+	--jump-height: 1.00;
+	--jump-bounce: 1;
+	--jump-shake: 0;
+}
+dy-button[theme~=animated]:not(:active):focus {
+	--jump-height: 3;
+	--jump-bounce: 0.7;
+	--jump-shake: 2;
+	animation: ButtonMouseUpJump 0.5s, ButtonMouseUpShadow 0.5s 0.25s backwards;
+	z-index: 1;
+}
+
+/*button:focus {
+	box-shadow: var(--color-1) 0 var(--button-height), transparent 0 0 0 5em;
+}*/
+
+@keyframes ButtonMouseUpJump {
+	from {
+		transform: scale(0.95);
+	}
+	25% {
+		transform: scale(var(--jump-height)) rotate(calc(var(--jump-shake) * 1deg));
+		animation-timing-function: ease-in;
+	}
+	50% {
+		box-shadow: var(--color-1) 0 0, var(--color-1-quarter) 0 0;
+		transform: scale(var(--jump-bounce)) rotate(calc(var(--jump-shake) * -2deg));
+		opacity: 0.9;
+	}
+	to {
+		transform: none;
+	}
+}
+@keyframes ButtonMouseUpShadow {
+	from {
+		box-shadow: var(--color-1) 0 0, var(--color-1-quarter) 0 0;
+		top: calc(var(--button-height) / 2);
+	}
+	/*50% {
+		box-shadow: var(--color-1) 0 0, var(--color-1-quarter) 0 0;
+	}*/
+	to {
+		box-shadow: var(--color-1) 0 var(--button-height), transparent 0 0 0 5em;
+		top: calc(var(--button-height) / -2);
+	}
+}
+
+
+dy-buttons {
+	display: grid;
+	grid-auto-flow: column;
+	grid-gap: 1px;
+}
+dy-buttons[full] {
+	display: block;
+}
+
+dy-buttons dy-button:first-child:not(:last-child) {
+	--border-top-right-radius: 0;
+	--border-bottom-right-radius: 0;
+}
+dy-buttons dy-button:not(:first-child) {
+	--border-top-left-radius: 0;
+	--border-bottom-left-radius: 0;
+}

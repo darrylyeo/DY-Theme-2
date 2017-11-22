@@ -1,0 +1,136 @@
+dy-project {
+	 /* display: grid;  */
+	--tilt: -10deg;
+	--tilt-neg: calc(var(--tilt) * -1);
+	--card-shadow: rgba(0, 0, 0, 0.15) 0 1em 4em;
+	display: flex;
+}
+dy-project.focused {
+	z-index: 2;
+}
+	
+dy-projects.has-focused-project dy-project:not(.focused) > * {
+	opacity: 0.1;
+}
+
+dy-project:not(.focused) * {
+	pointer-events: none;
+}
+
+#positioning-wrapper {
+	height: 0;
+}
+dy-project.focused #positioning-wrapper {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	padding: 5%;
+	pointer-events: none;
+	transform: translateX(var(--x));
+}
+
+#inner-wrapper {
+	/* display: grid;
+	grid-template-rows: max-content 1fr; */
+	
+	/* display: flex;
+	flex-direction: column;
+	justify-content: center; */
+
+	display: grid;
+	grid-gap: 0.5rem;
+	grid-auto-rows: max-content;
+
+	pointer-events: initial;
+
+	height: 100%;
+	/* position: absolute; */
+	padding: 0.5em;
+	width: 100%;
+
+	transform: scale(1) rotateX(var(--tilt));
+	transform-origin: top;
+	transform-style: preserve-3d;
+	transition: transform 0.3s;
+}
+dy-project.focused #inner-wrapper {
+	height: 100%;
+	transform: none;
+}
+
+#title-wrapper {
+	font-size: 1em;
+	line-height: 1.2;
+	display: flex;
+}
+#title-wrapper a {
+	flex: 1;
+	--link-underline: none;
+}
+#title-wrapper #close {
+	background-color: rgba(255, 255, 255, 0.5);
+	padding: 1rem;
+}
+
+.card {
+	/* display: grid;
+	grid-template-areas:
+		"image details";
+	grid-template-columns: 100% 1fr;
+	grid-template-rows: 100%; */
+	flex: 1;
+	display: flex;
+	flex-direction: row;
+	max-height: max-content;
+	border-radius: 0.5rem;
+	overflow: hidden;
+}
+dy-project.focused .card {
+	grid-template-columns: max-content 1fr;
+	grid-template-columns: minmax(50%, 1fr) minmax(50%, 1fr);
+}
+
+.card #featured-image {
+	grid-area: image;
+	min-width: min-content;
+}
+dy-project.focused #featured-image {
+	max-width: 60%;
+}
+
+dy-project img {
+	max-width: 100%;
+}
+dy-project.focused img {
+	width: auto;
+	height: auto;
+	/* max-height: 100%; */
+	animation: Reflow 1s;
+}
+@keyframes Reflow {
+	from { max-width: 100%; }
+	to { max-width: 100.01%; }
+}
+
+.card #details {
+	grid-area: details;
+	/* height: 0; */
+	flex: 0;
+	transition: 0.3s;
+}
+dy-project.focused #details {
+	flex: 50%;
+}
+.card #details-inner {
+	height: 100%;
+	background-color: rgba(255, 255, 255, 0.5);
+	padding: 1rem;
+}
+#details-inner {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	overflow-y: auto;
+}

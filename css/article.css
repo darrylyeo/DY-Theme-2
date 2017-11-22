@@ -1,0 +1,117 @@
+article {
+	/*display: grid;
+	grid-gap: var(--padding);
+	grid-auto-columns: 100%;*/
+
+	display: flex;
+    flex-direction: column;
+
+	text-align: justify;
+}
+article > * {
+	width: 100%;
+	max-width: 100%;
+}
+article > * + * {
+	margin-top: var(--padding);
+}
+
+article h1, article section h2 {
+	line-height: 1.5;
+}
+article h1 {
+	font-size: 2em;
+}
+
+article section {
+	/*display: grid;
+	grid-template-columns: 100%;
+	grid-gap: 1rem;*/
+
+	display: flex;
+    flex-direction: column;
+
+	padding: 0 var(--padding);
+	transition: 0.3s;
+}
+article section:empty {
+	display: none;
+}
+article section:target {
+	background-color: rgba(255, 255, 255, 0.5);
+	box-shadow: rgba(255, 255, 255, 0.5) 0 0 0 calc(var(--padding) / 2);
+	border-radius: 1px;
+}
+article section > * + * {
+	margin-top: 1rem;
+}
+
+article section > h2 {
+	position: relative;
+	display: flex;
+	align-items: center;
+	isolation: isolate;
+}
+article section > h2:before {
+	content: '';
+	background-color: rgba(255,255,255,.4);
+	box-shadow: .4em .4em rgba(255,255,255,.2),.8em .8em rgba(255,255,255,.1),.12em .12em rgba(255,255,255,.05);
+	border-radius: 15%;
+	position: absolute;
+	transform: translateX(-0.6em) rotate(-45deg);
+	width: 1.5em;
+	height: 1.5em;
+	z-index: -1;
+}
+article section > h2:after {
+	content: '';
+	background-color: rgba(0,0,0,.05);
+	flex: 1;
+	height: 2px;
+	margin-left: 1ch;
+}
+
+article section:first-of-type > p:first-of-type:first-letter,
+.excerpt:first-letter {
+	font-family: var(--heading-font);
+	font-weight: bold;
+	color: var(--color-1);
+	text-transform: uppercase;
+	padding-right: 0.05em;
+	line-height: 1;
+	font-style: normal;
+}
+@supports (-webkit-initial-letter: 2) {
+	article section:first-of-type > p:first-of-type:first-letter,
+	.excerpt:first-letter {
+		-webkit-initial-letter: 3;
+		initial-letter: 3;
+	}
+}
+@supports not (-webkit-initial-letter: 2) {
+	article section:first-of-type > p:first-of-type:first-letter,
+	.excerpt:first-letter {
+		float: left;
+		font-size: 5.1em;
+		margin-left: -0.04em;
+	}
+}
+
+
+
+article aside {
+	--padding: 1rem;
+
+	background-color: rgba(255, 255, 255, 0.6);
+	border-radius: var(--padding);
+	margin-left: auto;
+	margin-right: auto;
+	padding: var(--padding);
+	text-align: center;
+	width: min-content;
+	max-width: 100%;
+}
+
+article section dy-figure {
+	--padding: 1rem 1rem 0 1rem;
+}

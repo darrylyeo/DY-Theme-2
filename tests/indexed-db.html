@@ -1,0 +1,282 @@
+<script>
+
+const DY = {
+	data: {}
+}
+const WP = {}
+
+const getJSON = url => fetch(url).then(data => data.json())
+
+URL.pathName = function(url){
+	return (new URL(url)).pathname
+}
+
+
+
+IDBFactory.prototype.openDatabase = (name, version = 1, structure = {}, {error, upgrade, success} = {}) => new Promise(() => {
+	const request = window.indexedDB.open(name, version)
+	
+	Object.assign(request, {
+		onerror: error,
+		onupgradeneeded(e){
+			const db = e.target.result
+			
+			for(const storeName in structure){
+				const {keyPath, autoIncrement, indices} = structure[storeName]
+				
+				const objectStore = db.createObjectStore(storeName, {keyPath, autoIncrement})
+				for(const indexName in indices){
+					const {property = indexName, unique} = indices[indexName]
+					objectStore.createIndex(indexName, property, {unique})
+				}
+			}
+			
+			upgrade && upgrade.call(db, db, e)
+		},
+		onsuccess(e){
+			const db = e.target.result
+			success && success.call(db, db, e)
+		}
+	})
+
+	return this
+})
+
+IDBDatabase.prototype.getObjectStore = function(storeName, callback, allowWrite = false, complete){
+	const transaction = this.transaction(storeName, allowWrite ? 'readwrite' : 'readonly')
+	
+	const store = transaction.objectStore(storeName)
+	callback.call(this, store)
+	
+	transaction.oncomplete = complete || (e => {
+		console.log('Transaction complete')
+	})
+}
+
+IDBRequest.prototype.then = function(callback){
+	this.addEventListener('success', e => {
+		callback.call(this, e.target.result)
+	})
+}
+
+
+
+DY.mapTaxonomyName = function(taxonomyName){
+	if(taxonomyName === 'category') return 'categories'
+	if(taxonomyName === 'post_tag') return 'tags'
+	return taxonomyName
+}
+
+DY.getData = (async () => {
+	if(DY.data.objects) return DY.data.objects
+
+	function assignType(objects, objectType){
+		for(const object of objects){
+			object.objectType = objectType
+		}
+		return objects
+	}
+
+	try {
+		const objects = await Promise.all([
+			getJSON('http://localhost:8888/darrylyeo/wp-json/wp/v2/pages?per_page=100').then(
+				pages => assignType(pages, 'post')
+			),
+			getJSON('http://localhost:8888/darrylyeo/wp-json/wp/v2/posts?per_page=100&post_status=published').then(
+				posts => assignType(posts, 'post')
+			),
+			getJSON('http://localhost:8888/darrylyeo/wp-json/wp/v2/taxonomies').then(
+				taxonomies => assignType(Object.values(taxonomies), 'taxonomy')
+			),
+			getJSON('http://localhost:8888/darrylyeo/wp-json/wp/v2/terms').then(
+				termsByTaxonomy => assignType(
+					[].concat(...Object.values(termsByTaxonomy)),
+					'term'
+				)
+			)
+		])
+		return [].concat(...objects)
+	}catch(e){
+		console.error(e)
+	}
+})().then(objects => {
+	const objectsByType = {
+		'post': [],
+		'taxonomy': [],
+		'term': []
+	}
+	const objectsByURL = {}
+	
+	for(const object of objects){
+		objectsByType[object.objectType].push(object)
+		if(object.link){
+			objectsByURL[URL.pathName(object.link)] = object
+		}
+	}
+
+
+	const termsByID = {}
+	let PROJECT_CATEGORY_ID
+
+	for(const term of objectsByType['term']){
+		termsByID[term.term_id] = term
+		if(term.taxonomy === 'page-category' && term.slug === 'project'){
+			PROJECT_CATEGORY_ID = term.term_id
+		}
+	}
+
+
+	const postsByPostType = {
+		'page': [],
+		'post': [],
+		'project': []
+	}
+
+	for(const post of objectsByType['post']){
+		const type = post.terms.includes(PROJECT_CATEGORY_ID) ? 'project' : post.type
+		postsByPostType[type].push(post)
+	}
+
+
+	DY.data.objects = objects
+
+	WP.data = {
+		objects,
+		objectsByType,
+		objectsByURL,
+		termsByID,
+		postsByPostType,
+		PROJECT_CATEGORY_ID
+	}
+
+	return WP.data
+})
+
+
+
+
+
+
+
+
+DY.getData.then(data => {
+
+const DB_VERSION = 2
+
+indexedDB.openDatabase('Whee', DB_VERSION)
+	
+indexedDB.openDatabase('Darryl-Yeo', DB_VERSION, {
+	'settings': {
+		keyPath: 'slug'
+	},
+
+	'wp-objects': {
+		// keyPath: 'slug',
+		autoIncrement: true,
+		indices: {
+			'slug': {
+				unique: true
+			},
+			'id': {
+				unique: false
+			},
+			'type': {
+				unique: false
+			}
+		}
+	},
+}, {
+	error(event) {
+		throw event.target.errorCode
+	},
+
+	success(db, event){
+		console.log(db, this,event)
+		db.onerror = event => {
+			console.error(event.target.error)
+		}
+		
+		db.getObjectStore('wp-objects', store => {
+			store.add({
+				slug: 'whee2'
+			})
+			
+			for(const object of WP.data.objects.slice(0, 30)){
+				store.get(object.slug).then(object => {
+					if(!object){
+						try {
+						store.add(object)
+						}catch(e){}
+					}
+				})
+			}
+		}, true)
+	}
+})
+
+})
+
+
+
+
+
+
+var db;
+
+function indexedDBOk() {
+	return "indexedDB" in window;
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+
+	//No support? Go in the corner and pout.
+	if(!indexedDBOk) return;
+
+	var openRequest = indexedDB.open("idarticle_people",1);
+
+	openRequest.onupgradeneeded = function(e) {
+		var thisDB = e.target.result;
+
+		if(!thisDB.objectStoreNames.contains("people")) {
+			thisDB.createObjectStore("people");
+		}
+	}
+
+	openRequest.onsuccess = function(e) {
+		console.log("running onsuccess");
+
+		db = e.target.result;
+
+		//Listen for add clicks
+		
+		setTimeout(() => {
+			var transaction = db.transaction(["people"],"readwrite");
+			var store = transaction.objectStore("people");
+
+			//Define a person
+			var person = {
+				name:'Whee',
+				email:'Whee@',
+				created:new Date()
+			}
+
+			//Perform the add
+			var request = store.add(person,1);
+
+			request.onerror = function(e) {
+				console.log("Error",e.target.error.name);
+				//some type of error handler
+			}
+
+			request.onsuccess = function(e) {
+				console.log("Woot! Did it");
+			}
+		}, 1000)
+	}
+
+	openRequest.onerror = function(e) {
+		//Do something for the error
+	}
+
+},false);
+</script>

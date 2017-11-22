@@ -1,0 +1,18 @@
+dy-icon {
+	color: #fff;
+	transition: var(--transition-fast);
+}
+dy-icon[icon=code] {
+	color: rgba(0, 180, 255, 1);
+}
+dy-icon[icon=art] {
+	color: rgba(50, 245, 50, 1);
+}
+dy-icon[icon=music] {
+	color: rgba(255, 191, 0, 1);
+}
+dy-icon svg {
+	stroke: currentColor;
+	width: 100%;
+	height: 100%;
+}

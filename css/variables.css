@@ -1,0 +1,34 @@
+:root {
+	--color-1-hue: 201;
+	--color-1-saturation: 67%;
+	--color-1-lightness: 64%;
+	--color-1-values: var(--color-1-hue), var(--color-1-saturation), var(--color-1-lightness);
+	--color-1: hsla(var(--color-1-values),1);
+	--color-1-half: hsla(var(--color-1-values),0.5);
+	--color-1-quarter: hsla(var(--color-1-values),0.25);
+	--color-1-light: hsla(var(--color-1-hue), var(--color-1-saturation), calc(var(--color-1-lightness) + 8%), 1);
+	--color-1-dark: hsla(var(--color-1-hue), var(--color-1-saturation), calc(var(--color-1-lightness) - 8%), 1);
+	--color-1-rotate: hsla(calc(var(--color-1-hue) + 30), var(--color-1-saturation), var(--color-1-lightness), 1);
+
+	--main-menu-height: calc(50px + 3.5vw);
+	--secondary-menu-height: 2.625rem;
+
+	--padding: calc(10px + 2vw);
+	--padding-neg: calc(var(--padding) * -1);
+
+	--body-font: 'Hallo Sans', Asap, Roboto, sans-serif;
+	--color: rgba(0, 0, 0, 0.66);
+	--heading-font: 'Fun Font', 'Klinic Slab', 'Slabo 13px', var(--body-font);
+	--link-color: var(--color-1-dark);
+	--link-hover-color: var(--color-1);
+
+	--page-background: radial-gradient(rgb(102, 182, 225) 30%, rgba(112, 255, 246, 0.96));
+
+	--supports-backdrop-filter: 0;
+}
+
+@supports ( backdrop-filter: blur(1px) ) or ( -webkit-backdrop-filter: blur(1px) ) {
+	:root {
+		--supports-backdrop-filter: 1;
+	}
+}

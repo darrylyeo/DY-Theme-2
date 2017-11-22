@@ -1,0 +1,27 @@
+dy-input {
+	display: inline-block;
+	width: 100%;
+	position: relative;
+}
+dy-input [contenteditable] {
+	width: 100%;
+}
+dy-input [contenteditable]:empty {
+	display: inline-block;
+}
+dy-input [contenteditable] * {
+	color: inherit !important;
+	font: inherit !important;
+}
+
+dy-input .placeholder {
+	position: absolute;
+	left: 0;
+	top: 0;
+	opacity: 0.5;
+	pointer-events: none;
+	transition: 0.3s;
+}
+dy-input [contenteditable]:not(:empty) ~ .placeholder {
+	opacity: 0;
+}

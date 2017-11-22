@@ -1,0 +1,61 @@
+dy-figure {
+	display: grid;
+	margin: auto;
+	max-width: 100%;
+	cursor: zoom-in;
+
+	--duration: 1.3s;
+}
+dy-figure.zoomed {
+	cursor: zoom-out;
+}
+
+dy-figure figure {
+	grid-area: 1 / 1;
+	margin: 0;
+	display: grid;
+	padding: var(--padding);
+	grid-gap: 0.5rem;
+	grid-auto-rows: 1fr auto;
+	text-align: center;
+	justify-items: center;
+}
+
+dy-figure figure.zoomable {
+	transition:
+		background-color var(--duration),
+		box-shadow var(--duration),
+		padding var(--duration);
+}
+dy-figure:hover figure.zoomable,
+dy-figure:hover figure.zoomable img {
+	will-change: width;
+}
+
+dy-figure img {
+	border-radius: 1rem;
+	box-shadow: rgba(0,0,0,.15) 0 2px 5px;
+	transition: border-radius var(--duration);
+}
+
+dy-figure.zoomed figure.zoomable,
+dy-figure figure.zoomable.animating-width {
+	position: absolute;
+	z-index: 1;
+}
+dy-figure.zoomed figure.zoomable {
+	background-color: rgba(255, 255, 255, 0.95);
+	box-shadow: rgba(255, 255, 255, 0.95) 0 0 100vmax 50vh;
+	left: 0;
+	padding: 0;
+	width: 100vw;
+	height: 100vh;
+}
+dy-figure.zoomed figure.zoomable img {
+	border-radius: 0;
+	max-height: 100%;
+}
+
+dy-figure figure.shadow {
+	visibility: hidden;
+}

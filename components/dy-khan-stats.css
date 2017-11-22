@@ -1,0 +1,14 @@
+dy-khan-stats {
+	display: inline-grid;
+	grid-auto-flow: column;
+	grid-gap: 0.5em;
+}
+dy-khan-stats .votes {
+	color: #7cb342;
+}
+dy-khan-stats .spin-offs {
+	color: #7986cb;
+}
+dy-khan-stats .lines {
+	color: #ec407a;
+}

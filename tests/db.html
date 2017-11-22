@@ -1,0 +1,147 @@
+<script>
+
+IDBFactory.prototype.openDatabase = (name, version = 1, structure = {}, {error, upgrade, success} = {}) => new Promise(() => {
+	const request = window.indexedDB.open(name, version)
+	
+	Object.assign(request, {
+		onerror: error,
+		onupgradeneeded(e){
+			const db = e.target.result
+			
+			for(const storeName in structure){
+				const {keyPath, autoIncrement, indices} = structure[storeName]
+				
+				const objectStore = db.createObjectStore(storeName, {keyPath, autoIncrement})
+				for(const indexName in indices){
+					const {property = indexName, unique} = indices[indexName]
+					objectStore.createIndex(indexName, property, {unique})
+				}
+			}
+			
+			upgrade && upgrade.call(db, db, e)
+		},
+		onsuccess(e){
+			const db = e.target.result
+			success && success.call(db, db, e)
+		}
+	})
+
+	return this
+})
+
+IDBDatabase.prototype.getObjectStore = function(storeName, callback, allowWrite = false, complete){
+	const transaction = this.transaction(storeName, allowWrite ? 'readwrite' : 'readonly')
+	
+	const store = transaction.objectStore(storeName)
+	callback.call(this, store)
+	
+	transaction.oncomplete = complete || (e => {
+		console.log('Transaction complete')
+	})
+}
+
+IDBRequest.prototype.then = function(callback){
+	this.addEventListener('success', e => {
+		callback.call(this, this.result)
+	})
+	// this.onsuccess = e => {console.log(e, this)
+	// 	callback.call(this, this.result)
+	// }
+}
+
+
+
+
+
+fetch('data.json').then(r=>r.json()).then(data => {
+
+
+const DB_VERSION = 2
+
+indexedDB.openDatabase('Darryl-Yeo', DB_VERSION, {
+	'settings': {
+		keyPath: 'slug'
+	},
+
+	'wp-objects': {
+		 keyPath: 'slug',
+		//autoIncrement: true,
+		indices: {
+			'slug': {
+				unique: true
+			},
+			'id': {
+				unique: false
+			},
+			'type': {
+				unique: false
+			}
+		}
+	},
+}, {
+	error(event) {
+		throw event.target.errorCode
+	},
+
+	success(db, event){
+		console.log(db, this,event)
+		db.onerror = event => {
+			console.error(event.target.error)
+		}
+		
+		db.getObjectStore('wp-objects', store => {
+			// store.clear()
+
+			// store.add({
+			// 	slug: 'whee2',
+			// 	id: 1,
+			// 	type: 'w'
+			// })
+			// store.add({
+			// 	slug: 'whee',
+			// 	id: 2,
+			// 	type: '4'
+			// })
+			// g= store.get('whee2')
+			// g.onsuccess = function(event) {
+			// 	console.log(event)
+			// }
+			// store.get('whee2').then(console.log)
+			// ag= store.getAll()
+			// ag.onsuccess = function(event) {
+			// 	console.log(event)
+			// }
+			// store.getAll().then(a=>console.log(a))
+			
+			
+			//.then(console.log)
+			// store.add({
+			// 	slug: 'whee',
+			// 	id: 2,
+			// 	type: '4'
+			// })
+			
+			console.log(store.indexNames)
+			for(const object of data.slice(0, 6)){
+				console.log(store.indexNames.contains(object.slug))
+				store.put(object)
+				// store.put({
+				// slug:	"sample-page"
+				// })
+
+				// store.get(object.slug).then(object => {
+				// 	console.log(object)
+				// 	if(!object){
+				// 		try {
+				// 		store.add(object)
+				// 		}catch(e){}
+				// 	}
+				// })
+			}
+			store.getAll().then(a=>console.log(a))
+		}, true)
+	}
+})
+})
+
+</script>

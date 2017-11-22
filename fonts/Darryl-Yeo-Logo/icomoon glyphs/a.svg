@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="logo"
+   viewBox="90 80.5 1830 345"
+   height="95"
+   width="265"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="Darryl-Yeo-Logo-Broken.svg">
+  <metadata
+     id="metadata4198">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs4196" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1440"
+     inkscape:window-height="811"
+     id="namedview4194"
+     showgrid="false"
+     inkscape:zoom="2.4148364"
+     inkscape:cx="-73.228628"
+     inkscape:cy="12.361879"
+     inkscape:window-x="-2"
+     inkscape:window-y="59"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="g4188" />
+  <g
+     fill-rule="evenodd"
+     id="g4188">
+    <path
+       id="path4221"
+       d="m 367.7,98.67 c 9.88,-5.1 21.75,-6.39 32.38,-2.93 12.87,4.03 23.34,13.33 31.61,23.7 17.32,22.26 26.58,49.67 32.03,77.05 4.77,23.76 5.33,48.07 5.01,72.23 -54.15,0.02 -108.31,0.02 -162.46,0 -0.15,-7.92 0.3,-15.84 0.01,-23.76 0.96,-37.66 7.95,-76.06 26.24,-109.37 8.49,-14.83 19.64,-29.08 35.18,-36.92 z m -9.29,-9.31 c 12.95,-7.62 28.94,-10.43 43.51,-6.18 20.09,5.56 35.58,21.19 46.65,38.23 17.19,26.81 25.96,58.17 30.2,89.49 3.27,23.24 2.44,46.74 2.5,70.14 0,43.32 -0.01,86.64 0.01,129.96 0.16,2.89 -1.02,6.27 -4.03,7.23 -4.04,1.91 -8.87,-1.9 -8.49,-6.24 -0.07,-43.57 0,-87.14 -0.04,-130.71 -54.14,-0.02 -108.29,-0.01 -162.44,-0.01 -0.05,43.6 0.04,87.2 -0.04,130.8 0.31,4.17 -4.24,7.96 -8.21,6.26 -2.76,-0.75 -4.3,-3.61 -4.27,-6.32 -0.11,-54.66 0.08,-109.33 -0.11,-163.98 0.59,-39.1 7.43,-78.88 25.39,-113.93 9.29,-17.69 21.85,-34.52 39.37,-44.74 z" />
+  </g>
+</svg>

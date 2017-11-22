@@ -1,0 +1,140 @@
+:root {
+	box-sizing: border-box;
+
+	background: var(--page-background);
+	background-color: white;
+
+	color: var(--color);
+
+	font-family: var(--body-font);
+	font-size: calc(14px + 0.4vw);
+	font-synthesis: weight;
+	line-height: 1.75;
+
+	overflow-x: hidden;
+	overflow-y: auto;
+
+	tab-size: 4;
+
+	-webkit-text-decoration-color: var(--color-1-half);
+	-moz-text-decoration-color: var(--color-1-half);
+	text-decoration-color: var(--color-1-half);
+	-webkit-text-decoration-skip: skip;
+	text-decoration-skip: ink;
+}
+
+body {
+	background: var(--page-background) center/cover fixed;
+	margin: 0;
+	transition: background 2s;
+}
+
+dy-page {
+	box-shadow: rgba(0,0,0,.15) 0 0 20px, rgba(0,0,0,.15) 0 0 100px;
+
+	width: 96vw;
+	min-height: 100vh;
+	margin: 0 auto;
+
+	display: grid;
+	grid-template-areas: 
+		"header"
+		"main"
+		"footer";
+	grid-template-rows: auto 1fr auto;
+	grid-template-columns: 96vw;
+	grid-gap: 1px;
+}
+
+dy-page > header {
+	grid-area: header;
+	/* position: -webkit-sticky;
+	position: sticky; */
+	top: calc(var(--secondary-menu-height) * -1);
+	z-index: 2;
+}
+/* dy-page > header.sticky {
+	position: fixed;
+	top: 0;
+} */
+
+main {
+	grid-area: main;
+
+	display: grid;
+	grid-template-areas:
+		'project-header project-header'
+		'article sidebar';
+	grid-template-columns: 1fr auto;
+
+	background-color: rgba(255, 255, 255, 0.6);
+}
+
+main dy-project-header {
+	grid-area: project-header;
+}
+
+main article {
+	grid-area: article;
+	justify-items: center;
+}
+
+main dy-sidebar {
+	grid-area: sidebar;
+	width: 16rem;
+	margin-left: var(--padding-neg);
+}
+main dy-sidebar aside {
+	display: grid;
+	grid-gap: var(--padding);
+	padding: calc(var(--padding) / 2) var(--padding);
+	position: sticky;
+	top: var(--main-menu-height);
+	height: calc(100vh - var(--main-menu-height));
+	overflow-y: auto;
+}
+.anchor-bottom {
+	margin-top: auto;
+}
+
+dy-page > footer {
+	display: grid;
+	grid-area: footer;
+	padding: var(--padding);
+	background-color: rgba(38, 38, 38, 0.9);
+	color: rgba(255, 255, 255, 0.5);
+	height: max-content;
+}
+
+
+@media (max-width: 45rem) {
+	main {
+		grid-template-areas:
+			'project-header .'
+			'article sidebar';
+		grid-template-columns: 100% auto;
+	}
+	main dy-sidebar {
+		margin-left: 0;
+	}
+	main dy-sidebar aside {
+		position: relative;
+		transition: 0.3s;
+	}
+	main dy-sidebar aside:before {
+		content: 'TC';
+		position: absolute;
+		width: 3rem;
+		height: 3rem;
+		right: 100%;
+		border-top-left-radius: 1rem;
+		border-bottom-left-radius: 1rem;
+		background-color: rgba(255, 255, 255, 0.95);
+	}
+	main dy-sidebar:hover aside,
+	main dy-sidebar:focus-within aside {
+		background-color: rgba(255, 255, 255, 0.95);
+		transform: translateX(-100%);
+		z-index: 1;
+	}
+}

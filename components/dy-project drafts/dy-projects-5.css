@@ -1,0 +1,110 @@
+dy-projects {
+	--filters-width: 15rem;
+
+	display: grid;
+	grid-template-areas:
+		'terms projects';
+	grid-template-columns: var(--filters-width) 1fr;
+	position: relative;
+
+	height: calc(100vh - var(--main-menu-height));
+}
+
+dy-project-filters {
+	grid-area: terms;
+	font-size: 0.85em;
+	padding: 1rem;
+	overflow-y: auto;
+}
+dy-projects.has-focused-project dy-project-filters {
+	opacity: 0.1;
+}
+dy-projects:not(.has-focused-project) dy-project-filters {
+	z-index: 1;
+}
+
+dy-terms dl,
+dy-project-filters dl {
+	display: grid;
+	grid-gap: 0.5em;
+	justify-items: center;
+}
+dy-terms dt,
+dy-project-filters dt {
+	flex: 0 auto;
+	margin-right: 0.2em;
+}
+dy-terms [data-taxonomy],
+dy-project-filters [data-taxonomy] {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+}
+dy-terms dt ~ *,
+dy-project-filters dt ~ * {
+	flex: 1 auto;
+	margin: 2px;
+}
+
+
+
+dy-projects .projects {
+	grid-area: projects;
+	grid-column-start: 1;
+	
+	/* display: grid;
+	grid-auto-flow: column;
+	grid-template-rows: 1fr 1fr 1.25fr;
+	grid-auto-columns: 16rem; */
+	/* grid-gap: 1rem; */
+
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+
+	padding: 1rem;
+	padding-left: var(--filters-width);
+
+	font-size: 0.85em;
+
+	max-width: 100%;
+	max-height: 100vh;
+	overflow-x: auto;
+	overflow-y: hidden;
+
+	--perspective: 30rem;
+	perspective: var(--perspective);
+	--perspective-intensity: 10;
+	/* transform-style: preserve-3d; */
+}
+
+dy-projects:not(.has-focused-project) .projects {
+	-webkit-mask-image: linear-gradient(
+		to right, transparent,
+		rgba(255, 255, 255, 0.1) calc(var(--filters-width) - 2rem),
+		#fff calc(var(--filters-width) + 2rem),
+		#fff
+	);
+	mask-image: linear-gradient(
+		to right,
+		transparent,
+		rgba(255, 255, 255, 0.1) calc(var(--filters-width) - 2rem),
+		#fff calc(var(--filters-width) + 2rem),
+		#fff
+	);
+}
+
+
+@media (max-width: 34rem) {
+	dy-projects {
+		--filters-width: 0;
+	}
+	dy-project-filters {
+		display: none;
+	}
+	dy-projects .projects {
+		padding-left: 0.5rem;
+		overflow-y: auto;
+		flex-direction: row;
+	}
+}

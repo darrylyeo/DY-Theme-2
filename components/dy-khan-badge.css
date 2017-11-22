@@ -1,0 +1,12 @@
+dy-khan-badge {
+	display: grid;
+	grid-auto-flow: column;
+	grid-auto-columns: auto 1fr;
+	align-items: center;
+	grid-gap: 1em;
+	text-align: left;
+}
+dy-khan-badge img {
+	border-radius: 5px;
+	height: 4em;
+}

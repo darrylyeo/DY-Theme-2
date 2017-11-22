@@ -1,0 +1,19 @@
+/*html,
+:not(body):not(#wrapper):not(#main):not(#content):not(.fusion-footer)*/
+* {
+	transition: transform 10s;
+	transform: rotate(180deg);
+	overflow: visible;
+}
+#experiments, nav > ul > li ul {
+	transform: none !important;
+}
+dy-header {
+	z-index: 1;
+}
+html, body, dy-page {
+	transition-duration: 1s !important;
+}
+html {
+	margin-bottom: 50vh;
+}

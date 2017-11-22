@@ -1,0 +1,16 @@
+@font-face {
+	font-family: 'Fun Font';
+	src: ;
+	font-display: optional;
+}
+@font-face {
+	font-family: Darryl-Yeo;
+	src: url('../fonts/Darryl-Yeo-Logo.ttf') format('truetype');
+	font-display: swap;
+}
+
+@font-face {
+	font-family: Icons;
+	src: url('../fonts/Icons.ttf') format('truetype');
+	font-display: swap;
+}

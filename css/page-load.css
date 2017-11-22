@@ -1,0 +1,54 @@
+body:before {
+	content: '';
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	background: url(../logo/DY-Logo-Animated.svg) center/25vmin no-repeat fixed;
+	mix-blend-mode: luminosity;
+	transition: 1s;
+	pointer-events: none;
+}
+:root.load body:before {
+	/* transform: translateY(4rem) rotate(10deg) scale(0); */
+	/* transform: translate(-40vw, -40vh) scale(0); */
+	background-position: left top;
+	background-size: 0;
+}
+
+
+dy-page {
+	animation: PageIn 1s, ApplyPerspective 2s;
+}
+
+@keyframes PageIn {
+	from {
+		/* filter: blur(0.5em); */
+		opacity: 0;
+		transform: translateZ(calc(var(--index) * 0.1rem));
+	}
+}
+@keyframes ApplyPerspective {
+	from, to {
+		perspective: 10rem;
+		transform-style: preserve-3d;
+	}
+}
+
+
+dy-page * {
+	animation: PageContentIn calc(0.5s + var(--index) * 0.15s);
+}
+
+@keyframes PageContentIn {
+	from {
+		transform: translateZ(calc(var(--index) * 1rem));
+	}
+}
+
+
+:root:not(.load) dy-page,
+:root:not(.load) dy-page * {
+	animation-play-state: paused;
+}

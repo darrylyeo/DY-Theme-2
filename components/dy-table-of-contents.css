@@ -1,0 +1,40 @@
+dy-table-of-contents ol {
+	display: grid;
+	font-size: 0.8em;
+	list-style-type: none;
+	padding: 0;
+}
+dy-table-of-contents li > a {
+	display: block;
+	font-family: var(--heading-font);
+	font-weight: bold;
+	text-transform: uppercase;
+	padding: 0.5em 0;
+	line-height: 1.5;
+	--link-color: currentColor;
+}
+dy-table-of-contents li > a:before {
+	content: "";
+	border-radius: 50%;
+	position: absolute;
+	height: 1.5em;
+	width: 1.5em;
+	z-index: -1;
+	transition: var(--transition-medium);
+}
+dy-table-of-contents li > a.current {
+	font-weight: bold;
+	--link-color: inherit;
+	transform: translateX(-0.5ch);
+}
+dy-table-of-contents li > a.current:before {
+	background-color: rgba(255,255,255,.4);
+	box-shadow: 0.4em 0.4em rgba(255,255,255,.2), 0.8em 0.8em rgba(255,255,255,.1), 0.12em 0.12em rgba(255,255,255,.05);
+	border-radius: 15%;
+	transform: translateX(-0.6em) rotate(-45deg);
+}
+
+dy-table-of-contents li ol {
+	margin: 0;
+	padding-left: 1em;
+}
