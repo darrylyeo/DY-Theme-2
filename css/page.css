@@ -2,7 +2,7 @@
 	box-sizing: border-box;
 
 	background: var(--page-background);
-	background-color: white;
+	/* background-color: white; */
 
 	color: var(--color);
 
@@ -24,9 +24,7 @@
 }
 
 body {
-	background: var(--page-background) center/cover fixed;
 	margin: 0;
-	transition: background 2s;
 }
 
 dy-page {

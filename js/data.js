@@ -76,10 +76,10 @@ const updateDatabase = async db => {
 		taxonomies,
 		termsByTaxonomy
 	] = await Promise.all([
-		getJSON('http://localhost:8888/darrylyeo/wp-json/wp/v2/pages?per_page=100'),
-		getJSON('http://localhost:8888/darrylyeo/wp-json/wp/v2/posts?per_page=100&post_status=published'),
-		getJSON('http://localhost:8888/darrylyeo/wp-json/wp/v2/taxonomies').then(Object.values),
-		getJSON('http://localhost:8888/darrylyeo/wp-json/wp/v2/terms')
+		getJSON(`${WP.rest}/pages?per_page=100`),
+		getJSON(`${WP.rest}/posts?per_page=100&post_status=published`),
+		getJSON(`${WP.rest}/taxonomies`).then(Object.values),
+		getJSON(`${WP.rest}/terms`)
 	])
 
 	const terms = [].concat(...Object.values(termsByTaxonomy))
@@ -121,9 +121,9 @@ DY.getTaxonomies = async () => (await DY.getDatabase)
 	.getAll()
 
 
-DY.getUser = fetch('./wp-json/wp/v2/users/me', {
+DY.getUser = fetch(`${WP.rest}/users/me`, {
 	headers: {
-		'X-WP-Nonce': WP.nonce
+		'X-WP-Nonce': WP.restNonce
 	}
 }).then(data => {
 	WP.user = data

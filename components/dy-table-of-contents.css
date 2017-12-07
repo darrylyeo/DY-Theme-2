@@ -14,7 +14,7 @@ dy-table-of-contents li > a {
 	--link-color: currentColor;
 }
 dy-table-of-contents li > a:before {
-	content: "";
+	content: '';
 	border-radius: 50%;
 	position: absolute;
 	height: 1.5em;

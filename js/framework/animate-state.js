@@ -98,6 +98,7 @@ Object.assign(Element.prototype, {
 		if(height) state.height = this.height
 		
 		if(position){
+
 			state.position = {
 				left: this.left,
 				top: this.top
@@ -113,7 +114,6 @@ Object.assign(Element.prototype, {
 				for(const prop of style){
 					state.style[prop] = computedStyle[prop]
 				}
-				
 			}else{
 				state.style = Object.assign({}, computedStyle)
 			}

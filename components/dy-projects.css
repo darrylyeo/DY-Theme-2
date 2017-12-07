@@ -92,7 +92,7 @@ dy-projects .projects {
 	font-size: 0.85em;
 
 	max-width: 100%;
-	max-height: 100vh;
+	/* max-height: 100vh; */
 	overflow-x: auto;
 	overflow-y: hidden;
 }
@@ -102,13 +102,23 @@ dy-projects .projects {
 	dy-projects {
 		--filters-width: 0;
 		--projects-padding: 0.5rem;
+		height: auto;
 	}
 	dy-project-filters {
 		display: none;
 	}
+	dy-projects .projects-wrapper {
+		perspective: none;
+	}
 	dy-projects .projects {
 		padding-left: var(--projects-padding);
-		overflow-y: auto;
+		/* overflow-y: auto; */
 		flex-direction: row;
 	}
+
+	/* body {
+		perspective: 30rem;
+		max-height: 100vh;
+		overflow-y: auto;
+	} */
 }

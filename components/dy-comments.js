@@ -22,7 +22,7 @@ class DYComments extends DYElement {
 
 	connectedCallback(){
 		const root = this.root
-		getJSON(`${WP.API}/comments?post=${WP.current.id}&per_page=100`).then(comments => {
+		getJSON(`${WP.rest}/comments?post=${WP.current.id}&per_page=100`).then(comments => {
 			root.updateWithModel({
 				'h2': `${comments.length} Reaction${comments.length === 1 ? '' : 's'}`
 			})

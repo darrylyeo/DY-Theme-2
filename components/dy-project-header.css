@@ -139,6 +139,7 @@ dy-project-header .details .dates {
 	flex-wrap: wrap;
 	text-transform: uppercase;
 
+	display: flex;
 	justify-content: center;
 	align-items: baseline;
 }

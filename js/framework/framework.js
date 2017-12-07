@@ -109,6 +109,12 @@ String.prototype.replaceAll = function(replace, replaceWith) {
 }
 
 
+Array.prototype.mapSort = function(map, sort = (a, b) => a < b ? -1 : 1){
+	let i = 0
+	return this.sort((a, b) => sort(map.call(this, a, i, this), map.call(this, b, i++, this)))
+}
+
+
 Set.prototype.toggle = function(add, ...objects){
 	if(typeof arguments[0] === 'boolean'){
 		this[add ? 'add' : 'delete'](...objects)

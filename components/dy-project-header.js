@@ -5,7 +5,7 @@ class DYProjectHeader extends DYElement {
 			<div class="details">
 				<h1 class="title"></h1>
 				<div class="dates">
-					<dy-date class="project-date"></dy-date>
+					<dy-date class="project-date" format="full"></dy-date>
 					<span class="modified-date-wrapper">Updated <dy-date class="modified-date"></dy-date></span>
 				</div>
 			</div>

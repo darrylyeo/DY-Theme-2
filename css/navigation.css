@@ -1,7 +1,4 @@
 nav {
-	--link-color: currentColor;
-	--link-underline: none;
-
 	/*display: grid;
 	grid-auto-flow: column;
 	grid-template-columns: 1fr;
@@ -14,8 +11,10 @@ nav {
 	min-width: 0;
 }
 #main-nav {
+	--link-color: currentColor;
 	height: var(--main-menu-height);
-	background-color: rgba(255, 255, 255, 0.95);
+	/* background-color: rgba(255, 255, 255, 0.95); */
+	background-image: radial-gradient(circle, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.95));
 }
 #secondary-nav, #screen-reader-nav {
 	height: var(--secondary-menu-height);
@@ -25,12 +24,12 @@ nav {
 	white-space: nowrap;
 
 	position: relative;
-	z-index: 1;
+	z-index: 2;
 }
 #screen-reader-nav {
 	background: linear-gradient(to right, var(--color-1) 90%, transparent);
 	position: absolute;
-	z-index: 2;
+	z-index: 3;
 }
 #screen-reader-nav:not(:focus-within) {
 	left: -10000px;
@@ -56,6 +55,30 @@ nav > :first-child > a, nav > a:first-child {
 }
 nav > :last-child > a {
 	padding-right: var(--padding);
+}
+
+#main-nav > * {
+	position: relative;
+}
+#main-nav > * > a {
+	letter-spacing: 0.04em;
+	z-index: 1;
+	transition: 0.3s, transform 0.3s 0.05s cubic-bezier(.87,-1,.19,2);
+}
+#main-nav > * > a:hover {
+	text-shadow: rgba(0, 0, 0, 0.1) 0 0 0.1em;
+	transform: scale(1.15);
+}
+#main-nav > * > a + dy-icon {
+	position: absolute;
+	transition: 0.3s, transform 0.3s cubic-bezier(.87,-1,.19,2);
+}
+#main-nav > * > a:not(:hover) + dy-icon {
+	color: rgba(0, 0, 0, 0.1);
+}
+#main-nav > * > a:hover + dy-icon {
+	opacity: 0.8;
+	transform: scale(1.2);
 }
 
 /* Sub menu */

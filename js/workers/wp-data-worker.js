@@ -1,5 +1,14 @@
+const WP = {
+	siteURL: 'http://localhost:8888/darrylyeo/',
+	themes: 'http://localhost:8888/darrylyeo/wp-content/themes',
+	parentTheme: 'http://localhost:8888/darrylyeo/wp-content/themes/DY-2',
+	childTheme: "http://localhost:8888/darrylyeo/wp-content/themes/DY-2",
+	rest: "http://localhost:8888/darrylyeo/wp-json/wp/v2"
+}
+
 const ASSETS_CACHE = 'darrylyeo-assets-1.0.0'
 const CONTENT_CACHE = 'darrylyeo-content-1.0.0'
+
 const urlsToCache = [
 	'./',
 	
@@ -63,13 +72,13 @@ const urlsToCache = [
 	'./components/dy-khan-badge.js',
 	'./components/dy-khan-stats.js',
 	
-		'./js/experiments.js',
+	'./js/experiments.js',
 
-	'http://localhost:8888/darrylyeo/wp-json/wp/v2/pages?per_page=100',
-	'http://localhost:8888/darrylyeo/wp-json/wp/v2/posts?per_page=100&post_status=published',
-	'http://localhost:8888/darrylyeo/wp-json/wp/v2/taxonomies',
-	'http://localhost:8888/darrylyeo/wp-json/wp/v2/terms'
-].map(url => url.replace(/^\./, 'http://localhost:8888/darrylyeo2'))
+	`${WP.rest}/pages?per_page=100`,
+	`${WP.rest}/posts?per_page=100&post_status=published`,
+	`${WP.rest}/taxonomies`,
+	`${WP.rest}/terms`
+].map(url => url.replace(/^\./, WP.siteURL))
 
 self.addEventListener('install', event => {console.log('install', event)
 	// Perform install steps

@@ -69,7 +69,7 @@ const DYNavigation = {
 		if(!href) return
 		if(location.href === href) return
 		if(e.metaKey) return
-
+X(this.host, new URL(this.href))
 		if(this.host !== location.host){
 			window.open(this.href, '_blank')
 			e.preventDefault()

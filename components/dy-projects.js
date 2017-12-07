@@ -26,7 +26,7 @@ class DYProjects extends DYElement {
 		this.map = new TwoWayWeakMap()
 
 		DY.getObjectsByType('project').then(projects => {
-			projects = [...projects].reverse()
+			projects = projects.mapSort(project => project.date).reverse()
 
 			const filterCategoryID = +this.attr('category')
 			if(filterCategoryID){
@@ -39,7 +39,7 @@ class DYProjects extends DYElement {
 
 			for(const project of projects){
 				const $project = $$$('dy-project')
-					.prependTo($projectsWrapper)
+					.appendTo($projectsWrapper)
 					.initialize(project)
 				this.map.set($project, project)
 			}

@@ -97,7 +97,7 @@ class DYFigure extends DYElement {
 
 		if(attr === 'src'){
 			const src = newVal
-			getJSON(`${WP.API}/media?search=${src}`)
+			getJSON(`${WP.rest}/media?search=${src}`)
 				.then(data => this.data = data[0])
 		}
 	}

@@ -21,8 +21,7 @@
 	--heading-font: 'Fun Font', 'Klinic Slab', 'Slabo 13px', var(--body-font);
 	--link-color: var(--color-1-dark);
 	--link-hover-color: var(--color-1);
-
-	--page-background: radial-gradient(rgb(102, 182, 225) 30%, rgba(112, 255, 246, 0.96));
+	--page-background: radial-gradient(rgb(102, 182, 225) 30%, rgba(112, 255, 246, 0.96)) fixed 0 0/100vmax 100vmax;
 
 	--supports-backdrop-filter: 0;
 }

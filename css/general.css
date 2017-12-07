@@ -22,11 +22,12 @@
 
 a, :link {
 	border-radius: 1px;
+	text-shadow: rgba(0, 0, 0, 0.1) 0 1px 1px;
 	color: var(--link-color, var(--color-1));
 	transition: 0.2s;
 }
 :link {
-	text-decoration: var(--link-underline, underline);
+	text-decoration: var(--link-underline, none);
 }
 a:hover {
 	opacity: 0.9;
@@ -44,6 +45,9 @@ a {
 	box-shadow: var(--link-highlight);
 }
 
+article {
+	--link-underline: underline;
+}
 article :not(h2):not(h3) > :link:hover, article :visited:hover,
 article :not(h2):not(h3) > :link:focus, article :visited:focus {
 	--link-color: #fff;
@@ -55,7 +59,7 @@ article :not(h2):not(h3) > :link:focus, article :visited:focus {
 	--link-highlight-size: 0.2em;
 }
 
-h2 :link {
+h2 :link, h3 :link {
 	--link-color: var(--color);
 	--link-underline: none;
 }
@@ -104,10 +108,11 @@ img:before {
 p, ol, ul, li, blockquote, dl, dt, dd, form {
 	margin: 0;
 }
-h1, h2, h3, h4, h5, h6, dt, legend {
+h1, h2, h3, h4, h5, h6, dt, legend, time {
 	margin: 0;
 	font-family: var(--heading-font);
 	font-weight: bold;
+	line-height: 1.35;
 	text-transform: uppercase;
 }
 
@@ -145,6 +150,26 @@ iframe {
 cite {
 	font-style: normal;
 }
+
+
+button, input, textarea, select {
+	touch-action: manipulation;
+}
+
+:disabled {
+	filter: grayscale();
+}
+:disabled, .disabled {
+	cursor: not-allowed;
+	opacity: 0.75;
+	pointer-events: none;
+}
+:focus {
+	filter: drop-shadow(var(--color-1) 0 1px 3px);
+	outline: none;
+	z-index: 1;
+}
+
 
 ::selection {
 	background-color: var(--color-1-half);

@@ -2,40 +2,56 @@ class DYTableOfContents extends DYElement {
 	static get templateHTML(){
 		return `
 			<nav>
-				<ol>
-
-				</ol>
+				<ol></ol>
 			</nav>
 		`
 	}
 
-	connectedCallback(){
-		window.on('scroll.throttle.passive', () => {
-			const {$article, $targets, $targetTo$Link} = this
-			if($article){
-				const $target = [...$targets].reverse().find(
-					$target => $target.top <= $DYPage.$header.mainMenuStickyHeight + 40
-				)
-				if($target !== this.$currentTarget){
-					this.$links.removeClass('current')
-					if($target !== undefined) $targetTo$Link.get($target).addClass('current')
-				}
-				this.$currentTarget = $target
-			}
-		})
-	}
-
 	set $article($article){
 		this._$article = $article
+
 		const $targets = this.$targets = []
 		const $targetTo$Link = this.$targetTo$Link = new Map()
 
-		const root = this.root
+		this.root
+		
+		// Check when a target crosses a horizontal line 40% down the viewport
+		const observer = new IntersectionObserver(entries => {
+			for(const entry of entries){
+				const $target = entry.target
+				if(entry.isIntersecting){
+					const $link = $targetTo$Link.get($target)
+					this.$currentLink = $link
+				}
+			}
+		}, {
+			threshold: 0,
+			rootMargin: '-40% 0% -60% 0%' // intersect with a line at the 40% vertical, not the whole viewport
+		})
 
-		const $levels = {2: this.root.find('ol')}
+		const $ol = this.find('ol')
+
+		for(const $target of $article.findAll('section')){
+			const anchor = $target.id
+			const $h2 = $target.find('h2')
+		
+			const $li = $$$('li')
+			$ol.append($li)
+
+			const $link = $$$('a', {
+				href: '#' + anchor,
+				html: $h2 ? $h2.innerText : anchor
+			})
+			$li.append($link)
+
+			$targetTo$Link.set($target, $link)
+			observer.observe($target)
+		}
+
+		/*const $levels = {2: this.root.find('ol')}
 		let currentLevel = 2
 		let $currentLevel = $levels[currentLevel]
-
+X($article.findAll('section > h2, h3, h4, h5, h6'))
 		for(const $heading of $article.findAll('section > h2, h3, h4, h5, h6')){
 			const level = +$heading.tagName[1]
 
@@ -65,7 +81,7 @@ class DYTableOfContents extends DYElement {
 			$$$('li', {
 				$parent: $currentLevel
 			}).append($link)
-		}
+		}*/
 	}
 	get $article(){
 		return this._$article
@@ -73,6 +89,12 @@ class DYTableOfContents extends DYElement {
 
 	get $links(){
 		return this.root.findAll('a')
+	}
+
+	set $currentLink($link){
+		if(this._$currentLink) this._$currentLink.removeClass('current')
+		this._$currentLink = $link
+		if($link) this._$currentLink.addClass('current')
 	}
 }
 customElements.define('dy-table-of-contents', DYTableOfContents)

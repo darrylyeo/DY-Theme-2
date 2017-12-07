@@ -31,6 +31,8 @@ const DYPage = {
 			$sidebar.$tableOfContents.$article = $article
 		}
 
+		DYNavigation.processLinks($$('a'))
+
 		window.trigger(new CustomEvent('pagerender'))
 	},
 
@@ -38,7 +40,7 @@ const DYPage = {
 		const currentURL = window.location.origin + window.location.pathname
 		const siteURL = WP.siteURL
 
-		WP.current = await DY.getObjectForURL(currentURL.replace('/darrylyeo2/', '/darrylyeo/'))
+		WP.current = await DY.getObjectForURL(currentURL)
 		WP.queryType = ''
 		WP.postType = ''
 
@@ -95,7 +97,7 @@ const DYPage = {
 					` : ''}
 					${data.content.rendered}
 					<hr>
-					${data.comment_status === 'open' ? `<dy-comments></dy-comments>` : ''}
+					${data.comment_status === 'open' ? `<dy-comments id="comments"></dy-comments>` : ''}
 				</article>
 				<dy-sidebar></dy-sidebar>
 			`,
@@ -110,7 +112,7 @@ const DYPage = {
 					-->
 					${data.content.rendered}
 					<hr>
-					${data.comment_status === 'open' ? `<dy-comments></dy-comments>` : ''}
+					${data.comment_status === 'open' ? `<dy-comments id="comments"></dy-comments>` : ''}
 				</article>
 				<dy-sidebar></dy-sidebar>
 			`,

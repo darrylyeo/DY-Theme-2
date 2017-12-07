@@ -12,20 +12,10 @@ class DYIcon extends DYElement {
 	}
 
 	attributeChangedCallback(attr, oldVal, newVal){
-		documentReady.then(() => {
-		const root = this.root
-
 		if(attr === 'icon'){
 			const iconName = newVal
-			//this.$icon.addClass(iconName)
-
-			root.updateWithModel({
-				//'.icon[class]': iconName,
-				'.icon': `<use href="${WP.parentTheme}/assets/icons.svg#${iconName}"/>`
-				//'.icon use[href]': `${WP.parentTheme}/assets/icons.svg#${iconName}`
-			})
+			this.$icon.innerHTML = `<use href="${WP.parentTheme}/icons/icons.svg#${iconName}"/>`
 		}
-		})
 	}
 	get $icon(){
 		return this.root.find('.icon')

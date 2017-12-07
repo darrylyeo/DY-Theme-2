@@ -1,9 +1,11 @@
 dy-project {
-	--focused: 0;
-
 	--tilt: -10deg;
 	--tilt-neg: calc(var(--tilt) * -1);
 	--card-shadow: rgba(0, 0, 0, 0.15) 0 1em 4em;
+
+	--mask-start: 0%;
+	--mask-end: 300%;
+
 	display: flex;
 
 	flex: 1 12rem;
@@ -12,15 +14,18 @@ dy-project {
 	transform-style: preserve-3d;
 	transition: opacity 0.3s;
 }
-dy-project:before {
-	content: var(--focused);
+dy-project:not(.focused) {
+	--mask-start: 0rem;
+	--mask-end: 18rem;
 }
 dy-project:not(.focused):hover {
 	--tilt: -5deg;
+	--mask-start: -4rem;
+	--mask-end: 26rem;
+
 	cursor: zoom-in;
 }
 dy-project.focused {
-	--focused: 1;
 	--tilt: 0;
 	transform-style: inherit;
 	z-index: 2;
@@ -40,12 +45,15 @@ dy-project:not(.focused) * {
 	transition: transform 0.3s cubic-bezier(0.1, 2, 1, 1);
 }
 dy-project:not(.focused):hover .positioning-wrapper {
-	transform: translate3d(0, -0.1rem, 0.5rem);
+	transform: translate3d(0, -0.1rem, 0.75rem);
+}
+dy-project:not(.focused):active .positioning-wrapper {
+	transform: translate3d(0, 0.1rem, -0.5rem);
 }
 dy-project.focused .positioning-wrapper {
 	justify-content: center;
 	align-items: center;
-	position: absolute;
+	position: fixed;
 	left: 0;
 	top: 0;
 	width: 100%;
@@ -54,6 +62,12 @@ dy-project.focused .positioning-wrapper {
 	pointer-events: none;
 	/* -webkit-backdrop-filter: blur(2px);
 	backdrop-filter: blur(2px); */
+}
+dy-project.focused .positioning-wrapper.animating-position {
+	transition: none;
+}
+dy-projects.has-focused-project dy-project:not(.focused) .positioning-wrapper {
+	transform: translate3d(0, 0.1rem, -2rem) scale(0.9);
 }
 
 .inner-wrapper {
@@ -139,8 +153,6 @@ dy-project.focused .featured-image {
 }
 
 dy-project img {
-	--mask-start: 0%;
-	--mask-end: 300%;
 	-webkit-mask:
 		linear-gradient(#fff, #fff 33%, transparent)
 		0 var(--mask-start) /
@@ -157,14 +169,6 @@ dy-project img {
 	text-decoration: none;
 	max-width: 100%;
 }
-dy-project:not(.focused) img {
-	--mask-start: 0rem;
-	--mask-end: 18rem;
-}
-dy-project:not(.focused):hover img {
-	--mask-start: -4rem;
-	--mask-end: 26rem;
-}
 dy-project.focused img {
 	width: auto;
 	min-height: 15rem;
@@ -174,24 +178,24 @@ dy-project.no-featured-image img {
 	height: 15rem;
 }
 
-dy-project .card .details-wrapper {
+dy-project .details-wrapper {
 	display: grid;
 	overflow-y: auto;
 	max-width: 0;
 	min-height: 100%;
 	height: 0;
 }
-dy-project.focused .card .details-wrapper {
+dy-project.focused .details-wrapper {
 	max-width: 22rem;
 }
-dy-project.focused .card .details {
+dy-project.focused .details {
 	background-color: rgba(255, 255, 255, 0.5);
 	display: grid;
 	grid-gap: 1em;
 	grid-auto-rows: auto auto 1fr;
 	padding: 1.5rem;
 }
-/*dy-project.focused .card .details {
+/*dy-project.focused .details {
 	display: grid;
 	grid-gap: 1em;
 	grid-auto-rows: auto auto 1fr;
@@ -206,18 +210,29 @@ dy-project.focused .card .details {
 
 	transition: 1.5s;
 }
-dy-project:not(.focused) .card .details {
+dy-project:not(.focused) .details {
 	max-width: 0;
 	padding: 0;
 }*/
 
-.details .dates {
-	display: flex;
-	justify-content: space-between;
+dy-project .details .dates {
+	font-family: var(--heading-font);
+	font-weight: bold;
 	flex-wrap: wrap;
+	text-transform: uppercase;
+
+	display: flex;
+	justify-content: center;
+	align-items: baseline;
 }
-.details .modified-date-wrapper {
+dy-project .details .dates:before {
+	content: '•';
+	order: 1;
+	margin: 0 0.4rem;
+}
+dy-project .modified-date-wrapper {
 	font-size: 0.85em;
+	order: 2;
 }
 
 .details dy-terms {
@@ -231,19 +246,21 @@ dy-project:not(.focused) .card .details {
 		display: block;
 		overflow-y: auto;
 	}
+	dy-project.focused .details-wrapper {
+		display: block;
+		min-width: 100%;
+		height: auto;
+	}
 	dy-project.focused .details {
 		width: 0;
 		min-width: 100%;
 		height: initial;
 	}
-	dy-project.focused .details {
-		position: static;
-	}
 }
 
-@media (max-height: 493px) {
+@media (max-height: 614px) {
 	dy-project {
-		--tilt: 0;
+		--tilt: 0 !important;
 	}
 	dy-project img {
 		-webkit-mask-image: none !important;
@@ -254,6 +271,6 @@ dy-project:not(.focused) .card .details {
 
 @media (max-width: 34rem) {
 	dy-project {
-		max-height: 14rem;
+		max-height: 16rem;
 	}
 }

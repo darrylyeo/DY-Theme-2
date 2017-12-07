@@ -1,9 +1,13 @@
 <html lang="en-US">
 
 <meta charset="UTF-8">
-<base href="http://localhost:8888/darrylyeo2/">
+<base href="<?= WP_SITEURL ?>">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <link rel="author" href="https://darryl-yeo.com/about">
+
+<!-- head -->
+<?= wp_head() ?>
+<!-- /head -->
 
 <dy-style></dy-style>
 
@@ -54,9 +58,9 @@
 				</svg>  -->
 				<span class="darryl">D<span class="arryl">arryl</span></span><span class="yeo"> Y<span class="eo">eo</span></span>
 			</a>
-			<div><a class="code" href="./code">Code</a></div>
-			<div><a class="art" href="./art">Art</a></div>
-			<div><a class="music" href="./music">Music</a></div>
+			<div><a class="code" href="./code">Code</a><dy-icon icon="code"></dy-icon></div>
+			<div><a class="art" href="./art">Art</a><dy-icon icon="art"></dy-icon></div>
+			<div><a class="music" href="./music">Music</a><dy-icon icon="music"></dy-icon></div>
 			<div><a class="blog" href="./blog">Blog</a></div>
 			<div><a class="learn" href="./learn">Learn</a></div>
 		</nav>
@@ -102,7 +106,6 @@
 }
 </script>
 
-<script src="./js/libraries/custom-elements.min.js"></script>
-<script src="./js/libraries/web-animations.min.js"></script>
-<script src="./js/framework/framework.js"></script>
-<script src="./assets.js"></script>
+<!-- footer -->
+<?= wp_footer() ?>
+<!-- /footer -->

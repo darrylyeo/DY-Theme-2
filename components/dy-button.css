@@ -45,9 +45,11 @@ dy-button[theme~=plain] {
 	line-height: 2;
 }
 dy-button[theme~=plain]:hover,
+dy-button[theme~=plain]:focus,
 dy-button[theme~=plain].active {
 	background-color: var(--color-1);
 	color: #fff;
+	opacity: 0.9;
 }
 dy-button[theme~=plain].active {
 	opacity: 1;
