@@ -82,13 +82,11 @@ const urlsToCache = [
 
 self.addEventListener('install', event => {console.log('install', event)
 	// Perform install steps
-	event.waitUntil(
-		caches.open(ASSETS_CACHE)
-			.then(cache => {
-				console.log('Opened cache')
-				return cache.addAll(urlsToCache)
-			})
-	)
+	event.waitUntil(async () => {
+		const cache = await caches.open(ASSETS_CACHE)
+		console.log('Opened cache')
+		return cache.addAll(urlsToCache)
+	})
 })
 
 
