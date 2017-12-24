@@ -21,7 +21,7 @@ const DYPage = {
 	async onNavigation(){
 		const data = await this.route()
 
-		document.title = data.title.rendered + ' – Darryl Yeo'
+		document.title = data.name || data.title.rendered + ' – Darryl Yeo'
 
 		$('main').html(this.render())
 
