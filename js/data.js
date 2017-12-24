@@ -82,7 +82,7 @@ const updateDatabase = async db => {
 		getJSON(`${WP.rest}/terms`)
 	])
 
-	const terms = [].concat(...Object.values(termsByTaxonomy))
+	const terms = Object.values(termsByTaxonomy).flatten()
 	const projectsCategory = termsByTaxonomy['page-category'].find(term => term.slug === 'project')
 	const PROJECT_CATEGORY_ID = projectsCategory.term_id
 

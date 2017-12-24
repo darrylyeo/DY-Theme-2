@@ -113,6 +113,12 @@ Array.prototype.mapSort = function(map, sort = (a, b) => a < b ? -1 : 1){
 	let i = 0
 	return this.sort((a, b) => sort(map.call(this, a, i, this), map.call(this, b, i++, this)))
 }
+Array.prototype.flatten = function(deep = false){
+	const array = deep
+		? this.map(x => Array.isArray(x) ? x.flatten() : x)
+		: this
+	return [].concat(...array)
+}
 
 
 Set.prototype.toggle = function(add, ...objects){

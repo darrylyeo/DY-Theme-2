@@ -90,12 +90,12 @@ DY.getData = (async () => {
 			),
 			getJSON('http://localhost:8888/darrylyeo/wp-json/wp/v2/terms').then(
 				termsByTaxonomy => assignType(
-					[].concat(...Object.values(termsByTaxonomy)),
+					Object.values(termsByTaxonomy).flatten(),
 					'term'
 				)
 			)
 		])
-		return [].concat(...objects)
+		return objects.flatten()
 	}catch(e){
 		console.error(e)
 	}
