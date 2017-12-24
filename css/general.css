@@ -72,6 +72,8 @@ i[icon] {
 i[icon]:before {
 	content: attr(icon);
 	font-family: Icons;
+	font-weight: normal;
+	text-transform: none;
 }
 
 img {
