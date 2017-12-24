@@ -10,6 +10,7 @@ dy-khan {
 	padding: var(--padding);
 	margin: 0 auto;
 	width: min-content;
+	max-width: 100%;
 	text-align: center;
 }
 
