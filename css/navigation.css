@@ -65,18 +65,25 @@ nav > :last-child > a {
 	z-index: 1;
 	transition: 0.3s, transform 0.3s 0.05s cubic-bezier(.87,-1,.19,2);
 }
-#main-nav > * > a:hover {
+#main-nav > * > a:hover,
+#main-nav > * > a:focus,
+#main-nav > * > a.current {
 	text-shadow: rgba(0, 0, 0, 0.1) 0 0 0.1em;
 	transform: scale(1.15);
+}
+#main-nav > * > a.current {
+	font-weight: bold;
 }
 #main-nav > * > a + dy-icon {
 	position: absolute;
 	transition: 0.3s, transform 0.3s cubic-bezier(.87,-1,.19,2);
 }
-#main-nav > * > a:not(:hover) + dy-icon {
+#main-nav > * > a:not(:hover):not(:focus):not(.current) + dy-icon {
 	color: rgba(0, 0, 0, 0.1);
 }
-#main-nav > * > a:hover + dy-icon {
+#main-nav > * > a:hover + dy-icon,
+#main-nav > * > a:focus + dy-icon,
+#main-nav > * > a.current + dy-icon {
 	opacity: 0.8;
 	transform: scale(1.2);
 }
