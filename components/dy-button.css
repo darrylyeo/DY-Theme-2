@@ -1,8 +1,10 @@
 dy-button {
-	display: inline-flex;
+	display: inline-grid;
 	justify-content: center;
 	align-items: center;
 	vertical-align: middle;
+	grid-gap: 0.5em;
+	grid-auto-flow: column;
 
 	cursor: pointer;
 	
