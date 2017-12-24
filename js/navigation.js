@@ -1,6 +1,8 @@
 const DYNavigation = {
 	navigatingTo: undefined,
 	prerenderedURLs: [],
+
+	$links: new Set(),
 	
 	navigateTo(url, pushNewState = false){
 		if(!url) return false
@@ -57,6 +59,9 @@ const DYNavigation = {
 	},
 
 	processLinks($links){
+		for(const $link of this.$links) if(!document.body.contains($link)) this.$links.delete($link)
+		for(const $link of $links) this.$links.add($link)
+
 		$links.on({
 			click: this.onLinkClick,
 			mouseover: this.onLinkMouseOver
@@ -69,7 +74,7 @@ const DYNavigation = {
 		if(!href) return
 		if(location.href === href) return
 		if(e.metaKey) return
-X(this.host, new URL(this.href))
+		
 		if(this.host !== location.host){
 			window.open(this.href, '_blank')
 			e.preventDefault()
@@ -100,3 +105,11 @@ X(this.host, new URL(this.href))
 }
 
 DYNavigation.processLinks($$('a'))
+
+window.on({
+	pagerender(){
+		for(const $link of DYNavigation.$links){
+			$link.toggleClass($link.href === location.href, 'current')
+		}
+	}
+})
