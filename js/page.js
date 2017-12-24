@@ -96,7 +96,6 @@ const DYPage = {
 						<dy-khan data-id="${data.meta.kaId}" thumbnail="${data.featuredImage.source_url}"></dy-khan>
 					` : ''}
 					${data.content.rendered}
-					<hr>
 					${data.comment_status === 'open' ? `<dy-comments id="comments"></dy-comments>` : ''}
 				</article>
 				<dy-sidebar></dy-sidebar>
@@ -111,7 +110,6 @@ const DYPage = {
 					` : ''}
 					-->
 					${data.content.rendered}
-					<hr>
 					${data.comment_status === 'open' ? `<dy-comments id="comments"></dy-comments>` : ''}
 				</article>
 				<dy-sidebar></dy-sidebar>
