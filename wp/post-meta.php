@@ -152,8 +152,8 @@ $custom_fields = [
 			$kaID = get_post_meta( $post->ID, 'dy-ka-id', true );
 			if(!empty($kaID)){
 				return str_replace(
-					array('T', 'Z'),
-					array(' ', ''),
+					['T', 'Z'],
+					[' ', ''],
 					DY::getJSON(DY::khanAcademyURLFromID($kaID))->scratchpad->created
 				);
 			}
@@ -203,16 +203,7 @@ add_action( 'rest_api_init', function () {
 	
 	register_rest_field( 'page',
 		'meta',
-		array(
-			/**
-			 * Get the value of the custom field
-			 *
-			 * @param array $object Details of current post.
-			 * @param string $field_name Name of field.
-			 * @param WP_REST_Request $request Current request
-			 *
-			 * @return mixed
-			 */
+		[
 			'get_callback'    => function( $object, $field_name, $request ) {
 				global $custom_fields;
 				
@@ -233,7 +224,7 @@ add_action( 'rest_api_init', function () {
 			},
 			'update_callback' => null,
 			'schema'          => null,
-		)
+		]
 	);
 	
 	return;
@@ -241,7 +232,6 @@ add_action( 'rest_api_init', function () {
 	foreach($custom_fields as $handle => $options){
 		register_rest_field( 'page',
 			$handle,
-			array(
 				/**
 				 * Get the value of the custom field
 				 *
@@ -251,12 +241,13 @@ add_action( 'rest_api_init', function () {
 				 *
 				 * @return mixed
 				 */
+			[
 				'get_callback'    => function( $object, $field_name, $request ) {
 					return get_post_meta( $object[ 'id' ], $field_name, true );
 				},
 				'update_callback' => null,
 				'schema'          => null,
-			)
+			]
 		);
 	}
 });

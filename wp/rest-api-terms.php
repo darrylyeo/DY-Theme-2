@@ -1,6 +1,6 @@
 <?php
 add_action('rest_api_init', function () {
-	register_rest_route('wp/v2', '/terms', array(
+	register_rest_route('wp/v2', '/terms', [
 		'methods' => 'GET',
 		'callback' => function(){
 			$data = [];
@@ -26,5 +26,5 @@ add_action('rest_api_init', function () {
 			}
 			return new WP_REST_Response($data, 200);
 		}
-	));
+	]);
 });

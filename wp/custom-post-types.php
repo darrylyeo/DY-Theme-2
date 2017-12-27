@@ -2,13 +2,13 @@
 
 add_action('init', function(){
 	// Custom Taxonomies
-	$post_types = array('page', 'post', 'project');
+	$post_types = ['page', 'post', 'project'];
 	
-	register_post_type( 'project', array(
-		'labels' => array(
+	register_post_type( 'project', [
+		'labels' => [
 			'name' => _x( 'Projects', 'taxonomy general name' ),
 			'singular_name'	=> _x( 'Project', 'taxonomy singular name' ),
-		),
+		],
 		'description' => __( 'My projects.', 'DY' ),
 		'public' => true,
 		'publicly_queryable' => true,
@@ -16,10 +16,10 @@ add_action('init', function(){
 		'show_in_menu' => true,
 		'show_in_admin_bar' => true,
 		'query_var' => true,
-		'rewrite' => array(
+		'rewrite' => [
 			//'slug' => '/',
 			'with_front' => false
-		),
+		],
 		//'capability_type'	=> 'post',
 		'has_archive' => true,
 		'hierarchical' => true,
@@ -27,107 +27,107 @@ add_action('init', function(){
 		'show_in_rest' => true,
 		'rest_base' => 'projects',
 		'rest_controller_class' => 'WP_REST_Posts_Controller',
-		'supports' => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'trackbacks', 'custom-fields', 'comments', 'page-attributes' )
-	));
+		'supports' => [ 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'trackbacks', 'custom-fields', 'comments', 'page-attributes' ]
+	]);
 	
 	//Page Category (internal use only)
 	// (use post category as project categories)
-	register_taxonomy( 'page-category', array( 'page' ), array(
+	register_taxonomy( 'page-category', [ 'page' ], [
 		'hierarchical' => true,
-		'labels' => array(
+		'labels' => [
 			'name' => 'Page Categories',
 			'singular_name' => 'Page Category',
-		),
+		],
 		'show_ui' => true,
 		'show_admin_column' => true,
-		'rewrite' => array( 'with_front' => 'false' ),
+		'rewrite' => [ 'with_front' => 'false' ],
 		'show_in_rest' => true
-	) );
+	]);
 
 	//Topic
-	register_taxonomy( 'topic', $post_types, array(
+	register_taxonomy( 'topic', $post_types, [
 		'hierarchical' => true,
-		'labels' => array(
+		'labels' => [
 			'name' => _x( 'Topics', 'taxonomy general name' ),
 			'singular_name'	=> _x( 'Topic', 'taxonomy singular name' ),
-		),
-		'rewrite' => array(
+		],
+		'rewrite' => [
 			'with_front' => false
-		),
+		],
 		'show_admin_column' => true,
 		'show_in_rest' => true
-	) );
+	]);
 	
 	
 	// Programming Language (to merge with Tools)
-	register_taxonomy( 'language', $post_types, array(
+	register_taxonomy( 'language', $post_types, [
 		'hierarchical' => true,
-		'labels' => array(
+		'labels' => [
 			'name' => _x( 'Languages', 'taxonomy general name' ),
 			'singular_name'	=> _x( 'Language', 'taxonomy singular name' ),
-		),
-		'rewrite' => array(
+		],
+		'rewrite' => [
 			'with_front' => false
-		),
+		],
 		'show_admin_column' => true,
 		'show_in_rest' => true
-	) );
+	]);
 	// Tools (Software Used)
-	register_taxonomy( 'tools', $post_types, array(
+	register_taxonomy( 'tools', $post_types, [
 		'hierarchical' => true,
-		'labels' => array(
+		'labels' => [
 			'name' => _x( 'Tools', 'taxonomy general name' ),
 			'singular_name' => _x( 'Software Used', 'taxonomy singular name' ),
 			'menu_name'	=> _x( 'Programming Software', 'taxonomy menu name' ),
-		),
-		'rewrite' => array(
+		],
+		'rewrite' => [
 			'with_front' => false
-		),
+		],
 		'show_admin_column' => true,
 		'show_in_rest' => true
-	) );
+	]);
 	
 
 	// Typeface
-	register_taxonomy( 'typeface', $post_types, array(
+	register_taxonomy( 'typeface', $post_types, [
 		'hierarchical' => true,
-		'labels' => array(
+		'labels' => [
 			'name' => _x( 'Typefaces', 'taxonomy general name' ),
 			'singular_name'	=> _x( 'Typeface Used', 'taxonomy singular name' ),
-		),
-		'rewrite' => array(
+		],
+		'rewrite' => [
 			'with_front' => false
-		),
+		],
 		'show_admin_column' => true,
 		'show_in_rest' => true
-	) );
+	]);
 	
 	/*// Music Software Used
-	register_taxonomy( 'software', $post_types, array(
+	register_taxonomy( 'software', $post_types, [
 		'hierarchical' => true,
-		'labels' => array(
+		'labels' => [
 			'name' => _x( 'Tools', 'taxonomy general name' ),
 			'singular_name'	=> _x( 'Software Used', 'taxonomy singular name' ),
 			'menu_name'	=> _x( 'Music Software', 'taxonomy menu name' ),
-		),
-		'rewrite' => array( 'slug' => 'music' ),
-		//'rewrite' => array( 'slug' => 'music-software' ),
+		],
+		'rewrite' => [ 'slug' => 'music' ],
+		//'rewrite' => [ 'slug' => 'music-software' ],
 		'show_admin_column' => true
-	) );*/
+	]);*/
 	
 	// Music Genre
-	register_taxonomy( 'genre', $post_types, array(
+	register_taxonomy( 'genre', $post_types, [
 		'hierarchical' => true,
-		'labels' => array(
+		'labels' => [
 			'name' => _x( 'Genres', 'taxonomy general name' ),
 			'singular_name'	=> _x( 'Genre', 'taxonomy singular name' ),
-		),
-		'rewrite' => array(
+		],
+		'rewrite' => [
 			'with_front' => false
-		),
+		],
 		'show_admin_column' => true,
 		'show_in_rest' => true
-	) );
+	]);
 	
 	
 	// Allow pages to use post categories and tags
@@ -175,5 +175,5 @@ add_action( 'pre_get_posts', function( $query ) {
 
 	// 'name' will be set if post permalinks are just post_name, otherwise the page rule will match
 	if ( ! empty( $query->query['name'] ) )
-		$query->set( 'post_type', array( 'post', 'project', 'page' ) );
+		$query->set( 'post_type', [ 'post', 'project', 'page' ] );
 });*/

@@ -3,7 +3,7 @@
 add_action('rest_api_init', function () {
 	register_rest_field( ['page', 'post'],
 		'terms',
-		array(
+		[
 			/**
 			 * Get the value of the custom field
 			 *
@@ -35,6 +35,6 @@ add_action('rest_api_init', function () {
 			},
 			'update_callback' => null,
 			'schema'          => null,
-		)
+		]
 	);
 });

@@ -34,11 +34,11 @@ add_action('after_setup_theme', function(){
 	/*
 	 * Enable support for custom logo.
 	 */
-	add_theme_support( 'custom-logo', array(
+	add_theme_support( 'custom-logo', [
 		'height'      => 240,
 		'width'       => 240,
 		'flex-height' => true,
-	) );
+	]);
 
 	/*
 	 * Enable support for Post Thumbnails on posts and pages.
@@ -49,29 +49,29 @@ add_action('after_setup_theme', function(){
 	set_post_thumbnail_size( 1200, 9999 );
 
 	// This theme uses wp_nav_menu() in two locations.
-	register_nav_menus( array(
+	register_nav_menus( [
 		'primary' => __( 'Primary Menu', 'twentysixteen' ),
 		'social'  => __( 'Social Links Menu', 'twentysixteen' ),
-	) );
+	] );
 
 	/*
 	 * Switch default core markup for search form, comment form, and comments
 	 * to output valid HTML5.
 	 */
-	add_theme_support( 'html5', array(
+	add_theme_support( 'html5', [
 		'search-form',
 		'comment-form',
 		'comment-list',
 		'gallery',
 		'caption',
-	) );
+	] );
 
 	/*
 	 * Enable support for Post Formats.
 	 *
 	 * See: https://codex.wordpress.org/Post_Formats
 	 */
-	add_theme_support( 'post-formats', array(
+	add_theme_support( 'post-formats', [
 		'aside',
 		'image',
 		'video',
@@ -81,7 +81,7 @@ add_action('after_setup_theme', function(){
 		'status',
 		'audio',
 		'chat',
-	) );
+	] );
 
 	// Indicate widget sidebars can use selective refresh in the Customizer.
 	add_theme_support( 'customize-selective-refresh-widgets' );
