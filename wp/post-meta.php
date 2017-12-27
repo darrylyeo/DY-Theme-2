@@ -207,20 +207,13 @@ add_action( 'rest_api_init', function () {
 			'get_callback'    => function( $object, $field_name, $request ) {
 				global $custom_fields;
 				
+				$id = $object['id'];
+
 				$data = [];
-				// Temporary until PHP is upgraded
-				$ucwords = function($str){
-					return $str = lcfirst(str_replace(" ", "", ucwords(str_replace("-", " ", $str))));
-				};
 				foreach($custom_fields as $handle => $options){
-					$handleCamelCase = str_replace('-', '', lcfirst($ucwords($handle, '-')));
-					$data[$handleCamelCase] = get_post_meta( $object[ 'id' ], 'dy-'.$handle, true );
+					$data[kebabToCamel($handle)] = get_post_meta( $id, 'dy-'.$handle, true );
 				}
 				return $data;
-				
-				/*return array_map(function($handle, $options = '') {
-					return get_post_meta( $object[ 'id' ], $handle, true );
-				}, $custom_fields);*/
 			},
 			'update_callback' => null,
 			'schema'          => null,
