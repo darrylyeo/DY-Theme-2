@@ -2,6 +2,9 @@
 
 /* PHP includes */
 foreach([
+	// Helper functions
+	'framework',
+
 	// Essentials
 	'theme',
 	'custom-post-types',
