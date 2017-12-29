@@ -20,7 +20,7 @@ foreach([
 	'rest-api-featured-images',
 
 	// Feature Disabling
-	'disable-generator-meta',
+	'disable-meta',
 	//'disable-jquery',
 	'disable-wp-mediaelement',
 	'disable-oembed',
