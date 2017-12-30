@@ -160,11 +160,11 @@ dy-buttons[full] {
 	display: block;
 }
 
-dy-buttons dy-button:first-child:not(:last-child) {
+dy-buttons dy-button:first-of-type:not(:last-of-type) {
 	--border-top-right-radius: 0;
 	--border-bottom-right-radius: 0;
 }
-dy-buttons dy-button:not(:first-child) {
+dy-buttons dy-button:not(:first-of-type) {
 	--border-top-left-radius: 0;
 	--border-bottom-left-radius: 0;
 }
