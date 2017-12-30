@@ -10,16 +10,12 @@ const $$$ = function(name, options){
 }
 
 const delay = (fn, time = 0) => {
-	if(time){
-		return {
-			function: fn,
-			id: setTimeout(fn, time),
-			cancel(){
-				clearTimeout(this.id)
-			}
+	return {
+		function: fn,
+		id: time ? setTimeout(fn, time) : requestAnimationFrame(fn),
+		cancel(){
+			(time ? clearTimeout : cancelAnimationFrame)(this.id)
 		}
-	}else{
-		return requestAnimationFrame(fn)
 	}
 }
 
