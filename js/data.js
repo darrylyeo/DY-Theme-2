@@ -8,7 +8,7 @@ URL.pathName = function(url){
 DY.getDatabase = (async () => {
 	const DB_VERSION = 1
 
-	let upgradeNeeded = false
+	let updateNeeded = false
 	
 	const db = await indexedDB.openDatabase('Darryl-Yeo', DB_VERSION, {
 		'settings': {
@@ -50,26 +50,26 @@ DY.getDatabase = (async () => {
 		}
 	}, {
 		upgrade(){
-			upgradeNeeded = true
+			updateNeeded = true
 		}
 	})
 
 	X('Database accessed.')
 
-	if(upgradeNeeded){
+	if(updateNeeded){
 		X('Database has been upgraded. Waiting to update data...')
-		await updateDatabase(db)
+		await DY.updateDatabase(db)
 		X('Data updated.')
 	}else{
 		X('Updating data in background...')
-		updateDatabase(db).then(() => X('Data updated.'))
+		DY.updateDatabase(db).then(() => X('Data updated.'))
 	}
 
 	return db
 })()
 
 
-const updateDatabase = async db => {
+DY.updateDatabase = async db => {
 	const [
 		pages,
 		posts,
@@ -81,6 +81,8 @@ const updateDatabase = async db => {
 		getJSON(`${WP.rest}/taxonomies`).then(Object.values),
 		getJSON(`${WP.rest}/terms`)
 	])
+	
+	db = db || await DY.getDatabase
 
 	const terms = Object.values(termsByTaxonomy).flatten()
 	const projectsCategory = termsByTaxonomy['page-category'].find(term => term.slug === 'project')
@@ -104,6 +106,8 @@ const updateDatabase = async db => {
 		taxonomy.order = i
 		taxonomiesStore.put(taxonomy)
 	}
+
+	return db
 }
 
 DY.getObjectForURL = async url => (await DY.getDatabase)
