@@ -81,7 +81,7 @@ DY.updateDatabase = async db => {
 		getJSON(`${WP.rest}/taxonomies`).then(Object.values),
 		getJSON(`${WP.rest}/terms`)
 	])
-	
+
 	db = db || await DY.getDatabase
 
 	const terms = Object.values(termsByTaxonomy).flatten()
@@ -119,6 +119,11 @@ DY.getObjectsByType = async type => (await DY.getDatabase)
 	.getObjectStore('wp-objects')
 	.index('objectType')
 	.getAll(type)
+
+DY.getTermById = async id => (await DY.getDatabase)
+	.getObjectStore('wp-objects')
+	.index('term_id')
+	.get(id)
 
 DY.getTaxonomies = async () => (await DY.getDatabase)
 	.getObjectStore('wp-taxonomies')
