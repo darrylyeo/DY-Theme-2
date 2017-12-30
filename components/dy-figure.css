@@ -11,7 +11,7 @@ dy-figure.zoomed {
 }
 
 dy-figure figure {
-	grid-area: 1 / 1;
+	grid-area: 1 / 1 / -1 / -1;
 	margin: 0;
 	display: grid;
 	padding: var(--padding);
