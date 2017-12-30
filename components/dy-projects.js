@@ -147,7 +147,7 @@ class DYProjects extends DYElement {
 
 			if(imageData){
 				blurImage(imageData.source_url)
-					.then(img => document.body.css('--page-background', img))
+					.then(img => document.documentElement.css('--page-background-image', img))
 			}
 		}
 	}

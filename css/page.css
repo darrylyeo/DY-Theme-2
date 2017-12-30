@@ -3,6 +3,7 @@
 
 	background: var(--page-background);
 	/* background-color: white; */
+	transition: background 1s;
 
 	color: var(--color);
 
