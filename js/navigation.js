@@ -108,6 +108,7 @@ DYNavigation.processLinks($$('a'))
 
 window.on({
 	pagerender(){
+		window.scrollTo(0, 0)
 		for(const $link of DYNavigation.$links){
 			$link.toggleClass($link.href === location.href, 'current')
 		}
