@@ -69,7 +69,7 @@ const DYPage = {
 		const currentURL = window.location.origin + window.location.pathname
 		const siteURL = WP.siteURL
 
-		WP.current = await DY.getObjectForURL(currentURL)
+		WP.current = await DY.getObjectForURL(currentURL) || (await DY.updateDatabase(), await DY.getObjectForURL(currentURL))
 		WP.queryType = ''
 		WP.postType = ''
 
