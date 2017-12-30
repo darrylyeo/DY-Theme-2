@@ -3,7 +3,7 @@ class DYInput extends DYElement {
 		return `
 			<span contenteditable></span>
 			<span class="placeholder"></span>
-			<input>
+			<input tabindex="-1">
 		`
 	}
 	
@@ -15,6 +15,7 @@ class DYInput extends DYElement {
 		if(attr === 'placeholder'){
 			this.$placeholder.innerText = newVal
 		}
+		this.$input.attr(attr, newVal)
 	}
 
 	connectedCallback(){
@@ -37,6 +38,10 @@ class DYInput extends DYElement {
 					e.preventDefault()
 					e.clipboardData.setData('text/plain', text)
 				}
+			},
+
+			input: e => {
+				this.$input.value = $editor.innerText
 			}
 		})
 	}
@@ -47,6 +52,10 @@ class DYInput extends DYElement {
 
 	get $placeholder(){
 		return this.root.find('.placeholder')
+	}
+
+	get $input(){
+		return this.root.find('input')
 	}
 
 	get value(){
