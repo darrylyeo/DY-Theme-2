@@ -18,6 +18,7 @@ foreach([
 	'rest-api-terms',
 	'rest-api-terms-field',
 	'rest-api-featured-images',
+	'rest-api-yoast-seo',
 
 	// Feature Disabling
 	'disable-meta',

@@ -21,15 +21,44 @@ const DYPage = {
 	async onNavigation(){
 		const data = await this.route()
 
-		document.title = data.name || data.title.rendered + ' – Darryl Yeo'
+		// <head> content - experimental
 
-		$('main').html(this.render())
+		const {
+			head,
+
+			title = (data.name || data.title.rendered) + ' – Darryl Yeo',
+			metadesc,
+			canonical = window.location.origin + window.location.pathname,
+			opengraph
+		} = data.yoastMeta || {}
+
+		$('title').html(title)
+		try {
+			$('meta[name=description]').content = metadesc
+			$('link[rel=canonical]').href = canonical
+			$('meta[property="og:title"]').content = opengraph.title
+			$('meta[property="og:description"]').content = opengraph.description
+			$('meta[property="og:image"]').content = opengraph.image.urls[0]
+			$('meta[property="og:image:width"]').content = opengraph.image.dimensions.width
+			$('meta[property="og:image:height"]').content = opengraph.image.dimensions.height
+		}catch(e){}
+
+		//if(!this.$yoastSEO) this.$yoastSEO = $$$('span').appendTo(document.head)
+		//this.$yoastSEO.html(head)
+
+		// <main> content
+
+		$('main')
+			.html(this.render())
+			.removeClass('loading')
 
 		const $article = $('main').find('article')
 		const $sidebar = $('main').find('dy-sidebar')
 		if($article && $sidebar){
 			$sidebar.$tableOfContents.$article = $article
 		}
+
+		// Render
 
 		DYNavigation.processLinks($$('a'))
 
