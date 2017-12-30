@@ -201,39 +201,25 @@ if ( is_admin() ) {
 add_action( 'rest_api_init', function () {
 	global $custom_fields;
 	
-	register_rest_field( 'page',
-		'meta',
-		[
-			'get_callback'    => function( $object, $field_name, $request ) {
-				global $custom_fields;
-				
-				$id = $object['id'];
+	register_rest_field('page', 'meta', [
+		'get_callback'    => function( $object, $field_name, $request ) {
+			global $custom_fields;
+			
+			$id = $object['id'];
 
-				$data = [];
-				foreach($custom_fields as $handle => $options){
-					$data[kebabToCamel($handle)] = get_post_meta( $id, 'dy-'.$handle, true );
-				}
-				return $data;
-			},
-			'update_callback' => null,
-			'schema'          => null,
-		]
-	);
+			$data = [];
+			foreach($custom_fields as $handle => $options){
+				$data[kebabToCamel($handle)] = get_post_meta( $id, 'dy-'.$handle, true );
+			}
+			return $data;
+		},
+		'update_callback' => null,
+		'schema'          => null,
+	]);
 	
-	return;
-	
-	foreach($custom_fields as $handle => $options){
+	/*foreach($custom_fields as $handle => $options){
 		register_rest_field( 'page',
 			$handle,
-				/**
-				 * Get the value of the custom field
-				 *
-				 * @param array $object Details of current post.
-				 * @param string $field_name Name of field.
-				 * @param WP_REST_Request $request Current request
-				 *
-				 * @return mixed
-				 */
 			[
 				'get_callback'    => function( $object, $field_name, $request ) {
 					return get_post_meta( $object[ 'id' ], $field_name, true );
@@ -242,5 +228,5 @@ add_action( 'rest_api_init', function () {
 				'schema'          => null,
 			]
 		);
-	}
+	}*/
 });
