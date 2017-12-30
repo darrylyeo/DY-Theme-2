@@ -188,14 +188,6 @@ customElements.define('dy-projects', DYProjects)
 
 
 class DYProjectFilters extends DYTerms {
-	initialize(termIDs){
-		super.initialize()
-
-		if(termIDs){
-			this.includeTerms(termIDs)
-		}
-	}
-
 	get activeTerms(){
 		return this.$terms.filter('.active')
 			.map($term => this.map.get($term))
