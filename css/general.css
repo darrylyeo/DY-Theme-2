@@ -154,25 +154,6 @@ cite {
 }
 
 
-button, input, textarea, select {
-	touch-action: manipulation;
-}
-
-:disabled {
-	filter: grayscale();
-}
-:disabled, .disabled {
-	cursor: not-allowed;
-	opacity: 0.75;
-	pointer-events: none;
-}
-:focus {
-	filter: drop-shadow(var(--color-1) 0 1px 3px);
-	outline: none;
-	z-index: 1;
-}
-
-
 ::selection {
 	background-color: var(--color-1-half);
 	color: #fff;

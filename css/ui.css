@@ -1,3 +1,24 @@
+:disabled {
+	filter: grayscale();
+}
+:disabled, .disabled, [disabled] {
+	cursor: not-allowed;
+	opacity: 0.8;
+	pointer-events: none;
+}
+:focus {
+	outline: none;
+	z-index: 1;
+}
+:focus:not(:active) {
+	filter: drop-shadow(var(--color-1) 0 1px 3px);
+}
+
+button, input, textarea, select {
+	touch-action: manipulation;
+}
+
+
 label {
 	align-items: center;
 }
