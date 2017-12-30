@@ -101,6 +101,7 @@ dy-projects.has-focused-project dy-project:not(.focused) .inner-wrapper > * {
 }
 .title-wrapper a {
 	flex: 1;
+	width: 0; /* take up as least space as possible */
 	--link-underline: none;
 	--link-color: rgba(0, 0, 0, 0.7);
 }
