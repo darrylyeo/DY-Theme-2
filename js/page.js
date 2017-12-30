@@ -74,6 +74,11 @@ const DYPage = {
 		WP.postType = ''
 
 		if(WP.current === undefined){
+			WP.current = {
+				title: {
+					rendered: 'Not Found'
+				}
+			}
 			WP.queryType = '404'
 		}
 
@@ -151,7 +156,9 @@ const DYPage = {
 			`,
 			'404': () => `
 				<article>
-					<h2>404. :(</h2>
+					<section>
+						<h2>404. :(</h2>
+					</section>
 				</article>
 			`,
 			'error': () => `
