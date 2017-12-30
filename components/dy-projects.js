@@ -86,7 +86,7 @@ class DYProjects extends DYElement {
 	}
 
 	getAllTermIDs(projects){
-		return projects.map(project => project.terms).flatten()
+		return projects.map(project => project.terms).flatten().unique()
 	}
 	
 	getFilteredProjects(){

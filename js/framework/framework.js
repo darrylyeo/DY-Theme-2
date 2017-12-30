@@ -119,6 +119,9 @@ Array.prototype.flatten = function(deep = false){
 		: this
 	return [].concat(...array)
 }
+Array.prototype.unique = function(){
+	return [...new Set(this)]
+}
 
 
 Set.prototype.toggle = function(add, ...objects){
