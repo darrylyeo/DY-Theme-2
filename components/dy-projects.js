@@ -1,10 +1,3 @@
-
-// <link rel="import" href="dy-project.html">
-// <link rel="import" href="dy-project-filters.html">
-
-{
-
-
 class DYProjects extends DYElement {
 	static get templateHTML(){
 		return `
@@ -225,5 +218,3 @@ class DYProjectFilters extends DYTerms {
 	}
 }
 customElements.define('dy-project-filters', DYProjectFilters)
-
-}
