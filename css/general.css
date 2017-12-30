@@ -105,6 +105,7 @@ img:before {
 	align-items: center;
 	padding: 1em;
 	height: 100%;
+	position: absolute;
 }
 
 p, ol, ul, li, blockquote, dl, dt, dd, form {
