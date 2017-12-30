@@ -19,15 +19,23 @@ const delay = (fn, time = 0) => {
 	}
 }
 
-const throttle = (fn, time = 0) => {
-	let timer = undefined
+const throttle = function(fn, time = 0){
+	let timer
+	let throttleNext = false
 
-	function throttledFn(...args) {
-		if(!timer) {
+	function throttledFn(){
+		if (!timer) {
+			fn.apply(this, arguments)
+
 			timer = delay(() => {
-				fn(...args)
+				if(throttleNext){
+					fn.apply(this, arguments)
+					throttleNext = false
+				}
 				timer = undefined
 			}, time)
+		}else{
+			throttleNext = true
 		}
 	}
 
@@ -37,6 +45,26 @@ const throttle = (fn, time = 0) => {
 	}
 
 	return throttledFn
+}
+
+const debounce = (fn, time = 0) => {
+	let timer
+
+	function debouncedFn() {
+		if(!timer) {
+			timer = delay(() => {
+				fn.apply(this, arguments)
+				timer = undefined
+			}, time)
+		}
+	}
+
+	debouncedFn.cancel = () => {
+		timer.cancel()
+		timer = undefined
+	}
+
+	return debouncedFn
 }
 
 const interval = (fn, time = 0, useRAF = false) => {
