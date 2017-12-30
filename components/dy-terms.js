@@ -60,7 +60,7 @@ class DYTerms extends DYElement {
 
 	make$Term(term){
 		const $term = $$$('dy-button')
-			.attr('theme', 'plain')
+			.attr('theme', 'plain small')
 			.attr('animated', '')
 			//.attr('tabindex', '0') // Focusable
 			.attr('rel', 'tag')

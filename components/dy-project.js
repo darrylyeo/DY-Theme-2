@@ -5,7 +5,7 @@ class DYProject extends DYElement {
 				<div class="inner-wrapper">
 					<div class="title-wrapper">
 						<a class="link"><h2 class="title"></h2></a>
-						<dy-button class="close">✖</dy-button>
+						<dy-button class="close" theme="plain">✖</dy-button>
 					</div>
 					<div class="card">
 						<a class="featured-image link"><img></a>

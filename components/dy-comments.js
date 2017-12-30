@@ -56,8 +56,8 @@ class DYComment extends DYElement {
 					</cite>
 					<a class="link"><dy-date id="comment-date"></dy-date></a>
 					<dy-buttons>
-						<dy-button id="reply-button" theme="plain">Reply</dy-button>
-						<dy-button id="edit-button" theme="plain">Edit</dy-button>
+						<dy-button id="reply-button" theme="plain small">Reply</dy-button>
+						<dy-button id="edit-button" theme="plain small">Edit</dy-button>
 					</dy-button>
 				</header>
 				<div id="content"></div>
