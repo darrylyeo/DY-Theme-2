@@ -1,6 +1,7 @@
 <?php
 // Removes WordPress 4.2 emojis, which added unnecessary scripts (/wp-includes/js/wp-emoji-release.min.js)
 // http://wordpress.stackexchange.com/questions/185577/disable-emojicons-introduced-with-wp-4-2
+
 add_action( 'init', function() {
 	remove_action( 'admin_print_styles', 'print_emoji_styles' );
 	remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
@@ -10,11 +11,9 @@ add_action( 'init', function() {
 	remove_filter( 'the_content_feed', 'wp_staticize_emoji' );
 	remove_filter( 'comment_text_rss', 'wp_staticize_emoji' );
 	add_filter( 'tiny_mce_plugins', function( $plugins ) {
-		if ( is_array( $plugins ) ) {
-			return array_diff( $plugins, array( 'wpemoji' ) );
-		} else {
-			return array();
-		}
+		return is_array($plugins)
+			? array_diff( $plugins, ['wpemoji'] )
+			: [];
 	} );
 	add_filter( 'emoji_svg_url', '__return_false' );
 } );
