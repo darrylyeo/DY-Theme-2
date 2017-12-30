@@ -9,5 +9,12 @@ class DYButton extends DYElement {
 			}
 		})
 	}
+
+	set disabled(disabled){
+		this.attr('disabled', disabled ? '' : undefined)
+	}
+	get disabled(){
+		return this.attr('disabled')
+	}
 }
 customElements.define('dy-button', DYButton)
