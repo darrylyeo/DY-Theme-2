@@ -22,8 +22,8 @@ class DYInput extends DYElement {
 
 		$editor.on({
 			['drop paste copy focus blur'](e){
-				const text = this.innerText.replace(/\n/g, '');
-				const html = this.innerHTML.replace(/<br>/g, '');
+				const text = this.innerText.replace(/\n/g, '')
+				const html = this.innerHTML.replace(/<br>/g, '')
 				
 				if (text !== html) {
 					this.innerText = this.innerText
