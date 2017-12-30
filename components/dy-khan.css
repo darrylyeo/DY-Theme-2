@@ -52,7 +52,7 @@ dy-khan:not(.load) #project {
 	/* height: 400px; */
 }
 dy-khan #project * {
-	grid-area: 1 / 1;
+	grid-area: 1 / 1 / -1 / -1;
 	width: 100%;
 }
 dy-khan iframe {

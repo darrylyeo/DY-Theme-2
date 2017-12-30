@@ -11,7 +11,7 @@ dy-post {
 }
 
 dy-post .background {
-	grid-area: 1 / 1 / 2 / 3;
+	grid-area: 1 / 1 / -1 / -1;
 	background-attachment: fixed;
 	background-position: center;
 	width: 100%;
