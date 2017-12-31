@@ -5,6 +5,7 @@ dy-input {
 }
 dy-input [contenteditable] {
 	width: 100%;
+	-webkit-user-modify: read-write-plaintext-only;
 }
 dy-input [contenteditable]:empty {
 	display: inline-block;
