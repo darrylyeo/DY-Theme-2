@@ -25,7 +25,7 @@ class DYFigure extends DYElement {
 				data.title || data.caption.rendered || data.alt_text
 		)//.decodeHTMLEntities()
 
-		this.attr('title', title)
+		this.title = title
 		
 		this.root.updateWithModel({
 			'img[src]': data.source_url,
