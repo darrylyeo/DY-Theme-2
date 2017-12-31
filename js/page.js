@@ -32,16 +32,16 @@ const DYPage = {
 			opengraph
 		} = data.yoastMeta || {}
 
-		$('title').html(title)
-		try {
-			$('meta[name=description]').content = metadesc
-			$('link[rel=canonical]').href = canonical
-			$('meta[property="og:title"]').content = opengraph.title
-			$('meta[property="og:description"]').content = opengraph.description
-			$('meta[property="og:image"]').content = opengraph.image.urls[0]
-			$('meta[property="og:image:width"]').content = opengraph.image.dimensions.width
-			$('meta[property="og:image:height"]').content = opengraph.image.dimensions.height
-		}catch(e){}
+		document.head.updateWithModel({
+			'title': title,
+			'meta[name=description][content]': metadesc,
+			'link[rel=canonical][href]': canonical,
+			'meta[property="og:title"][content]': opengraph.title,
+			'meta[property="og:description"][content]': opengraph.description,
+			'meta[property="og:image"][content]': opengraph.image.urls[0],
+			'meta[property="og:image:width"][content]': opengraph.image.dimensions.width,
+			'meta[property="og:image:height"][content]': opengraph.image.dimensions.height
+		})
 
 		//if(!this.$yoastSEO) this.$yoastSEO = $$$('span').appendTo(document.head)
 		//this.$yoastSEO.html(head)
