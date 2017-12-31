@@ -418,10 +418,9 @@ for(const Class of [Document, Element, DocumentFragment]){
 		updateWithModel(model){
 			for(const handle in model){
 				const value = model[handle]
-				if(handle.includes('[') && !handle.includes('=')){
-					const parts = handle.match(/(.+?)\[(.+?)]/)
-					const selector = parts[1]
-					const attrName = parts[2]
+				let attributeMatch
+				if(handle.includes('[') && (attributeMatch = handle.match(/(.+?)\[([^=\]]+?)]$/))){
+					const [, selector, attrName] = attributeMatch
 					for(const $element of this.findAll(selector)){
 						if(attrName === 'style' && typeof value === 'object'){
 							$element.css(value)
