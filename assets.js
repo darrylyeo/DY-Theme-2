@@ -39,6 +39,7 @@ document.on('DOMContentLoaded', () => {
 			'components/dy-terms.css',
 			'components/dy-input.css',
 			
+			'components/dy-nav.css',
 			'components/dy-table-of-contents.css',
 			'components/dy-comments.css',
 
@@ -85,6 +86,7 @@ document.on('DOMContentLoaded', () => {
 			'components/dy-input.js',
 
 			'components/dy-sidebar.js',
+			'components/dy-nav.js',
 			'components/dy-table-of-contents.js',
 			'components/dy-comments.js',
 

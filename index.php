@@ -63,6 +63,7 @@
 			<div><a class="music" href="./music">Music</a><dy-icon icon="music"></dy-icon></div>
 			<div><a class="blog" href="./blog">Blog</a></div>
 			<div><a class="learn" href="./learn">Learn</a></div>
+			<dy-nav></dy-nav>
 		</nav>
 	</header>
 	<main id="content">

@@ -1,0 +1,36 @@
+dy-nav {
+	display: flex;
+	flex-direction: row-reverse;
+	overflow-x: auto;
+	
+	line-height: 1.5;
+	white-space: nowrap;
+}
+
+dy-nav .inner-wrapper {
+	display: grid;
+	grid-gap: 0.25rem;
+	justify-items: end;
+	align-content: center;
+	padding: 0 var(--padding);
+}
+dy-nav .current-title {
+	font-size: 1.1em;
+}
+
+dy-nav .prev-next {
+	display: grid;
+	grid-auto-flow:  column;
+	grid-gap: 0.5rem;
+	font-size: 0.8em;
+	justify-content: space-between;
+}
+dy-nav [rel=prev] {
+	text-align: right;
+}
+dy-nav [rel=prev]:before {
+	content: '‹ ';
+}
+dy-nav [rel=next]:after {
+	content: ' ›';
+}
