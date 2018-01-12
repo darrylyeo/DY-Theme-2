@@ -37,7 +37,9 @@ class DYTerms extends DYElement {
 					'data-taxonomy': taxonomy.slug
 				})
 			$taxonomy.append(
-				$$$('dt').html(taxonomy.name)
+				$$$('dt').html(taxonomy.name).attr({
+					'title': taxonomy.description,
+				})
 			)
 			$termsWrapper.append($taxonomy)
 			
