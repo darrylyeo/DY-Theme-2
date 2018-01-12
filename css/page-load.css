@@ -2,6 +2,9 @@
 	background: url(../logo/DY-Logo-Animated.svg) center/25vmin no-repeat fixed, var(--page-background);
 	background-blend-mode: luminosity;
 }
+:root:not(.load) {
+	cursor: progress;
+}
 :root.load {
 	/* transform: translateY(4rem) rotate(10deg) scale(0); */
 	/* transform: translate(-40vw, -40vh) scale(0); */
