@@ -47,8 +47,6 @@ class DYTerms extends DYElement {
 					.appendTo($taxonomy)
 			}
 		}
-		
-		return
 	}
 
 	get $termsWrapper(){
