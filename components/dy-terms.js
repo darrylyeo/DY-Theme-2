@@ -1,7 +1,7 @@
 class DYTerms extends DYElement {
 	static get templateHTML(){
 		return `
-			<dl id="terms"></dl>
+			<dl class="terms"></dl>
 		`
 	}
 
@@ -51,7 +51,7 @@ class DYTerms extends DYElement {
 	}
 
 	get $termsWrapper(){
-		return this.root.find('#terms')
+		return this.root.find('.terms')
 	}
 
 	get $terms(){
