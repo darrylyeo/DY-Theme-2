@@ -58,17 +58,19 @@ class DYTerms extends DYElement {
 	}
 
 	make$Term(term){
-		const $term = $$$('dy-button')
+		const $term = DYTerms.make$Term(term)
+		this.map.set($term, term)
+		return $term
+	}
+
+	static make$Term(term){
+		return $$$('dy-button')
 			.attr('theme', 'plain small')
 			.attr('animated', '')
 			//.attr('tabindex', '0') // Focusable
 			.attr('rel', 'tag')
 			.attr('title', term.description)
 			.html(term.name)
-		
-		this.map.set($term, term)
-
-		return $term
 	}
 }
 customElements.define('dy-terms', DYTerms)
