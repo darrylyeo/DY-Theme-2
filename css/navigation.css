@@ -89,7 +89,7 @@ nav > :last-child > a {
 }
 
 /* Sub menu */
-nav > * > div {
+nav > * > a + div {
 	--submenu-background: rgba(255, 255, 255, 0.925);
 	-webkit-backdrop-filter: blur(2px);
 	backdrop-filter: blur(2px);
@@ -115,10 +115,10 @@ nav > :not(:hover) > a:not(:focus) + div:not(:focus-within) {
 	pointer-events: none;
 }
 
-nav > * > div > * {
+nav > * > a + div > * {
 	display: grid;
 }
-nav > * > div > * > a {
+nav > * > a + div > * > a {
 	background-color: var(--submenu-background);
 	padding: 0.5em;
 	display: flex;
@@ -132,7 +132,7 @@ nav i {
 	nav > * {
 		position: static;
 	}
-	nav > * > div {
+	nav > * > a + div {
 		border: 0.25em solid var(--submenu-background);
 		height: var(--main-menu-height);
 		display: grid;
@@ -142,7 +142,7 @@ nav i {
 		grid-auto-columns: max-content;
 		font-size: 0.9em;
 	}
-	nav > * > div > * > a {
+	nav > * > a + div > * > a {
 		padding: 0 0.5em;
 	}
 }
