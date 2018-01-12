@@ -22,13 +22,6 @@ button, input, textarea, select {
 label {
 	align-items: center;
 }
-fieldset > label, form > div > label {
-	margin: 0;
-	padding: 0.5ch;
-	flex: 220px;
-	flex-direction: column;
-	align-items: stretch;
-}
 label :not([type=radio]):not([type=checkbox]) + span {
 	font-size: 0.85em;
 	order: -1;
