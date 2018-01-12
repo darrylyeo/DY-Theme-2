@@ -34,7 +34,7 @@ label :not([type=radio]):not([type=checkbox]) + span {
 	order: -1;
 	margin-right: 1ch;
 }
-input, textarea, keygen, select, button, .button {
+input, textarea, keygen, select, button {
 	-webkit-appearance: none;
 	border: none;
 	border-radius: 0.5em;
