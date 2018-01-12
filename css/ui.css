@@ -183,7 +183,7 @@ input[type=radio]:before, input[type=radio]:after {
 	position: relative;
 	transition: 0.3s;
 }
-/* checkbox/radio :before and :after don't wotk in Firefox */
+/* checkbox/radio :before and :after don't work in Firefox */
 .ua-firefox input[type=checkbox], .ua-firefox input[type=radio] {
 	visibility: initial;
 }
