@@ -8,8 +8,7 @@ class DYTerms extends DYElement {
 	async initialize(termIDs = [], excludeTerms = ['uncategorized'], excludeTaxonomies = ['page-category', 'category']){
 		const root = this.root
 
-		const $termsWrapper = this.$termsWrapper
-		$termsWrapper.empty()
+		const $termsWrapper = this.$termsWrapper.empty()
 
 		this.map = new TwoWayWeakMap()
 		
