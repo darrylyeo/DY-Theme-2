@@ -159,6 +159,10 @@ $custom_fields = [
 			}
 		}
 	],
+	'project-play-url' => [
+		'meta_box_label' => 'Project Play URL',
+		'show_if_callback' => $isProjectFunc,
+	],
 	'project-header-dark-mode' => [
 		'meta_box_label' => 'Project Header Dark Mode',
 		'show_if_callback' => $isProjectFunc,
