@@ -12,6 +12,7 @@
 
 	--main-menu-height: calc(50px + 3.5vw);
 	--secondary-menu-height: 2.625rem;
+	--header-height: calc(var(--main-menu-height) + var(--secondary-menu-height));
 
 	--padding: calc(10px + 2vw);
 	--padding-neg: calc(var(--padding) * -1);

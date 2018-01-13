@@ -47,15 +47,26 @@ dy-page {
 
 dy-page > header {
 	grid-area: header;
-	/* position: -webkit-sticky;
-	position: sticky; */
-	top: calc(var(--secondary-menu-height) * -1);
+	position: -webkit-sticky;
+	position: sticky;
 	z-index: 2;
+	transition: top 0.3s;
+
+	top: calc(var(--header-y) - var(--header-height));
 }
-/* dy-page > header.sticky {
-	position: fixed;
-	top: 0;
-} */
+/*dy-page > header.sticky {
+	font-size: 0.5em;
+}*/
+dy-page > header:not(.sticky-open) {
+	--header-y: 0px;
+}
+dy-page > header.sticky-open {
+	--header-y: var(--main-menu-height);
+}
+dy-page > header:hover,
+dy-page > header:focus-within {
+	--header-y: var(--header-height);
+}
 
 main {
 	grid-area: main;
@@ -86,11 +97,19 @@ main dy-sidebar {
 main dy-sidebar aside {
 	display: grid;
 	grid-gap: var(--padding);
-	padding: calc(var(--padding) / 2) var(--padding);
-	position: sticky;
-	top: var(--main-menu-height);
-	height: calc(100vh - var(--main-menu-height));
+
+	height: 100vh;
+	padding: calc(var(--padding) / 2) var(--padding) 30vh;
 	overflow-y: auto;
+
+	position: sticky;
+	top: 0;
+	transition: top 0.3s, height 0.3s;
+}
+header.sticky-open ~ main dy-sidebar aside {
+	height: calc(100vh - var(--main-menu-height));
+	top: var(--main-menu-height);
+}
 }
 .anchor-bottom {
 	margin-top: auto;
