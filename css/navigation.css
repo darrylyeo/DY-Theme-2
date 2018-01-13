@@ -162,6 +162,7 @@ nav i {
 	font-family: Darryl-Yeo, var(--heading-font);
 	font-size: 5rem;
 	line-height: 1;
+	padding-right: 1rem;
 	text-rendering: geometricPrecision;
 	white-space: nowrap;
 	perspective: 2em;
@@ -210,10 +211,36 @@ nav i {
 	flex: 1;
 	transition: 0.3s;
 }
-#main-nav #logo ~ * {
-	font-family: var(--heading-font);
+header.sticky.show-post-nav #main-nav:before {
+	flex: 0;
+}
+
+#main-nav #logo ~ div {
 	order: 3;
+}
+
+#main-nav #logo ~ * > a {
+	font-family: var(--heading-font);
 	text-transform: uppercase;
+}
+
+#main-nav:after {
+	content: '';
+	order: 4;
+	flex: 0;
+	transition: 0.3s;
+}
+header.show-post-nav #main-nav:after {
+	flex: 1;
+}
+
+#main-nav dy-nav {
+	order: 5;
+	padding-left: 1em;
+}
+header:not(.show-post-nav) #main-nav dy-nav {
+	font-size: 0;
+	--padding: 0;
 }
 
 

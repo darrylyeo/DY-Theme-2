@@ -2,6 +2,7 @@ dy-nav {
 	display: flex;
 	flex-direction: row-reverse;
 	overflow-x: auto;
+	padding: 0 var(--padding);
 	
 	line-height: 1.5;
 	white-space: nowrap;
@@ -12,7 +13,6 @@ dy-nav .inner-wrapper {
 	grid-gap: 0.25rem;
 	justify-items: end;
 	align-content: center;
-	padding: 0 var(--padding);
 }
 dy-nav .current-title {
 	font-size: 1.1em;
