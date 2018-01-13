@@ -40,7 +40,7 @@ dy-project:not(.focused) * {
 	pointer-events: none;
 }
 
-.positioning-wrapper {
+dy-project .positioning-wrapper {
 	display: flex;
 	transition: transform 0.3s cubic-bezier(0.1, 2, 1, 1);
 }
@@ -70,7 +70,7 @@ dy-projects.has-focused-project dy-project:not(.focused) .positioning-wrapper {
 	transform: translate3d(0, 0.1rem, -2rem) scale(0.9);
 }
 
-.inner-wrapper {
+dy-project .inner-wrapper {
 	display: grid;
 	grid-gap: 0.5rem;
 	grid-auto-rows: -webkit-max-content 1fr;
@@ -92,14 +92,14 @@ dy-projects.has-focused-project dy-project:not(.focused) .inner-wrapper > * {
 	opacity: 0.1;
 }
 
-.title-wrapper {
+dy-project .title-wrapper {
 	font-size: 0.85em;
 	line-height: 1.2;
 	display: flex;
 	transform: rotateX(calc(var(--tilt) * -1));
 	transition: transform 0.3s, opacity 0.3s;
 }
-.title-wrapper a {
+dy-project .title-wrapper a {
 	flex: 1;
 	width: 0; /* take up as least space as possible */
 	--link-underline: none;
@@ -120,7 +120,7 @@ dy-project:not(.focused) .title-wrapper .close {
 	}
 }
 
-.card {
+dy-project .card {
 	display: grid;
 	grid-auto-flow: column;
 	grid-auto-columns: 100% 0;
