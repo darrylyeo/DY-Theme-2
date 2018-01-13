@@ -3,6 +3,9 @@ class DYSidebar extends DYElement {
 		return `
 			<aside>
 				<section>
+					<dy-terms></dy-terms>
+				</section>
+				<section>
 					<dy-table-of-contents></dy-table-of-contents>
 				</section>
 				<section>
@@ -14,6 +17,12 @@ class DYSidebar extends DYElement {
 
 	connectedCallback(){
 		this.root
+
+		DYNav.instance.connectTerms(this.$termsContainer)
+	}
+
+	get $termsContainer(){
+		return this.find('dy-terms')
 	}
 
 	get $tableOfContents(){
