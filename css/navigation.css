@@ -74,6 +74,9 @@ nav > :last-child > a {
 #main-nav > * > a.current {
 	font-weight: bold;
 }
+header.show-post-nav #main-nav > * > a:not(.current) {
+	font-size: 0;
+}
 #main-nav > * > a + dy-icon {
 	position: absolute;
 	transition: 0.3s, transform 0.3s cubic-bezier(.87,-1,.19,2);
