@@ -77,13 +77,16 @@ i[icon]:before {
 }
 
 img {
-	display: flex;
+	display: grid;
 	object-fit: cover;
 	max-width: 100%;
 	margin: 0 auto;
+	overflow: hidden;
+	position: relative;
 
 	background-color: rgba(0, 0, 0, 0.05);
 	/* border-radius: 0.5rem; */
+	overflow: auto;
 	text-indent: -200vmax;
 }
 /* Chrome Only */
@@ -94,18 +97,25 @@ img {
 }
 img:before {
 	content: attr(alt);
+
 	background-color: var(--color-1);
 	color: rgba(255, 255, 255, 0.5);
+
 	font-size: 1.2em;
 	font-weight: bold;
+	line-height: 1.2;
 	text-align: center;
 	text-indent: 0;
 	text-transform: uppercase;
+	word-break: break-word;
+
 	display: grid;
 	align-items: center;
-	padding: 1em;
-	height: 100%;
+	align-content: center;
+	padding: 10%;
 	position: absolute;
+	min-width: 100%;
+	min-height: 100%;
 }
 
 p, ol, ul, li, blockquote, dl, dt, dd, form {
