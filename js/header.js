@@ -21,3 +21,19 @@ const $header = $('header')
 	
 	$header.addClass('sticky-open')
 }
+
+
+window.on({
+	async pagerender(){
+		if(WP.current.terms){
+			const termURLs = (await Promise.all(WP.current.terms.map(
+				termID => DY.getTermById(termID)
+			))).map(term => term.link)
+			for(const $link of $header.findAll('a')){
+				if(termURLs.includes($link.href)){
+					$link.addClass('current')
+				}
+			}
+		}
+	}
+})
