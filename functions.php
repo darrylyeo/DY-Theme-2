@@ -50,7 +50,7 @@ add_action('wp_enqueue_scripts', function(){
 		'themes' => get_theme_root_uri(),
 		'parentTheme' => get_template_directory_uri(),
 		'childTheme' => get_stylesheet_directory_uri(),
-		'rest' => get_rest_url() . 'wp/v2', // untrailingslashit(get_rest_url()),
+		'rest' => get_rest_url() . 'wp/v2',
 		'restNonce' => wp_create_nonce( 'wp_rest' )
 	]);
 });
