@@ -19,6 +19,8 @@ let pageData = bind({}, document, {
 
 const DYPage = {
 	async onNavigation(){
+		$('main').addClass('loading')
+
 		const data = await this.route()
 
 		// <head> content - experimental

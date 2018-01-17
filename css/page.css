@@ -79,6 +79,15 @@ main {
 
 	background-color: rgba(255, 255, 255, 0.6);
 }
+main.loading {
+	opacity: 0.85;
+}
+main.loading:after {
+	content: '';
+	background: url(../logo/DY-Logo-Animated.svg) center/25vmin no-repeat fixed;
+	mix-blend-mode: luminosity;
+	grid-area: 1 / 1 / -1 / -1;
+}
 
 main dy-project-header {
 	grid-area: project-header;
