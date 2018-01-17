@@ -70,7 +70,7 @@
 		
 	</main>
 	<footer>
-		<p>Website Design and Content © 2014-2017 Darryl Yeo. All Rights Reserved.</p>
+		<p>Website Design and Content © 2014-2018 Darryl Yeo. All Rights Reserved.</p>
 	</footer>
 </dy-page>
 
