@@ -20,12 +20,14 @@ foreach([
 	'rest-api-featured-images',
 	'rest-api-yoast-seo',
 
-	// Feature Disabling
+	// Feature Disabling - Front End
 	'disable-meta',
 	//'disable-jquery',
 	'disable-wp-mediaelement',
 	'disable-oembed',
 	'disable-emojis',
+
+	// Feature Disabling - Back End
 	'disable-wordpress-events-and-news'
 ] as $include){
 	include_once "wp/$include.php";
