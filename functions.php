@@ -25,7 +25,7 @@ foreach([
 	//'disable-jquery',
 	'disable-wp-mediaelement',
 	'disable-oembed',
-	'remove-emojis'
+	'disable-emojis',
 ] as $include){
 	include_once "wp/$include.php";
 }
