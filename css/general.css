@@ -2,6 +2,7 @@
 	box-sizing: inherit;
 	transform-style: inherit;
 	contain: layout style;
+	scroll-behavior: smooth;
 }
 :nth-child(1) { --index: 1 }
 :nth-child(2) { --index: 2 }
