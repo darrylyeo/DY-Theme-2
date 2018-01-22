@@ -8,7 +8,7 @@ class DYElement extends HTMLElement {
 
 		if(this._initialized) return this
 
-		this.html(this.constructor.templateHTML)
+		this.html(this.constructor.templateHTML || '')
 		DYNavigation.processLinks(this.findAll('a'))
 
 		this._initialized = true
