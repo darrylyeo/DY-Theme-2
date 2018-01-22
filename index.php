@@ -74,6 +74,8 @@
 	</footer>
 </dy-page>
 
+<dy-notifications></dy-notifications>
+
 <script type='application/ld+json'> 
 {
 	"@context": "http://www.schema.org",
