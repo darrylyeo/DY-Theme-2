@@ -152,5 +152,6 @@ class DYExperiment {
 
 for(const $toggle of DYExperiment.$toggles){
 	const handle = $toggle.dataset.experiment
+	$toggle.tabIndex = 0
 	new DYExperiment(handle, experimentFunctions[handle])
 }
