@@ -407,7 +407,14 @@ Object.defineProperties(Element.prototype, Object.getOwnPropertyDescriptors({
 		})
 	
 		return interval
-	}
+	},
+
+	triggerKeyframeAnimation(...classes){
+		this.removeClass(...classes)
+		this.width
+		this.addClass(...classes)
+		return this
+	},
 }))
 
 for(const Class of [Document, Element, DocumentFragment]){
