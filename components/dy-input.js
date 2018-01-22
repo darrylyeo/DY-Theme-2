@@ -8,7 +8,7 @@ class DYInput extends DYElement {
 	}
 	
 	static get observedAttributes() {
-		return ['placeholder']
+		return ['value', 'required', 'placeholder']
 	}
 
 	attributeChangedCallback(attr, oldVal, newVal){
