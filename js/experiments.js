@@ -1,5 +1,5 @@
 const experimentFunctions = {
-	['night-mode'](active){
+	'night-mode'(active){
 		const nightModeReplace = {
 			'#ffffff': '#272727',
 			'#fff': '#272727',
@@ -58,7 +58,7 @@ const experimentFunctions = {
 			.toggleClass(active, 'night-mode')
 	},
 
-	['pin-window'](active){
+	'pin-window'(active){
 		let {screenX, screenY} = window
 		interval(() => {
 			if(screenX !== window.screenX || screenY !== window.screenY){
@@ -75,7 +75,7 @@ const experimentFunctions = {
 		})
 	},
 
-	['editable'](active){
+	'editable'(active){
 		document.designMode = active ? 'on' : 'off'
 	}
 }
