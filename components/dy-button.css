@@ -79,8 +79,10 @@ dy-button[theme~=heavy], button {
 }
 
 dy-button[theme~='3D'], button {
-	--button-height: 4px;
-	--button-offset: 2px;
+	--button-base-height: 0.225em;
+	/* --button-base-height: 4px; */
+	--button-height: var(--button-base-height);
+	--button-offset: calc(var(--button-base-height) / 2);
 	--button-shadow: var(--button-shadow-color) 0 var(--button-height);
 	--focus-shadow: var(--color-1-quarter) 0 0;
 
@@ -89,7 +91,7 @@ dy-button[theme~='3D'], button {
 	transform: translateY(calc(-1 * var(--button-height)));
 }
 dy-button[theme~='3D']:hover, button:hover {
-	--button-height: 5px;
+	--button-height: calc(var(--button-base-height) + 1px);
 }
 dy-button[theme~='3D']:focus:not(:active), button:focus:not(:active) {
 	--focus-shadow: var(--color-1) 0 var(--button-height) 2px;

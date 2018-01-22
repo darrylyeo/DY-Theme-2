@@ -1,5 +1,0 @@
-const DY = {
-	data: {
-		experiments: {}
-	}
-}
