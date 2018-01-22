@@ -130,11 +130,11 @@ h1, h2, h3, h4, h5, h6, dt, legend, time {
 	text-transform: uppercase;
 }
 
-pre, xmp, plaintext, listing {
+pre {
 	font-family: Inconsolata, Roboto Mono, Ayuthaya, monospace;
 	white-space: pre-wrap;
 }
-tt, code, kbd, samp {
+code, kbd, samp, output, var {
 	font-family: Inconsolata, Roboto Mono, Ayuthaya, monospace;
 	font-size: 0.85em;
 }
