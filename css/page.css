@@ -78,6 +78,7 @@ main {
 		'project-header project-header'
 		'article sidebar';
 	grid-template-columns: 1fr auto;
+	grid-template-columns: 1fr max-content;
 
 	background-color: rgba(255, 255, 255, 0.6);
 }
@@ -101,26 +102,41 @@ main article {
 }
 
 main dy-sidebar {
+	--top: 0;
+	--height: calc(100vh - var(--top));
 	grid-area: sidebar;
+	display: grid;
+	justify-items: end;
+	align-items: start;
 	width: 16rem;
 	margin-left: var(--padding-neg);
+	pointer-events: none;
+}
+header.sticky-open ~ main dy-sidebar {
+	--top: 0;
+}
+header.sticky-open ~ main dy-sidebar {
+	--top: var(--main-menu-height);
+}
+main dy-sidebar:before,
+main dy-sidebar aside {
+	position: sticky;
+	top: var(--top);
+	pointer-events: initial;
+	grid-area: 1 / 1 / -1 / -1;
 }
 main dy-sidebar aside {
 	display: grid;
 	grid-gap: var(--padding);
 
-	height: 100vh;
-	padding: calc(var(--padding) / 2) var(--padding) 30vh;
+	max-height: var(--height);
+	padding: calc(var(--padding) / 2) var(--padding);
 	overflow-y: auto;
 
-	position: sticky;
-	top: 0;
 	transition: top 0.3s, height 0.3s;
 }
-header.sticky-open ~ main dy-sidebar aside {
-	height: calc(100vh - var(--main-menu-height));
-	top: var(--main-menu-height);
-}
+dy-sidebar dy-terms {
+	font-size: 0.8em;
 }
 .anchor-bottom {
 	margin-top: auto;
@@ -144,26 +160,45 @@ dy-page > footer {
 		grid-template-columns: 100% auto;
 	}
 	main dy-sidebar {
-		margin-left: 0;
+		grid-area: article;
+		justify-self: end;
 	}
-	main dy-sidebar aside {
-		position: relative;
+	main dy-sidebar:before {
+		content: '☰';
+
+		display: grid;
+		justify-content: center;
+		align-items: center;
+		
+		width: 1.8em;
+		height: 1.5em;
+		line-height: 1.5em;
+		transform: translate(-0.5rem, 0.5rem);
+
+		background-color: rgba(255, 255, 255, 0.9);
+		border-radius: 0.2em;
+
 		transition: 0.3s;
 	}
-	main dy-sidebar aside:before {
-		content: 'TC';
-		position: absolute;
-		width: 3rem;
-		height: 3rem;
-		right: 100%;
-		border-top-left-radius: 1rem;
+	main dy-sidebar:hover:before,
+	main dy-sidebar:focus-within:before {
+		opacity: 0;
+		/* color: transparent; */
+		transform: none;
+		width: 100%;
+		/* height: var(--height); */
+	}
+	main dy-sidebar aside {
 		border-bottom-left-radius: 1rem;
-		background-color: rgba(255, 255, 255, 0.95);
+		padding: calc(var(--padding) / 2);
+		transform: scale(0);
+		transform-origin: right top;
+		transition: 0.3s;
 	}
 	main dy-sidebar:hover aside,
 	main dy-sidebar:focus-within aside {
-		background-color: rgba(255, 255, 255, 0.95);
-		transform: translateX(-100%);
+		background-color: rgba(255, 255, 255, 0.9);
+		transform: none;
 		z-index: 1;
 	}
 }
