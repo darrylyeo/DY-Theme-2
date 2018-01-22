@@ -92,10 +92,10 @@ class DYNav extends DYElement {
 		this.data.term = termID
 		this.update()
 
-		notify(
-			`You're navigating projects tagged ${this.$currentTerm.innerHTML}. Enjoy!`,
-			{id: 'navigation_term'}
-		)
+		notify(`You're navigating projects tagged ${this.$currentTerm.innerHTML}. Enjoy!`, {
+			id: 'navigation_term',
+			icon: '🏷'
+		})
 	}
 
 	get data(){
