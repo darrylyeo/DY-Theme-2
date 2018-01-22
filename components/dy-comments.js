@@ -5,7 +5,7 @@ class DYComments extends DYElement {
 	static get templateHTML(){
 		return `
 			<h2><span class="comment-count">Loading</span> <span class="reactions">Reactions</span></h2>
-			<!--<div id="reaction">
+			<!--<div class="reaction">
 				<h3>Choose One or More Reactions: </h3>
 				<ul>
 					<li>Don't like it. Like it. Love it!</li>
@@ -48,21 +48,20 @@ customElements.define('dy-comments', DYComments)
 class DYComment extends DYElement {
 	static get templateHTML(){
 		return `
-			<img id="avatar">
+			<img class="avatar">
 			<blockquote class="comment">
 				<header>
 					<cite>
-						<a id="author" rel="nofollow"></a>
 					</cite>
-					<a class="link"><dy-date id="comment-date"></dy-date></a>
+					<a class="link"><dy-date class="comment-date"></dy-date></a>
 					<dy-buttons>
-						<dy-button id="reply-button" theme="plain small">Reply</dy-button>
-						<dy-button id="edit-button" theme="plain small">Edit</dy-button>
+						<dy-button class="reply-button" theme="plain small">Reply</dy-button>
+						<dy-button class="edit-button" theme="plain small">Edit</dy-button>
 					</dy-button>
 				</header>
-				<div id="content"></div>
+				<div class="content"></div>
 			</blockquote>
-			<div id="replies">
+			<div class="replies">
 
 			</div>
 		`
@@ -74,15 +73,15 @@ class DYComment extends DYElement {
 		this.dataset.id = data.id
 
 		root.updateWithModel({
-			'#content': data.content.rendered,
-			'#comment-date[datetime]': data.date,
+			'.content': data.content.rendered,
+			'.comment-date[datetime]': data.date,
 			'.link[href]': data.link,
-			'#author': data.author_name,
-			'#author[href]': data.author_url || undefined,
-			'#avatar[src]': data.author_avatar_urls[96]
+			'.author': data.author_name,
+			'.author[href]': data.author_url || undefined,
+			'.avatar[src]': data.author_avatar_urls[96]
 		})
 
-		root.find('#reply-button').on('click', () => {
+		root.find('.reply-button').on('click', () => {
 			this.$replies.prependChild(DYCommentReply.$reply)
 		})
 
@@ -93,7 +92,7 @@ class DYComment extends DYElement {
 
 	get $replies(){
 		const root = this.root
-		return root.find('#replies')
+		return root.find('.replies')
 	}
 }
 customElements.define('dy-comment', DYComment)
@@ -103,26 +102,23 @@ customElements.define('dy-comment', DYComment)
 class DYCommentReply extends DYComment {
 	static get templateHTML(){
 		return `
-			<img id="avatar">
+			<img class="avatar">
 			<form class="comment" action="">
 				<div>
-					<p><a id="sign-in">Sign in with a social account</a> to skip entering credentials: </p>
+					<p><a class="sign-in">Sign in with a social account</a> to skip entering credentials: </p>
 				</div>
 				<hr>
 				<header>
 					<cite>
-						<!--<input type="text" id="author" placeholder="Your Name (Real names only, please!)" name="author_name" required>-->
-						<dy-input id="author" placeholder="Your Name (Real names only, please!)" name="author_name" required></dy-input>
+						<dy-input class="author" placeholder="Your Name (Real names only, please!)" name="author_name" required></dy-input>
 					</cite>
 					<input type="email" placeholder="your_email@example.com" name="author_email" required>
 				</header>
-				<textarea id="content" name="content" placeholder="Your reaction..." required></textarea>
 				<footer>
-					<p><span class="character-count"></span> Characters</p>
 					<button type="submit">Post Reaction</button>
 				</footer>
 				<hr>
-				<div id="meta">
+				<div class="meta">
 					<div>
 						<h3>Guidelines</h3>
 						<ul>

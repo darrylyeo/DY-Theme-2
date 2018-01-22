@@ -18,7 +18,7 @@ dy-comment, dy-comment-reply {
 	width: 100%;
 }
 
-dy-comments #avatar {
+dy-comments .avatar {
 	grid-area: avatar;
 	border-radius: 0.75em;
 	max-width: 10vw;
@@ -59,14 +59,14 @@ dy-comments dy-comment > .comment > header {
 	justify-items: flex-start;
 	grid-auto-columns: 1fr max-content max-content;
 }
-dy-comments #author {
+dy-comments .author {
 	font-family: var(--heading-font);
 	font-size: 1.5em;
 	font-weight: bold;
 
 	text-transform: uppercase;
 }
-dy-comments #comment-date {
+dy-comments .comment-date {
 	background-color: rgba(0, 0, 0, 0.05);
 	padding: 0.25em;
 	border-radius: 0.25em;
@@ -74,17 +74,17 @@ dy-comments #comment-date {
 	line-height: 1;
 }
 
-dy-comment.by-me #reply-button,
-dy-comment:not(.by-me) #edit-button {
+dy-comment.by-me .reply-button,
+dy-comment:not(.by-me) .edit-button {
 	display: none;
 }
 
-dy-comment #content {
+dy-comment .content {
 	display: grid;
 	grid-gap: 0.5em;
 }
 
-dy-comment #replies {
+dy-comment .replies {
 	grid-area: replies;
 	display: flex;
 	flex-direction: column;
@@ -135,13 +135,13 @@ dy-comment-reply footer {
 	justify-content: space-between;
 }
 
-dy-comment-reply #meta {
+dy-comment-reply .meta {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
 	font-size: 0.9em;
 }
-dy-comment-reply #meta div {
+dy-comment-reply .meta div {
 	flex: 1 10rem;
 	padding: 0.5em;
 }
