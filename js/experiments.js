@@ -88,7 +88,7 @@ class DYExperiment {
 			this.callback = callback
 		}
 
-		this.$toggle.on('click', () => this.toggle())
+		if(this.$toggle) this.$toggle.on('click', () => this.toggle())
 		this.update()
 
 		// Clear experiments with the "e" key
