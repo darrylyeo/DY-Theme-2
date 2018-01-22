@@ -31,6 +31,7 @@ dy-comments .comment {
 	grid-area: content;
 	display: grid;
 	grid-gap: 0.25em;
+	min-height: 1em;
 	padding: 0.75em 1em;
 	position: relative;
 	background-color: rgba(255, 255, 255, 0.5);
