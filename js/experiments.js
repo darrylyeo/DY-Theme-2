@@ -120,7 +120,7 @@ class DYExperiment {
 		const isActive = this.isActive
 
 		// $toggle's .active class
-		this.$toggle.toggleClass(isActive, 'active')
+		if(this.$toggle) this.$toggle.toggleClass(isActive, 'active')
 
 		// Global stylesheet
 		DYStyle.toggle(isActive, this.stylesheet)
