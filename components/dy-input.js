@@ -41,7 +41,7 @@ class DYInput extends DYElement {
 			},
 
 			input: e => {
-				this.$input.value = $editor.innerText
+				this.value = $editor.innerText
 			}
 		})
 	}
@@ -59,7 +59,10 @@ class DYInput extends DYElement {
 	}
 
 	get value(){
-		return this.$editor.innerText
+		return this.$input.value
+	}
+	set value(value){
+		this.$input.value = this.$editor.innerText = value
 	}
 }
 customElements.define('dy-input', DYInput)
