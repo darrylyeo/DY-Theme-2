@@ -130,14 +130,22 @@ DY.getTaxonomies = async () => (await DY.getDatabase)
 	.getAll()
 
 
-DY.getUser = fetch(`${WP.rest}/users/me`, {
+DY.getUser = fetch(`${WP.rest}/users/me?context=edit`, {
+	credentials: 'same-origin',
 	headers: {
 		'X-WP-Nonce': WP.restNonce
 	}
-}).then(data => {
-	WP.user = data
-	return data
-}).catch(e => {
-	X('User is not logged in.', e)
-	return new Promise(() => {}) // never resolve
 })
+	.then(async response => {
+		const data = await response.json()
+		X(response)
+		if(response.status === 200){
+			return data
+		}else if(response.status === 401){
+			throw data
+		}
+	})
+	.catch(e => {
+		X(e.message, e)
+		return
+	})
