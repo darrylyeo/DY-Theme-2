@@ -49,6 +49,7 @@
 					<div><a data-experiment="edit-mode"><i icon="✍"></i>Edit Mode</a></div>
 					<div><a data-experiment="information-overload"><i icon="ℹ"></i>Information Overload</a></div>
 					<div><a data-experiment="resize-everything"><i icon="resize"></i>Resize Everything</a></div>
+					<div><a data-experiment="battery-status"><i icon="🔋"></i>Battery Status</a></div>
 				</div>
 			</div>
 		</nav>

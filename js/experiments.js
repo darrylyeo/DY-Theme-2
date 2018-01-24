@@ -112,6 +112,45 @@ const experimentFunctions = {
 			devicemotion: (e, a = e.acceleration || e.accelerationIncludingGravity) => notify(`Device accelerated by ${a.x} ${a.y} ${a.z}.`, {id: 'devicemotion'}),
 			devicelight: e => notify(`Ambient light is ${e.value} Lux.`, {id: 'devicelight', icon: '💡'}),
 		})
+	},
+
+	'battery-status'(active){
+		if(active && 'getBattery' in navigator) navigator.getBattery().then(battery => {
+			const notifyBatteryStatus = () => {
+				const {level, charging, chargingTime, dischargingTime} = battery
+				const time = charging ? chargingTime : dischargingTime
+				const timeFromNow = moment().add(time, 's').fromNow()
+		
+				if(level < 1.00){
+					notify(
+						`Your battery level is at ${(level * 100).toFixed(1)}%${
+							isFinite(time)
+								? charging
+									? ` and will be fully charged ${timeFromNow}`
+									: ` and will be depleted ${timeFromNow}`
+								: ''
+						}.`,
+						{
+							id: 'battery',
+							buttonText: 'Got it!',
+							icon: '🔋'
+						}
+					)
+				}else{
+					notify(
+						'Your battery is fully charged.',
+						{
+							id: 'battery',
+							buttonText: 'Got it!',
+							icon: '🔋'
+						}
+					)
+				}
+			}
+		
+			notifyBatteryStatus()
+			battery.on('chargingchange chargingtimechange dischargingtimechange levelchange', notifyBatteryStatus)
+		})
 	}
 }
 
