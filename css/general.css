@@ -30,7 +30,7 @@ a, :link {
 :link {
 	text-decoration: var(--link-underline, none);
 }
-a:hover {
+a:hover, a:focus {
 	opacity: 0.9;
 }
 a {
