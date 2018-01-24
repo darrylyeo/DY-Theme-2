@@ -4,9 +4,9 @@ class DYNav extends DYElement {
 			<div class="inner-wrapper">
 				<h1 class="current-title"></h1>
 				<div class="prev-next">
-					<a rel="prev" class="prev"></a>
+					<a rel="prev"></a>
 					<div class="current-term"></div>
-					<a rel="next" class="next"></a>
+					<a rel="next"></a>
 				</div>
 			</div>
 		`
@@ -58,10 +58,10 @@ class DYNav extends DYElement {
 
 		this.updateWithModel({
 			'.current-title': currentPost.title.rendered,
-			'.prev': previousPost ? previousPost.title.rendered : '',
-			'.prev[href]': previousPost ? previousPost.link : '',
-			'.next': nextPost ? nextPost.title.rendered : '',
-			'.next[href]': nextPost ? nextPost.link : '',
+			'[rel=prev]': previousPost ? previousPost.title.rendered : '',
+			'[rel=prev][href]': previousPost ? previousPost.link : '',
+			'[rel=next]': nextPost ? nextPost.title.rendered : '',
+			'[rel=next][href]': nextPost ? nextPost.link : '',
 		})
 
 		this.$currentTerm.empty()
@@ -94,6 +94,7 @@ class DYNav extends DYElement {
 
 		notify(`You're navigating projects tagged ${this.$currentTerm.innerHTML}. Enjoy!`, {
 			id: 'navigation_term',
+			//icon: '🔖'
 			icon: '🏷'
 		})
 	}
