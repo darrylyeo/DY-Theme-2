@@ -44,7 +44,6 @@ dy-notification {
 	min-width: 10vw;
 	max-width: 22rem;
 	min-height: min-content;
-	max-height: 100px;
 	transform-origin: right bottom;
 	animation: NotificationShow .5s;
 }
@@ -106,6 +105,8 @@ dy-notification .icon:not([icon]) {
 }
 
 dy-notification .inner-wrapper {
+	overflow-y: auto;
+	max-height: 10rem;
 	padding: 0.4em 0.5em;
 }
 dy-notification .inner-wrapper > dy-button {
