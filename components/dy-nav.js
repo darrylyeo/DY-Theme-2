@@ -46,7 +46,7 @@ class DYNav extends DYElement {
 
 		const posts = (await DY.getObjectsByType(WP.postType))
 			.filter(post => post.terms.includes(this.currentTerm))
-		const i = posts.indexOf(WP.current)
+		const i = posts.findIndex(post => post.id === WP.current.id)
 		const l = posts.length
 
 		if(l <= 1) return
