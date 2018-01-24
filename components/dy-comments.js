@@ -144,7 +144,7 @@ class DYCommentReply extends DYComment {
 	connectedCallback(){
 		const root = this.root
 		
-		const $parent = this.getRootNode().host
+		const $parent = this.closest('dy-comment')
 
 		this.formData = {
 			'post': $('dy-comments').dataset.id,
