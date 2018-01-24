@@ -48,6 +48,9 @@ a {
 a.current, a.active {
 	font-weight: bold;
 }
+a[tabindex]:not([tabindex="-1"]) {
+	cursor: pointer;
+}
 
 article {
 	--link-underline: underline;
