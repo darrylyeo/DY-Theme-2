@@ -37,7 +37,8 @@ const DYNavigation = {
 			}, 'bloink', url)
 		}
 
-		fetch(url).then(data => data.text()).then(html => {
+		DYPage.onNavigation()
+		/*fetch(url).then(data => data.text()).then(html => {
 			if(this.navigatingTo !== url) return
 
 			const $$document = document.createRange().createContextualFragment(html)
@@ -53,7 +54,7 @@ const DYNavigation = {
 			// $$('#wpadminbar').replaceWith($$document.find('#wpadminbar'))
 			
 			DYPage.onNavigation()
-		})
+		})*/
 
 		return true
 	},
