@@ -112,5 +112,8 @@ window.on({
 		for(const $link of DYNavigation.$links){
 			$link.toggleClass($link.href === location.href, 'current')
 		}
+	},
+	popstate(e){
+		DYPage.onNavigation()
 	}
 })
