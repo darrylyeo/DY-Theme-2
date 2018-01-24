@@ -146,7 +146,7 @@ code, kbd, samp, output, var {
 	font-family: Inconsolata, Roboto Mono, Ayuthaya, monospace;
 	font-size: 0.85em;
 }
-:not(pre) > code {
+:not(pre) > code, kbd, samp, output, var {
 	background-color: rgba(255, 255, 255, 0.6);
 	border-radius: 0.75ch;
 	padding: 0.3ch 0.5ch;
