@@ -51,6 +51,7 @@ class DYComment extends DYElement {
 			<blockquote class="comment">
 				<header>
 					<cite>
+						<a class="author" rel="nofollow"></a>
 					</cite>
 					<a class="link"><dy-date class="comment-date"></dy-date></a>
 					<dy-buttons>
