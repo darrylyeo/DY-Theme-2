@@ -59,7 +59,6 @@ document.on('DOMContentLoaded', () => {
 		[
 			'js/libraries/moment.min.js',
 
-			'js/globals.js',
 			'js/workers.js',
 			'js/bind.js',
 			'js/navigation.js',

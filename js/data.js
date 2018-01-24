@@ -5,6 +5,8 @@ URL.pathName = function(url){
 	return (new URL(url)).pathname
 }
 
+const DY = {}
+
 DY.getDatabase = (async () => {
 	const DB_VERSION = 1
 
