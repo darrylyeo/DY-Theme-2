@@ -87,7 +87,9 @@ class DYComment extends DYElement {
 		})
 
 		DY.getUser.then(user => {
-			this.toggleClass(data.author === user.id, 'by-me')
+			if(user){
+				this.toggleClass(data.author === user.id, 'by-me')
+			}
 		})
 	}
 
