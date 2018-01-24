@@ -71,9 +71,6 @@ nav > :last-child > a {
 	text-shadow: rgba(0, 0, 0, 0.1) 0 0 0.1em;
 	transform: scale(1.15);
 }
-#main-nav > * > a.current {
-	font-weight: bold;
-}
 header.show-post-nav #main-nav > * > a:not(.current) {
 	font-size: 0;
 }

@@ -45,6 +45,9 @@ a {
 
 	box-shadow: var(--link-highlight);
 }
+a.current, a.active {
+	font-weight: bold;
+}
 
 article {
 	--link-underline: underline;
