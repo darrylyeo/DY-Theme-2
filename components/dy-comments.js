@@ -71,7 +71,7 @@ class DYComment extends DYElement {
 
 		const root = this.root
 		
-		this.dataset.id = data.id
+		this.commentID = data.id
 
 		root.updateWithModel({
 			'.content': data.content.rendered,
