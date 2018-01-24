@@ -47,6 +47,7 @@
 					<div><a data-experiment="ajax-navigation"><i icon="compass"></i>AJAX Navigation</a></div>
 					<div><a data-experiment="pin-window"><i icon="pin"></i>Pin Window</a></div>
 					<div><a data-experiment="edit-mode"><i icon="pencil"></i>Edit Mode</a></div>
+					<div><a data-experiment="resize-everything"><i icon="resize"></i>Resize Everything</a></div>
 				</div>
 			</div>
 		</nav>
