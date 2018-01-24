@@ -99,21 +99,8 @@ class DYExperiment {
 		})
 	}
 
-	toggle(active = !this.isActive){
-		const wasActive = this.isActive
-
-		DY.data.experiments[this.handle] = active
-
-		if(wasActive !== active){
-			notify(`${this.name} experiment ${this.isActive ? 'activated' : 'deactivated'}.`, {
-				id: this.name,
-				dismiss: this.isActive ? undefined : 5
-			})
-			if(this.isActive){
-				notify('Press <kbd>e</kbd> at any time to disable all experiments.')
-			}
-			this.update()
-		}
+	toggle(isActive = !this.isActive){
+		this.isActive = isActive
 	}
 
 	update(){
@@ -135,7 +122,10 @@ class DYExperiment {
 		return $('#experiments').findAll('a')
 	}
 	get $toggle(){
-		return this.constructor.$toggles.filter(`[data-experiment="${this.handle}"]`)[0]
+		return [...this.constructor.$toggles].find($toggle => $toggle.dataset.experiment === this.handle)
+	}
+	get $toggleIcon(){
+		return this.$toggle && this.$toggle.find('[icon]')
 	}
 
 	get name(){
@@ -145,13 +135,34 @@ class DYExperiment {
 		return `${WP.childTheme}/experiments/${this.handle}.css`
 	}
 	get isActive(){
-		return !!DY.data.experiments[this.handle]
+		return !!DYExperiment.data[this.handle]
+	}
+	set isActive(isActive){
+		const wasActive = this.isActive
+
+		DYExperiment.data[this.handle] = isActive
+
+		if(wasActive !== isActive){
+			notify(`${this.name} experiment ${isActive ? 'activated' : 'deactivated'}.`, {
+				id: this.name,
+				dismiss: isActive ? undefined : 5,
+				icon: this.$toggleIcon && this.$toggleIcon.attr('icon')
+			})
+			if(isActive){
+				notify('Press <kbd>e</kbd> at any time to disable all experiments.')
+			}
+			this.update()
+		}
 	}
 }
 
 
-for(const $toggle of DYExperiment.$toggles){
-	const handle = $toggle.dataset.experiment
-	$toggle.tabIndex = 0
-	new DYExperiment(handle, experimentFunctions[handle])
-}
+DY.data('experiments').then(experiments => {
+	DYExperiment.data = experiments
+
+	for(const $toggle of DYExperiment.$toggles){
+		const handle = $toggle.dataset.experiment
+		$toggle.tabIndex = 0
+		new DYExperiment(handle, experimentFunctions[handle])
+	}
+})
