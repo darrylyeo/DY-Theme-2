@@ -146,30 +146,60 @@ class DYCommentReply extends DYComment {
 		
 		const $parent = this.closest('dy-comment')
 
-		this.formData = {
-			'post': $('dy-comments').dataset.id,
-			'parent': $parent instanceof DYComment ? $parent.dataset.id : 0,
+		const additionalFormData = {
+			'author': 0,
+			'post': WP.current.id,
+			'parent': $parent ? $parent.commentID : 0,
 			'author_user_agent': navigator.userAgent,
-			'author_ip': '???',
+			//'author_ip': '???',
 		}
 
-		const _this = this
-
-		root.find('form').on('submit', function(e){
-			e.preventDefault()
-			const formData = new FormData(this)
-			for(const key in _this.formData){
-				formData.set(key, _this.formData[key])
+		DY.getUser.then(user => {
+			if(user){
+				Object.assign(additionalFormData, {
+					'author': user.id,
+					'author_url': user.url
+				})
+				this.find('[name=author_name]').value = user.nickname || user.name || user.username
+				this.find('[name=author_email]').value = user.email
 			}
-			X(_this.formData, formData, formData.entries())
-			for(const entry of formData.entries()){
-				X(entry)
+		})
+
+		if(this._inited) return
+		this._inited = true
+
+		root.find('form').on('submit', e => {
+			e.preventDefault()
+
+			const formData = new FormData(e.target)
+			for(const key in additionalFormData){
+				formData.set(key, additionalFormData[key])
 			}
-			X(formData.getAll('*'))
-			//const xhr = new XMLHttpRequest()
-			//xhr.send(new FormData(this))
 
 			e.preventDefault()
+
+			fetch(`${WP.rest}/comments`, {
+				method: 'POST',
+				body: formData,
+				credentials: 'same-origin',
+				headers: {
+					'X-WP-Nonce': WP.restNonce
+				}
+			})
+			.then(async response => {
+				const data = await response.json()
+				X(response, data)
+				if(response.status === 201){
+					notify('Posted comment. Thanks for participating!', {icon: '💬'})
+					this.replaceWith(new DYComment(data))
+				}else if(response.status === 409){
+					// response.code: comment_duplicate
+					notify(data.message, {id: data.code, icon: '💬'})
+				}
+			})
+			.catch(e => {
+				console.error(e.json())
+			})
 		})
 
 		const $submit = root.find('[type=submit]')
