@@ -11,7 +11,7 @@ DY.getDatabase = (async () => {
 	let updateNeeded = false
 	
 	const db = await indexedDB.openDatabase('Darryl-Yeo', DB_VERSION, {
-		'settings': {
+		'data': {
 			keyPath: 'key'
 		},
 
@@ -149,3 +149,28 @@ DY.getUser = fetch(`${WP.rest}/users/me?context=edit`, {
 		X(e.message, e)
 		return
 	})
+
+{
+const data = {}
+
+DY.data = async key => {
+	if(key in data) return data[key]
+
+	const dataObj = await (await DY.getDatabase).getObjectStore('data').get(key)
+	const value = dataObj && dataObj.value || {}
+	data[key] = value
+	return value
+}
+window.on({
+	async beforeunload(){
+		const store = (await DY.getDatabase).getObjectStore('data', true)
+		for(const key in data){
+			store.put({
+				key,
+				timestamp: Date.now(),
+				value: data[key]
+			})
+		}
+	}
+})
+}
