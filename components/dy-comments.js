@@ -102,7 +102,7 @@ customElements.define('dy-comment', DYComment)
 
 
 
-class DYCommentReply extends DYComment {
+class DYCommentReply extends DYElement {
 	static get templateHTML(){
 		return `
 			<img class="avatar">
