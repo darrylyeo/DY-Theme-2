@@ -29,8 +29,7 @@ class DYComments extends DYElement {
 
 			const $comments = {}
 			for(const comment of comments){
-				const $comment = $$$('dy-comment').appendTo(this)
-				$comment.data = comment
+				const $comment = new DYComment(comment).appendTo(this)
 				$comments[comment.id] = $comment
 			}
 			for(const comment of comments){
@@ -67,7 +66,9 @@ class DYComment extends DYElement {
 		`
 	}
 
-	set data(data){
+	constructor(data){
+		super()
+
 		const root = this.root
 		
 		this.dataset.id = data.id
