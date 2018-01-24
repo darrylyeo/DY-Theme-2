@@ -77,6 +77,41 @@ const experimentFunctions = {
 
 	'edit-mode'(active){
 		document.designMode = active ? 'on' : 'off'
+	},
+
+	'information-overload'(active){
+		const notify = (message, options) => window.notify(message, Object.assign(options, {dismiss: 20}))
+		if(active) document.on({
+			click: e => notify(`Clicked <code>&lt;${e.path[0].tagName.toLowerCase()}></code> at ${e.x}, ${e.y}.`, {id: 'click'}),
+			dblclick: e => notify(`Double-clicked <code>&lt;${e.path[0].tagName.toLowerCase()}></code> at ${e.x}, ${e.y}.`, {id: 'dblclick'}),
+			contextmenu: e => notify(`Right-clicked <code>&lt;${e.path[0].tagName.toLowerCase()}></code> at ${e.x}, ${e.y}.`, {id: 'contextmenu'}),
+			mousedown: e => notify(`Mouse pressed at ${e.x}, ${e.y}.`, {id: 'mousedown', icon: '🖱'}),
+			mouseup: e => notify(`Mouse released at ${e.x}, ${e.y}.`, {id: 'mouseup', icon: '🖱'}),
+			mousemove: throttle(e => notify(`Mouse moved to ${e.x}, ${e.y}.`, {id: 'mousemove', icon: 'move'}), 10),
+			mouseenter: e => notify(`Mouse entered page at ${e.x}, ${e.y}.`, {id: 'mouseenter'}),
+			mouseleave: e => notify(`Mouse exited page at ${e.x}, ${e.y}.`, {id: 'mouseleave', icon: '🚪 '}),
+			touchstart: e => notify(`Touched down at ${e.targetTouches[0].pageX | 0}, ${e.targetTouches[0].pageY | 0}.`, {id: 'touchstart', icon: '👆'}),
+			touchmove: e => notify(`Touch moved to ${e.targetTouches[0].pageX | 0}, ${e.targetTouches[0].pageY | 0}.`, {id: 'touchmove', icon: 'move'}),
+			touchend: e => notify(`Touched up.`, {id: 'touchend', icon: '👆'}),
+			keydown: e => notify(`Pressed <kbd>${e.key}</kbd> (${e.code}) key.`, {id: 'keydown', icon: '⌨'}),
+			keyup: e => notify(`Released <kbd>${e.key}</kbd> (${e.code}) key.`, {id: 'keyup', icon: '⌨'}),
+			//keydown: e => notify(`Pressed ${e.code}${e.key.length === 1 ? ` <code>${e.key}</code>` : ''}${e.code.startsWith('Key') ? '' : ` key`}.`, {id: 'keydown'}),
+			//keyup: e => notify(`Released ${e.code}${e.key.length === 1 ? ` <code>${e.key}</code>` : ''}${e.code.startsWith('Key') ? '' : ` key`}.`, {id: 'keyup'}),
+			resize: e => notify(`Page resized to ${window.innerWidth}x${window.innerHeight}.`, {id: 'resize'}),
+			beforeunload: e => notify(`Leaving page.`, {id: 'beforeunload'}),
+			visibilitychange: e => notify(`Page became ${document.visibilityState}.`, {id: 'beforeunload', icon: '👁'}),
+			select: e => notify(`Text selected: <output>${window.getSelection()}</output>`, {id: 'select'}),
+			cut: e => notify(`Text cut: <output>${window.getSelection()}</output>`, {id: 'cut', icon: '✂️'}),
+			copy: e => notify(`Text copy: <output>${window.getSelection()}</output>`, {id: 'copy'}),
+			paste: e => notify(`Text pasted: <output>${e.clipboardData.getData('text')}</output>`, {id: 'paste', icon: '📋'}),
+			wheel: throttle(e => notify(`Mouse scrolled.`, {id: 'wheel'}), 200),
+			beforeprint: e => notify(`Opened print dialog`, {id: 'print', icon: '🖨 '}),
+			afterprint: e => notify(`Closed print dialog.`, {id: 'print', icon: '🖨 '}),
+			orientationchange: e => notify(`Device is now in ${window.screen.orientation.type.split('-')[0]} orientation with an angle of ${window.screen.orientation.angle}.`, {id: 'orientationchange'}),
+			deviceorientation: e => notify(`Device rotated to ${e.beta} ${e.gamma} ${e.alpha}.`, {id: 'deviceorientation'}),
+			devicemotion: (e, a = e.acceleration || e.accelerationIncludingGravity) => notify(`Device accelerated by ${a.x} ${a.y} ${a.z}.`, {id: 'devicemotion'}),
+			devicelight: e => notify(`Ambient light is ${e.value} Lux.`, {id: 'devicelight', icon: '💡'}),
+		})
 	}
 }
 
