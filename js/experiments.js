@@ -75,7 +75,7 @@ const experimentFunctions = {
 		})
 	},
 
-	'editable'(active){
+	'edit-mode'(active){
 		document.designMode = active ? 'on' : 'off'
 	}
 }
