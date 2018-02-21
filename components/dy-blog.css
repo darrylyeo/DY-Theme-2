@@ -54,6 +54,10 @@ dy-post .inner-wrapper {
 	border-radius: 0.5rem;
 }
 
+dy-post img {
+	border-radius: 0.5rem;
+}
+
 @media (max-width: 50rem) {
 	dy-post {
 		display: block;
