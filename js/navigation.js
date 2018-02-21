@@ -77,7 +77,7 @@ const DYNavigation = {
 		if(e.metaKey) return
 		
 		if(this.host !== location.host){
-			window.open(this.href, '_blank')
+			window.open(this.href, '_blank', 'noopener')
 			e.preventDefault()
 		}else if(DYNavigation.navigateTo(this.href, true)){
 			e.preventDefault()
