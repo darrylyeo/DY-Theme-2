@@ -266,10 +266,10 @@ Object.defineProperties(Element.prototype, Object.getOwnPropertyDescriptors({
 		return this
 	},
 	
-	toggleClass(addClass, ...classes){
+	toggleClass(add, ...classes){
 		if(typeof arguments[0] === 'boolean'){
 			for(const className of classes){
-				this.classList[addClass ? 'add' : 'remove'](className)
+				this.classList[add ? 'add' : 'remove'](className)
 			}
 		}else{
 			for(const className of arguments){
