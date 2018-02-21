@@ -165,6 +165,8 @@ DY.data = async key => {
 }
 window.on({
 	async beforeunload(){
+		(await DY.data('lastSession')).date = Date.now()
+		
 		const store = (await DY.getDatabase).getObjectStore('data', true)
 		for(const key in data){
 			store.put({
