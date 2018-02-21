@@ -97,7 +97,7 @@ dy-notification.hide {
 dy-notification .icon {
 	background-color: rgba(0, 0, 0, 0.05);
 	color: #000;
-	width: 2.25em;
+	min-width: 2.25em;
 }
 
 dy-notification .icon:not([icon]) {
