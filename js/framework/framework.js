@@ -295,6 +295,19 @@ Object.defineProperties(Element.prototype, Object.getOwnPropertyDescriptors({
 		}
 		return this
 	},
+	
+	toggleAttr(add, ...attrs){
+		if(typeof arguments[0] === 'boolean'){
+			for(const attr of attrs){
+				this.attr(attr, add ? '' : undefined)
+			}
+		}else{
+			for(const attr of attrs){
+				this.attr(attr, this.hasAttribute(attr) ? '' : undefined)
+			}
+		}
+		return this
+	},
 
 	css(prop){
 		const props = keyValueSignature(arguments)
