@@ -9,7 +9,6 @@ class DYProject extends DYElement {
 					</div>
 					<div class="card">
 						<a class="featured-image link"><img></a>
-						<div class="details-wrapper">
 						<div class="details">
 							<blockquote class="excerpt"></blockquote>
 							<!--<a class="link button read-more">Read More</a>-->
@@ -18,7 +17,6 @@ class DYProject extends DYElement {
 								<span class="modified-date-wrapper">Updated <dy-date class="modified-date"></dy-date></span>
 							</div>
 							<dy-terms></dy-terms>
-						</div>
 						</div>
 					</div>
 				</div>
@@ -115,22 +113,22 @@ class DYProject extends DYElement {
 		const animation = new StateAnimation(() => {
 			this.toggleClass(focused, 'focused')
 		}, {
-			duration: 750,
+			duration: 2750,
 			easing: 'ease-out'
 		})
 
-		this.find('.positioning-wrapper').animateState({
+		/*this.find('.positioning-wrapper').animateState({
 			position: true,
 			size: true
 		}, animation)
 
 		this.find('.inner-wrapper').animateState({
 			size: true
-		}, animation)
+		}, animation)*/
 
-		this.find('.details-wrapper').animateState({
-			size: true
-		}, animation)
+		// this.find('.details').animateState({
+		// 	size: true
+		// }, animation)
 
 		animation.run()
 	}
