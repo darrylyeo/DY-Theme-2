@@ -11,11 +11,25 @@ class DYButton extends DYElement {
 	}
 
 	set disabled(disabled){
-		this.attr('disabled', disabled ? '' : undefined)
+		this.toggleAttr(disabled, 'disabled')
 		this.tabIndex = disabled ? -1 : 0
 	}
 	get disabled(){
-		return this.attr('disabled')
+		return this.hasAttribute('disabled')
+	}
+
+	set toggleable(toggleable){
+		this.toggleAttr(toggleable, 'toggleable')
+	}
+	get toggleable(){
+		return this.hasAttribute('toggleable')
+	}
+
+	set active(active){
+		this.toggleAttr(active, 'active')
+	}
+	get active(){
+		return this.hasAttribute('active')
 	}
 }
 customElements.define('dy-button', DYButton)

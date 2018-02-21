@@ -189,7 +189,7 @@ customElements.define('dy-projects', DYProjects)
 
 class DYProjectFilters extends DYTerms {
 	get activeTerms(){
-		return this.$terms.filter('.active')
+		return [...this.$terms]
 			.map($term => this.map.get($term))
 	}
 
@@ -202,8 +202,8 @@ class DYProjectFilters extends DYTerms {
 
 	make$Term(){
 		const $term = super.make$Term(...arguments)
+		$term.toggleable = true
 		$term.on('click', function(){
-			this.toggleClass('active')
 			this.trigger(new CustomEvent('dy-filter-change', {bubbles: true, composed: true}))
 		})
 		return $term

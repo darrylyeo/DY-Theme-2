@@ -51,12 +51,12 @@ dy-button[theme~=plain]:not([theme~='3D']):focus:not(:active) {
 	transform: translateY(-1px);
 }
 /* dy-button[theme~=plain]:not([theme~='3D']):hover, */
-dy-button[theme~=plain]:not([theme~='3D']).active {
+dy-button[theme~=plain]:not([theme~='3D'])[active] {
 	background-color: var(--color-1);
 	color: #fff;
 	opacity: 0.9;
 }
-dy-button[theme~=plain].active {
+dy-button[theme~=plain][active] {
 	opacity: 1;
 }
 dy-button[theme~=plain][disabled] {
