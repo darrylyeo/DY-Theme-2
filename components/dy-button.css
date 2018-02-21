@@ -162,7 +162,7 @@ dy-buttons[full] {
 	display: block;
 }
 
-dy-buttons dy-button:first-of-type:not(:last-of-type) {
+dy-buttons dy-button:not(:last-of-type) {
 	--border-top-right-radius: 0;
 	--border-bottom-right-radius: 0;
 }
