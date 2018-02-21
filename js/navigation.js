@@ -33,7 +33,7 @@ const DYNavigation = {
 
 		if(pushNewState) {
 			history.pushState({
-				whee: 9
+				url
 			}, 'bloink', url)
 		}
 
