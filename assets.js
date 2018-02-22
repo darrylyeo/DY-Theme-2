@@ -58,6 +58,7 @@ document.on('DOMContentLoaded', () => {
 	{
 		[
 			'js/libraries/moment.min.js',
+			'js/libraries/intersection-observer.js',
 
 			'js/workers.js',
 			'js/bind.js',
