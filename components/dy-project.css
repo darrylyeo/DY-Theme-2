@@ -240,6 +240,9 @@ dy-project .modified-date-wrapper {
 		min-width: 100%;
 		height: auto;
 	}
+	dy-project.focused .inner-wrapper {
+		max-height: 75vh;
+	}
 	dy-project.focused .details {
 		width: 0;
 		min-width: 100%;
@@ -258,6 +261,6 @@ dy-project .modified-date-wrapper {
 @media (max-width: 34rem) {
 	dy-project {
 		max-height: 16rem;
-		perspective: var(--perspective);
+		/* perspective: var(--perspective); */
 	}
 }

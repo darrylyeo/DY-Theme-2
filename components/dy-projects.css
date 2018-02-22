@@ -1,4 +1,6 @@
 dy-projects {
+	--perspective: 30rem;
+	--perspective-intensity: 10;
 	--projects-padding: 1rem;
 	--filters-width: 15rem;
 
@@ -27,10 +29,6 @@ dy-projects:not(.has-focused-project) dy-project-filters {
 
 
 dy-projects .projects-wrapper {
-	--perspective: 30rem;
-	perspective: var(--perspective);
-	--perspective-intensity: 10;
-
 	grid-area: projects;
 	grid-column-start: 1;
 
@@ -74,6 +72,8 @@ dy-projects .projects {
 	/* max-height: 100vh; */
 	overflow-x: auto;
 	overflow-y: hidden;
+
+	perspective: var(--perspective);
 }
 
 
@@ -86,15 +86,14 @@ dy-projects .projects {
 	dy-project-filters {
 		display: none;
 	}
-	dy-projects .projects-wrapper {
-		perspective: none;
-	}
 	dy-projects .projects {
 		padding-left: var(--projects-padding);
 		flex-direction: row;
 		overflow-x: hidden;
 		grid-auto-flow: row;
 		grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+		max-height: calc(100vh - var(--header-height));
+		overflow-y: auto;
 	}
 
 	/* body {
