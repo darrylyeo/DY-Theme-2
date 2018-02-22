@@ -59,6 +59,8 @@ const experimentFunctions = {
 	},
 
 	'pin-window'(active){
+		if(!active) return
+
 		let {screenX, screenY} = window
 		interval(() => {
 			if(screenX !== window.screenX || screenY !== window.screenY){
