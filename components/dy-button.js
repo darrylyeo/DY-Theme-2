@@ -27,14 +27,24 @@ customElements.define('dy-buttons', DYButtons)
 
 
 class DYButton extends DYElement {
-	connectedCallback(){
-		this.tabIndex = 0
+	constructor(){
+		super()
 
-		this.on('keydown', e => {
-			if(e.key === 'Enter'){
-				this.trigger('click')
+		this.on({
+			keydown: e => {
+				if(e.key === 'Enter'){
+					this.trigger('click')
+				}
+			},
+			click: e => {
+				if(this.toggleable) this.active = !this.active
+				this.trigger('dy-button-click', {bubbles: true})
 			}
 		})
+	}
+
+	connectedCallback(){
+		this.tabIndex = 0
 	}
 
 	set disabled(disabled){
