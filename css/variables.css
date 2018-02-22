@@ -23,7 +23,7 @@
 	--link-color: var(--color-1-dark);
 	--link-hover-color: var(--color-1);
 	
-	--page-background-image: radial-gradient(rgb(102, 182, 225) 30%, rgba(112, 255, 246, 0.96));
+	--page-background-image: radial-gradient(var(--color-1) 30%, rgba(112, 255, 246, 0.96));
 	--page-background: var(--page-background-image) fixed center center/100vmax 100vmax;
 
 	--supports-backdrop-filter: 0;
