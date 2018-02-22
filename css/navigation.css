@@ -15,6 +15,7 @@ nav {
 	height: var(--main-menu-height);
 	/* background-color: rgba(255, 255, 255, 0.95); */
 	background-image: radial-gradient(circle, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.95));
+	overflow-x: auto;
 }
 #secondary-nav, #screen-reader-nav {
 	height: var(--secondary-menu-height);
