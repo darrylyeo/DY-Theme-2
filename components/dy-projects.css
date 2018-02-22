@@ -23,6 +23,7 @@ dy-projects.has-focused-project dy-project-filters {
 	opacity: 0.1;
 }
 dy-projects:not(.has-focused-project) dy-project-filters {
+	position: relative;
 	z-index: 1;
 }
 
