@@ -93,7 +93,8 @@ img {
 	overflow: hidden;
 	position: relative;
 
-	background-color: rgba(0, 0, 0, 0.05);
+	background: rgba(235, 238, 245, 0.4) url('../logo/DY-Logo-Black.svg') center/contain no-repeat;
+	background-blend-mode: luminosity;
 	/* border-radius: 0.5rem; */
 	overflow: auto;
 	text-indent: -200vmax;
