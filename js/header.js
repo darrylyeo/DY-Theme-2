@@ -2,7 +2,7 @@ const $header = $('header')
 
 {
 	let isSticky = false
-	function updateHeader(){
+	const updateHeader = () => {
 		$header
 			.toggleClass(isSticky, 'sticky')
 			.toggleClass(isSticky && WP.queryType === 'single', 'show-post-nav')
