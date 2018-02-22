@@ -164,17 +164,19 @@ DY.data = async key => {
 	return value
 }
 window.on({
-	async beforeunload(){
-		(await DY.data('lastSession')).date = Date.now()
-		
-		const store = (await DY.getDatabase).getObjectStore('data', true)
-		for(const key in data){
-			store.put({
-				key,
-				timestamp: Date.now(),
-				value: data[key]
-			})
-		}
+	beforeunload: () => {
+		(async () => {
+			(await DY.data('lastSession')).date = Date.now()
+			
+			const store = (await DY.getDatabase).getObjectStore('data', true)
+			for(const key in data){
+				store.put({
+					key,
+					timestamp: Date.now(),
+					value: data[key]
+				})
+			}
+		})()
 	}
 })
 }
