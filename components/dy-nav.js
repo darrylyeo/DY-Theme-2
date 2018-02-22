@@ -28,11 +28,11 @@ class DYNav extends DYElement {
 			const id = $termsContainer.map.get($term).term_id
 			if(this.currentTerm === id){
 				this.currentTerm = undefined
-				$term.removeClass('active')
+				$term.active = false
 			}else{
 				this.currentTerm = id
-				$termsContainer.$terms.removeClass('active')
-				$term.addClass('active')
+				for(const $term of $termsContainer.$terms) $term.active = false
+				$term.active = true
 			}
 		})
 		this.update()
