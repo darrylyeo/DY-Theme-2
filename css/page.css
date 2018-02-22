@@ -148,7 +148,6 @@ dy-page > footer {
 	padding: var(--padding);
 	background-color: rgba(38, 38, 38, 0.9);
 	color: rgba(255, 255, 255, 0.5);
-	height: max-content;
 }
 
 
