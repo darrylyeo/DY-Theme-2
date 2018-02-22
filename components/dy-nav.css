@@ -16,6 +16,9 @@ dy-nav .inner-wrapper {
 }
 dy-nav .current-title {
 	font-size: 1.1em;
+	overflow-x: auto;
+	max-width: 100%;
+	justify-items: end;
 }
 
 dy-nav .prev-next {
@@ -24,6 +27,13 @@ dy-nav .prev-next {
 	grid-gap: 0.5rem;
 	font-size: 0.8em;
 	justify-content: space-between;
+	overflow-x: auto;
+	max-width: 100%;
+}
+dy-nav .inner-wrapper:not(:hover) .current-title,
+dy-nav .inner-wrapper:not(:hover) [rel] {
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 dy-nav [rel=prev] {
 	text-align: right;
