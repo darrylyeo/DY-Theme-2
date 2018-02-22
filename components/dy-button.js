@@ -1,3 +1,30 @@
+class DYButtons extends DYElement {
+	connectedCallback(){
+		this.on({
+			'dy-button-click': e => {
+				const $targetButton = e.target
+
+				const mode = this.attr('mode')
+				if(mode === 'select'){
+					for(const $button of this.$buttons){
+						$button.active = $button === $targetButton
+					}
+					this.trigger('dy-buttons-select', {bubbles: true})
+				}
+			}
+		})
+	}
+
+	get $buttons(){
+		return this.findAll('dy-button')
+	}
+
+	get $active(){
+		return [...this.$buttons].filter($b => $b.active)
+	}
+}
+customElements.define('dy-buttons', DYButtons)
+
 
 class DYButton extends DYElement {
 	connectedCallback(){
