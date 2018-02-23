@@ -119,6 +119,7 @@ dy-project .title-wrapper {
 dy-project .title-wrapper a {
 	flex: 1;
 	width: 0; /* take up as least space as possible */
+	text-shadow: #fff 0 0 2rem;
 	--link-underline: none;
 	--link-color: rgba(0, 0, 0, 0.7);
 }
