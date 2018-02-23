@@ -109,27 +109,28 @@ class DYProject extends DYElement {
 
 		animate()*/
 
-		const animation = new StateAnimation(() => {
+		this.toggleClass(focused, 'focused')
+		/*const animation = new StateAnimation(() => {
 			this.toggleClass(focused, 'focused')
 		}, {
 			duration: 2750,
 			easing: 'ease-out'
 		})
 
-		/*this.find('.positioning-wrapper').animateState({
+		this.find('.positioning-wrapper').animateState({
 			position: true,
 			size: true
 		}, animation)
 
 		this.find('.inner-wrapper').animateState({
 			size: true
-		}, animation)*/
+		}, animation)
 
 		// this.find('.details').animateState({
 		// 	size: true
 		// }, animation)
 
-		animation.run()
+		animation.run()*/
 	}
 
 	get focused(){
