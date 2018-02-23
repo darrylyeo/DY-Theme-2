@@ -18,6 +18,8 @@ dy-project-filters {
 	font-size: 0.85em;
 	padding: 1rem;
 	overflow-y: auto;
+	-webkit-backdrop-filter: var(--backdrop-blur);
+	backdrop-filter: var(--backdrop-blur);
 }
 dy-projects.has-focused-project dy-project-filters {
 	opacity: 0.1;
