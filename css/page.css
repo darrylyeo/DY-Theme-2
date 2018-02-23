@@ -120,6 +120,7 @@ header.sticky-open ~ main dy-sidebar {
 }
 main dy-sidebar:before,
 main dy-sidebar aside {
+	position: -webkit-sticky;
 	position: sticky;
 	top: var(--top);
 	pointer-events: initial;
