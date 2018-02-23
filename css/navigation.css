@@ -18,7 +18,8 @@ nav {
 	box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.05);
 	overflow-x: auto;
 
-	-webkit-backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: var(--backdrop-blur);
+	backdrop-filter: var(--backdrop-blur);
 }
 #secondary-nav, #screen-reader-nav {
 	height: var(--secondary-menu-height);
@@ -95,8 +96,8 @@ header.show-post-nav #main-nav > * > a:not(.current) {
 /* Sub menu */
 nav > * > a + div {
 	--submenu-background: rgba(255, 255, 255, 0.925);
-	-webkit-backdrop-filter: blur(2px);
-	backdrop-filter: blur(2px);
+	-webkit-backdrop-filter: var(--backdrop-blur);
+	backdrop-filter: var(--backdrop-blur);
 
 	--link-color: var(--color);
 	line-height: 1;

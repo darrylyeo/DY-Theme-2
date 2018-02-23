@@ -45,7 +45,6 @@ dy-project.hide {
 	--opacity: 0.8;
 }*/
 dy-projects.has-focused-project dy-project:not(.focused) {
-	--opacity: calc(0.1 + var(--supports-backdrop-filter) * 0.6);
 	--opacity: 0.1;
 }
 
