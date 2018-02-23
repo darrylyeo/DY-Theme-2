@@ -5,7 +5,11 @@ class DYProject extends DYElement {
 				<div class="inner-wrapper">
 					<div class="title-wrapper">
 						<a class="link"><h2 class="title"></h2></a>
-						<dy-button class="close" theme="plain">✖</dy-button>
+						<dy-buttons>
+							<dy-button class="previous" theme="plain"><i icon="⬅"></i></dy-button>
+							<dy-button class="next" theme="plain"><i icon="➡"></i></dy-button>
+							<dy-button class="close" theme="plain"><i icon="✖"></i></dy-button>
+						</dy-buttons>
 					</div>
 					<div class="card">
 						<a class="featured-image link"><img></a>
@@ -72,6 +76,24 @@ class DYProject extends DYElement {
 				if(e.target === this){
 					this.requestFocus(!this.focused)
 				}
+			}
+		})
+		root.find('.previous').on({
+			click: e => {
+				this.trigger(new CustomEvent(
+					'dy-project-focus-previous',
+					{bubbles: true, composed: true}
+				))
+				e.stopPropagation()
+			}
+		})
+		root.find('.next').on({
+			click: e => {
+				this.trigger(new CustomEvent(
+					'dy-project-focus-next',
+					{bubbles: true, composed: true}
+				))
+				e.stopPropagation()
 			}
 		})
 		root.find('.close').on({

@@ -122,19 +122,14 @@ dy-project .title-wrapper a {
 	--link-underline: none;
 	--link-color: rgba(0, 0, 0, 0.7);
 }
-dy-project:not(.focused) .title-wrapper .close {
-	transform: scale(0);
-	padding: 0;
-	width: 0;
+dy-project:not(.focused) .title-wrapper dy-buttons {
+	transition: font-size 0.3s;
 }
-@keyframes ScaleDown {
-	to {
-		transform: scale(0);
-		padding: 0;
-		margin: 0;
-		width: 0;
-		display: none;
-	}
+dy-project:not(.focused) .title-wrapper dy-buttons {
+	/* transform: scale(0);
+	padding: 0;
+	width: 0; */
+	font-size: 0;
 }
 
 dy-project .card {

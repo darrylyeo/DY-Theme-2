@@ -61,6 +61,12 @@ class DYProjects extends DYElement {
 			},
 			['dy-project-unfocus'](){
 				this.focusedProject = undefined
+			},
+			'dy-project-focus-previous'(){
+				this.previousProject()
+			},
+			'dy-project-focus-next'(){
+				this.nextProject()
 			}
 		})
 
