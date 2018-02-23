@@ -45,7 +45,7 @@ class DYProjects extends DYElement {
 		// Event Listeners
 
 		$projectsWrapper.on({
-			'click': function(e){
+			'click'(e){
 				if(e.target === this){
 					this.$focusedProject = undefined
 				}
@@ -53,13 +53,13 @@ class DYProjects extends DYElement {
 		})
 
 		this.on({
-			['dy-project-focus'](e){
+			'dy-project-focus'(e){
 				const $focusedProject = e.target
 				//const $focusedProject = e.composedPath()[0]
 				this.focusedProject = this.map.get($focusedProject)
 				this.scrollInView()
 			},
-			['dy-project-unfocus'](){
+			'dy-project-unfocus'(){
 				this.focusedProject = undefined
 			},
 			'dy-project-focus-previous'(){
