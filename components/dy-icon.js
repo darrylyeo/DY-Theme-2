@@ -14,7 +14,8 @@ class DYIcon extends DYElement {
 	attributeChangedCallback(attr, oldVal, newVal){
 		if(attr === 'icon'){
 			const iconName = newVal
-			this.$icon.innerHTML = `<use href="${WP.parentTheme}/icons/icons.svg#${iconName}"/>`
+			const href = `${WP.parentTheme}/icons/icons.svg#${iconName}`
+			this.$icon.innerHTML = `<use href="${href}" xlink:href="${href}"/>`
 		}
 	}
 	get $icon(){
