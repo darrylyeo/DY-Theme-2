@@ -75,8 +75,7 @@ class DYProject extends DYElement {
 			}
 		})
 		root.find('.close').on({
-			//'click.stop': () => {
-			'click': e => {
+			click: e => {
 				this.requestFocus(false)
 				e.stopPropagation()
 			}
