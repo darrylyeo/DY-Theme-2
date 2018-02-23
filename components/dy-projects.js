@@ -158,12 +158,12 @@ class DYProjects extends DYElement {
 	previousProject(){
 		const filteredProjects = this.getFilteredProjects()
 		const i = filteredProjects.indexOf(this.focusedProject)
-		this.focusedProject = filteredProjects[i + 1]
+		this.focusedProject = filteredProjects[i - 1]
 	}
 	nextProject(){
 		const filteredProjects = this.getFilteredProjects()
 		const i = filteredProjects.indexOf(this.focusedProject)
-		this.focusedProject = filteredProjects[i - 1]
+		this.focusedProject = filteredProjects[i + 1]
 	}
 
 	get $projectsWrapper(){
