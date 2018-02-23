@@ -15,7 +15,10 @@ nav {
 	height: var(--main-menu-height);
 	/* background-color: rgba(255, 255, 255, 0.95); */
 	background-image: radial-gradient(circle, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.95));
+	box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.05);
 	overflow-x: auto;
+
+	-webkit-backdrop-filter: blur(10px);
 }
 #secondary-nav, #screen-reader-nav {
 	height: var(--secondary-menu-height);
