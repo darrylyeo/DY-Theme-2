@@ -111,11 +111,10 @@ img:before {
 	content: attr(alt);
 
 	background-color: var(--color-1);
-	color: rgba(255, 255, 255, 0.5);
+	color: rgba(255, 255, 255, 0.8);
 
-	font-size: 1.2em;
-	font-weight: bold;
-	line-height: 1.2;
+	font: 1.4em/1.2 var(--heading-font);
+	letter-spacing: 1px;
 	text-align: center;
 	text-indent: 0;
 	text-transform: uppercase;
