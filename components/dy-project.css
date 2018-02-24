@@ -157,6 +157,7 @@ dy-project .featured-image {
 	position: relative;
 	overflow: auto;
 	--link-color: #fff;
+	grid-auto-columns: 100%;
 	--link-hover-opacity: 1;
 }
 dy-project.focused .featured-image img {
