@@ -81,21 +81,21 @@ article section:first-of-type > p:first-of-type:first-letter,
 	line-height: 1;
 	font-style: normal;
 }
-@supports (-webkit-initial-letter: 2) {
+/* @supports (-webkit-initial-letter: 3) {
 	article section:first-of-type > p:first-of-type:first-letter,
 	.excerpt:first-letter {
 		-webkit-initial-letter: 3;
 		initial-letter: 3;
 	}
 }
-@supports not (-webkit-initial-letter: 2) {
+@supports not (-webkit-initial-letter: 3) { */
 	article section:first-of-type > p:first-of-type:first-letter,
 	.excerpt:first-letter {
 		float: left;
 		font-size: 5.1em;
 		margin-left: -0.04em;
 	}
-}
+/* } */
 
 
 
