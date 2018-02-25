@@ -6,9 +6,9 @@ class DYProject extends DYElement {
 					<div class="title-wrapper">
 						<a class="link"><h2 class="title"></h2></a>
 						<dy-buttons>
-							<dy-button class="previous" theme="plain"><i icon="⬅"></i></dy-button>
-							<dy-button class="next" theme="plain"><i icon="➡"></i></dy-button>
-							<dy-button class="close" theme="plain"><i icon="✖"></i></dy-button>
+							<dy-button class="previous" theme="plain" title="Previous Project (⬅)"><i icon="⬅"></i></dy-button>
+							<dy-button class="next" theme="plain" title="Next Project (➡)"><i icon="➡"></i></dy-button>
+							<dy-button class="close" theme="plain" title="Close (Esc)"><i icon="✖"></i></dy-button>
 						</dy-buttons>
 					</div>
 					<div class="card">
