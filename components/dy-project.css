@@ -63,7 +63,7 @@ dy-project:not(.focused):hover .positioning-wrapper {
 }
 dy-project:not(.focused):active .positioning-wrapper {
 	transition: 0.15s;
-	transform: translate3d(0, 0.1rem, -0.5rem);
+	transform: translate3d(0, 0.1rem, -0.5rem) scale(0.9);
 }
 dy-project.focused .positioning-wrapper {
 	grid-auto-rows: 100%;
