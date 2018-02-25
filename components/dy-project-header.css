@@ -99,7 +99,8 @@ dy-project-header .title {
 	background-image: radial-gradient(rgba(255, 255, 255, 0.25), transparent 75%);
 	color: #000;
 	text-shadow: 0 0 5rem #fff;
-	font-size: 2.75em;
+	/* font-size: 2.75em; */
+	font-size: calc(1.75em + 1.4vw);
 	line-height: 1.2;
 	text-align: center;
 	animation: TitleIn 1s;
