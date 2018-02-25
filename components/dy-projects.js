@@ -10,37 +10,29 @@ class DYProjects extends DYElement {
 		`
 	}
 
-	connectedCallback(){
+	static async projects(){
+		if(this._projects) return this._projects
+		return this._projects = (await DY.getObjectsByType('project'))
+			.mapSort(project => project.date)
+			.reverse()
+	}
+
+	static async projectsByCategory(categoryID){
+		return (await DYProjects.projects())
+			.filter(project => project.terms.includes(+categoryID))
+	}
+
+	static get observedAttributes(){
+		return ['category']
+	}
+	
+	constructor(){
+		super()
+		
 		const {root, $projectsWrapper} = this
 
+		this.$filters.on('dy-filter-change', () => this.onFilterChange())
 
-		// Create <dy-project>s
-
-		this.map = new TwoWayWeakMap()
-
-		DY.getObjectsByType('project').then(projects => {
-			projects = projects.mapSort(project => project.date).reverse()
-
-			const filterCategoryID = +this.attr('category')
-			if(filterCategoryID){
-				projects = projects.filter(project =>
-					project.terms.includes(filterCategoryID)
-				)
-			}
-
-			this.projects = projects
-
-			for(const project of projects){
-				const $project = $$$('dy-project')
-					.appendTo($projectsWrapper)
-					.initialize(project)
-				this.map.set($project, project)
-			}
-
-			this.$filters.initialize(this.getAllTermIDs(projects))
-			this.$filters.on('dy-filter-change', () => this.onFilterChange())
-		})
-		
 		
 		// Event Listeners
 
@@ -56,7 +48,7 @@ class DYProjects extends DYElement {
 			'dy-project-focus'(e){
 				const $focusedProject = e.target
 				//const $focusedProject = e.composedPath()[0]
-				this.focusedProject = this.map.get($focusedProject)
+				this.focusedProject = DYProjects.map.get($focusedProject)
 				this.scrollInView()
 			},
 			'dy-project-unfocus'(){
@@ -91,6 +83,32 @@ class DYProjects extends DYElement {
 		})
 	}
 
+	async connectedCallback(){
+		const categoryID = this.attr('category')
+		this.projects = categoryID
+			? await DYProjects.projectsByCategory(categoryID)
+			: await DYProjects.projects()
+	}
+
+	set projects(projects){
+		this._projects = projects
+
+		this.$projectsWrapper.empty()
+		for(const project of projects){
+			if(!DYProjects.map.has(project)){
+				const $project = new DYProject(project)
+				DYProjects.map.set(project, $project)
+			}
+			DYProjects.map.get(project)
+				.appendTo(this.$projectsWrapper)
+				.focused = false
+		}
+		this.$filters.initialize(this.getAllTermIDs(projects))
+	}
+	get projects(){
+		return this._projects
+	}
+
 	getAllTermIDs(projects){
 		return projects.map(project => project.terms).flatten().unique()
 	}
@@ -114,7 +132,7 @@ class DYProjects extends DYElement {
 		// Animate
 		const animation = new StateAnimation(() => {
 			for(const project of this.projects){
-				const $project = this.map.get(project)
+				const $project = DYProjects.map.get(project)
 				$project.hide = !filteredProjects.includes(project)
 			}
 		}, {
@@ -123,7 +141,7 @@ class DYProjects extends DYElement {
 		})
 
 		for(const project of this.projects){
-			const $project = this.map.get(project)
+			const $project = DYProjects.map.get(project)
 			$project.animateState({
 				position: true
 			}, animation)
@@ -137,20 +155,19 @@ class DYProjects extends DYElement {
 
 	set focusedProject(focusedProject = undefined){
 		if(this._focusedProject){
-			const $previousFocusedProject = this.map.get(this._focusedProject)
+			const $previousFocusedProject = DYProjects.map.get(this._focusedProject)
 			$previousFocusedProject.focused = false
 		}
 
 		this._focusedProject = focusedProject
 
-		this.toggleClass(focusedProject !== undefined, 'has-focused-project')
-
-		if(focusedProject){
-			const $focusedProject = this.map.get(focusedProject)
+		const hasFocusedProject = focusedProject !== undefined
+		this.toggleClass(hasFocusedProject, 'has-focused-project')
+		if(hasFocusedProject){
+			const $focusedProject = DYProjects.map.get(focusedProject)
 			$focusedProject.focused = true
 
 			const imageData = focusedProject.featuredImage
-
 			if(imageData){
 				blurImage(imageData.source_url)
 					.then(img => document.documentElement.css('--page-background-image', img))
@@ -188,6 +205,7 @@ class DYProjects extends DYElement {
 		//document.body.animateScrollY($('#secondary-nav').clientHeight)
 	}
 }
+DYProjects.map = new TwoWayWeakMap()
 customElements.define('dy-projects', DYProjects)
 
 

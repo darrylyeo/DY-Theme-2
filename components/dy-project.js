@@ -28,7 +28,9 @@ class DYProject extends DYElement {
 		`
 	}
 
-	initialize(data){
+	constructor(data){
+		super()
+
 		const root = this.root
 
 		this._data = data
