@@ -2,9 +2,7 @@ class DYBlog extends DYElement {
 	connectedCallback(){
 		DY.getObjectsByType('post').then(posts => {
 			for(const post of posts.mapSort(post => post.date).reverse()){
-				const $post = $$$('dy-post')
-				$post.appendTo(this)
-				$post.data = post
+				const $post = new DYPost(post).appendTo(this)
 			}
 		})
 	}
@@ -29,7 +27,9 @@ class DYPost extends DYElement {
 		`
 	}
 	
-	set data(data){
+	constructor(data){
+		super()
+
 		const root = this.root
 		root.updateWithModel({
 			'.title': data.title.rendered,
