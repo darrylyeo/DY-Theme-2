@@ -44,7 +44,7 @@
 					<div><a data-experiment="spotlight" title="Anything the mouse touches will cast a backdrop shadow."><i icon="flashlight"></i>Spotlight</a></div>
 					<div><a data-experiment="tornado" title="All page elements will spin upside down (effect is compounded for nested elements)."><i icon="tornado"></i>Tornado</a></div>
 					<div><a data-experiment="3d-parallax" title="All page elements will pop into 3D."><i icon="layers"></i>3D Parallax</a></div>
-					<div><a data-experiment="ajax-navigation" title="Navigate the website without refreshing the page."><i icon="compass"></i>AJAX Navigation</a></div>
+					<!-- <div><a data-experiment="ajax-navigation" title="Navigate the website without refreshing the page."><i icon="compass"></i>AJAX Navigation</a></div> -->
 					<div><a data-experiment="pin-window" title="The page will size to fit your entire screen, regardless of your window size or position."><i icon="pin"></i>Pin Window</a></div>
 					<div><a data-experiment="edit-mode" title="All text on the page will become editable."><i icon="✍"></i>Edit Mode</a></div>
 					<div><a data-experiment="information-overload" title="You will be notified of every interaction you have with the webpage."><i icon="ℹ"></i>Information Overload</a></div>
