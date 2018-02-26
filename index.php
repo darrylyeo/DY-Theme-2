@@ -39,17 +39,17 @@
 			<div class="has-sub-menu">
 				<a tabindex="0">Experiments</a>
 				<div id="experiments">
-					<div><a data-experiment="night-mode"><i icon="moon"></i>Night Mode</a></div>
-					<div><a data-experiment="jelly"><i icon="move"></i>Jelly</a></div>
-					<div><a data-experiment="spotlight"><i icon="flashlight"></i>Spotlight</a></div>
-					<div><a data-experiment="tornado"><i icon="tornado"></i>Tornado</a></div>
-					<div><a data-experiment="3d-parallax"><i icon="layers"></i>3D Parallax</a></div>
-					<div><a data-experiment="ajax-navigation"><i icon="compass"></i>AJAX Navigation</a></div>
-					<div><a data-experiment="pin-window"><i icon="pin"></i>Pin Window</a></div>
-					<div><a data-experiment="edit-mode"><i icon="✍"></i>Edit Mode</a></div>
-					<div><a data-experiment="information-overload"><i icon="ℹ"></i>Information Overload</a></div>
-					<div><a data-experiment="resize-everything"><i icon="resize"></i>Resize Everything</a></div>
-					<div><a data-experiment="battery-status"><i icon="🔋"></i>Battery Status</a></div>
+					<div><a data-experiment="night-mode" title="Colors will be optimized for dark environments."><i icon="moon"></i>Night Mode</a></div>
+					<div><a data-experiment="jelly" title="Anything the mouse touches will shift around."><i icon="move"></i>Jelly</a></div>
+					<div><a data-experiment="spotlight" title="Anything the mouse touches will cast a backdrop shadow."><i icon="flashlight"></i>Spotlight</a></div>
+					<div><a data-experiment="tornado" title="All page elements will spin upside down (effect is compounded for nested elements)."><i icon="tornado"></i>Tornado</a></div>
+					<div><a data-experiment="3d-parallax" title="All page elements will pop into 3D."><i icon="layers"></i>3D Parallax</a></div>
+					<div><a data-experiment="ajax-navigation" title="Navigate the website without refreshing the page."><i icon="compass"></i>AJAX Navigation</a></div>
+					<div><a data-experiment="pin-window" title="The page will size to fit your entire screen, regardless of your window size or position."><i icon="pin"></i>Pin Window</a></div>
+					<div><a data-experiment="edit-mode" title="All text on the page will become editable."><i icon="✍"></i>Edit Mode</a></div>
+					<div><a data-experiment="information-overload" title="You will be notified of every interaction you have with the webpage."><i icon="ℹ"></i>Information Overload</a></div>
+					<div><a data-experiment="resize-everything" title="All page elements will become resizeable."><i icon="resize"></i>Resize Everything</a></div>
+					<div><a data-experiment="battery-status" title="You will be notified of your battery charge/discharge status."><i icon="🔋"></i>Battery Status</a></div>
 				</div>
 			</div>
 		</nav>
