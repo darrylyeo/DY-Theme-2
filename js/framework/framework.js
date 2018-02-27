@@ -331,12 +331,12 @@ Object.defineProperties(Element.prototype, Object.getOwnPropertyDescriptors({
 	},
 
 	html(html){
-		this.innerHTML = html
+		this.innerHTML = html || ''
 		return this
 	},
 
 	text(text){
-		this.innerText = text
+		this.innerText = text || ''
 		return this
 	},
 	
