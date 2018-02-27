@@ -21,10 +21,6 @@ class DYProjects extends DYElement {
 		return (await DYProjects.projects())
 			.filter(project => project.terms.includes(+categoryID))
 	}
-
-	static get observedAttributes(){
-		return ['category']
-	}
 	
 	constructor(){
 		super()
