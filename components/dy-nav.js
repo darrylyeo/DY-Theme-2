@@ -25,12 +25,12 @@ class DYNav extends DYElement {
 		await $termsContainer.initialize(WP.current.terms)
 		
 		$termsContainer.$terms.on('click', ({target: $term}) => {
-			const id = $termsContainer.map.get($term).term_id
-			if(this.currentTerm === id){
+			const termID = $termsContainer.map.get($term).term_id
+			if(this.currentTerm === termID){
 				this.currentTerm = undefined
 				$term.active = false
 			}else{
-				this.currentTerm = id
+				this.currentTerm = termID
 				for(const $term of $termsContainer.$terms) $term.active = false
 				$term.active = true
 			}
