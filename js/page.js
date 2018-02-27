@@ -121,10 +121,10 @@ const DYPage = {
 		const templates = {
 			//'archive project': () => `
 			'front-page': () => `
-				<dy-projects class="alternate-layout"></dy-projects>
+				<dy-projects></dy-projects>
 			`,
 			'term-archive': () => `
-				<dy-projects class="alternate-layout" category=${data.term_id}></dy-projects>
+				<dy-projects category=${data.term_id}></dy-projects>
 			`,
 			'archive post': () => `
 				<dy-blog></dy-blog>
