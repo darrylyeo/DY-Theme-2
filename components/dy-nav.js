@@ -60,10 +60,10 @@ class DYNav extends DYElement {
 
 		this.updateWithModel({
 			'.current-title': currentPost.title.rendered,
-			'[rel=prev]': previousPost ? previousPost.title.rendered : '',
-			'[rel=prev][href]': previousPost ? previousPost.link : '',
-			'[rel=next]': nextPost ? nextPost.title.rendered : '',
-			'[rel=next][href]': nextPost ? nextPost.link : '',
+			'[rel=prev]': previousPost && previousPost.title.rendered,
+			'[rel=prev][href]': previousPost && previousPost.link,
+			'[rel=next]': nextPost && nextPost.title.rendered,
+			'[rel=next][href]': nextPost && nextPost.link,
 		})
 
 		this.$currentTermWrapper.empty()
