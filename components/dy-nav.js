@@ -40,7 +40,7 @@ class DYNav extends DYElement {
 		this.update()
 	}
 
-	async update(){
+	async update(termChanged){
 		const isSinglePost = WP.queryType === 'single' && WP.postType !== 'page'
 		if(!isSinglePost) return
 
@@ -66,11 +66,14 @@ class DYNav extends DYElement {
 			'[rel=next][href]': nextPost ? nextPost.link : '',
 		})
 
-		this.$currentTerm.empty()
-			.append(
-				DYTerms.make$Term(term)
-			)
-		//this.$currentTerm.initialize([this.currentTerm])
+		this.$currentTermWrapper.empty()
+			.append(DYTerms.make$Term(term))
+	
+		if(termChanged) notify(`You're navigating projects tagged ${this.$currentTermWrapper.innerHTML}. Enjoy!`, {
+			id: 'navigation_term',
+			//icon: '🔖'
+			icon: '🏷'
+		})
 	}
 
 	get currentCategory(){
@@ -92,20 +95,10 @@ class DYNav extends DYElement {
 	}
 	set currentTerm(termID){
 		this.data.term = termID
-		this.update()
-
-		notify(`You're navigating projects tagged ${this.$currentTerm.innerHTML}. Enjoy!`, {
-			id: 'navigation_term',
-			//icon: '🔖'
-			icon: '🏷'
-		})
+		this.update(true)
 	}
 
-	get data(){
-		return DY.data.navigation || (DY.data.navigation = {})
-	}
-
-	get $currentTerm(){
+	get $currentTermWrapper(){
 		return this.find('.current-term')
 	}
 }
