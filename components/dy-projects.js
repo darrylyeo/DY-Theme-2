@@ -22,9 +22,7 @@ class DYProjects extends DYElement {
 			.filter(project => project.terms.includes(+categoryID))
 	}
 	
-	constructor(){
-		super()
-		
+	async connectedCallback(){
 		const {root, $projectsWrapper} = this
 
 		this.$filters.on('dy-filter-change', () => this.onFilterChange())
@@ -77,9 +75,7 @@ class DYProjects extends DYElement {
 				}
 			}
 		})
-	}
-
-	async connectedCallback(){
+		
 		const categoryID = this.attr('category')
 		this.projects = categoryID
 			? await DYProjects.projectsByCategory(categoryID)
