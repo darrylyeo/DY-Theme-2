@@ -18,6 +18,8 @@ class DYNav extends DYElement {
 		DYNav.instance = this
 
 		//window.on('pagerender', () => this.update())
+
+		DY.data('navigation').then(navigation => this.data = navigation)
 	}
 
 	// <dy-terms>
@@ -72,10 +74,10 @@ class DYNav extends DYElement {
 	}
 
 	get currentCategory(){
-		if(!this.data.category || !WP.current.categories.includes(this.data.category)){
-			this.data.category = WP.current.categories[0]
-		}
-		return this.data.category
+		const {data} = this
+		return data.category &&  WP.current.categories.includes(data.category)
+			? data.category
+			: WP.current.categories[0]
 	}
 	set currentCategory(categoryID){
 		this.data.category = categoryID
@@ -83,10 +85,10 @@ class DYNav extends DYElement {
 	}
 
 	get currentTerm(){
-		if(!this.data.term || !WP.current.terms.includes(this.data.term)){
-			this.data.term = this.currentCategory || WP.current.terms[0]
-		}
-		return this.data.term
+		const {data} = this
+		return data.term && WP.current.terms.includes(data.term)
+			? data.term
+			: WP.current.terms[0]
 	}
 	set currentTerm(termID){
 		this.data.term = termID
