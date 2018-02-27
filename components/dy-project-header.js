@@ -13,9 +13,9 @@ class DYProjectHeader extends DYElement {
 			<div class="featured-image-wrapper">
 				<dy-figure class="featured-image"></dy-figure>
 			</div>
-			<div class="terms">
+			<!--<div class="terms">
 				<dy-terms></dy-terms>
-			</div>
+			</div>-->
 		`
 	}
 
@@ -44,22 +44,8 @@ class DYProjectHeader extends DYElement {
 		}
 
 		// Initialize terms
-		const $termsContainer = this.$termsContainer
-		$termsContainer.initialize(data.terms)
-		/*delay(() => {
-			const $nav = $DYPage.$header.$nav
-			$termsContainer.$terms.on('click', function(){
-				const id = $termsContainer.$termToTerm.get(this).term_id
-				if($nav.currentTerm === id){
-					$nav.currentTerm = undefined
-					this.removeClass('active')
-				}else{
-					$nav.currentTerm = id
-					$termsContainer.$terms.removeClass('active')
-					this.addClass('active')
-				}
-			})
-		})*/
+		// const $termsContainer = this.$termsContainer
+		// $termsContainer.initialize(data.terms)
 	}
 
 	get $background(){
@@ -70,9 +56,9 @@ class DYProjectHeader extends DYElement {
 		return this.find('.featured-image')
 	}
 
-	get $termsContainer(){
-		return this.find('dy-terms')
-	}
+	// get $termsContainer(){
+	// 	return this.find('dy-terms')
+	// }
 }
 
 customElements.define('dy-project-header', DYProjectHeader)
