@@ -1,4 +1,4 @@
-dy-button, button, [type=button], [role=button], ::-webkit-file-upload-button {
+dy-button, button, [type=button], [role=button]/*, ::-webkit-file-upload-button*/ {
 	-webkit-appearance: none;
 	border: none;
 	color: inherit;
