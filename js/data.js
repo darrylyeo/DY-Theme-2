@@ -154,11 +154,11 @@ var DY = {
 		}),
 
 	data: async key => {
-		if(key in DY.data) return data[key]
+		if(key in data) return data[key]
 
 		const dataObj = await (await DY.getDatabase).getObjectStore('data').get(key)
 		const value = dataObj && dataObj.value || {}
-		DY.data[key] = value
+		data[key] = value
 		return value
 	}
 }
