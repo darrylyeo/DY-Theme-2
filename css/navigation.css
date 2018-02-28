@@ -82,8 +82,8 @@ header.show-post-nav #main-nav > * > a:not(.current) {
 }
 #main-nav > * > a + dy-icon {
 	position: absolute;
-	transition: 0.3s, transform 0.3s cubic-bezier(.87,-1,.19,2);
 	height: var(--main-menu-height);
+	transition: transform 0.3s cubic-bezier(.87,-1,.19,2), 0.3s;
 }
 #main-nav > * > a:not(:hover):not(:focus):not(.current) + dy-icon {
 	color: rgba(0, 0, 0, 0.1);
