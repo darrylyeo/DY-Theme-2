@@ -82,28 +82,13 @@ const ASSETS = {
 	]
 }
 
-function loadGlobalStylesheet(url){
-	$$$('link', {
-		attr: {
-			rel: 'stylesheet',
-			href: url
-		},
-		$parent: document.head
-	})
-}
 
-function loadGlobalScript(url){
-	$$$('script', {
-		attr: {
-			type: 'text/javascript',
-			src: url
-		},
-		async: false,
-		$parent: document.body
-	})
-}
-
-document.on('DOMContentLoaded', () => {
-	for(const path of ASSETS.CSS) loadGlobalStylesheet(`${WP.parentTheme}/${path}`)
-	for(const path of ASSETS.JS) loadGlobalScript(`${WP.parentTheme}/${path}`)
-})
+for(const path of ASSETS.CSS) document.head.appendChild(Object.assign(document.createElement('link'), {
+	rel: 'stylesheet',
+	href: `${WP.parentTheme}/${path}`
+}))
+for(const path of ASSETS.JS) document.body.appendChild(Object.assign(document.createElement('script'), {
+	type: 'text/javascript',
+	src: `${WP.parentTheme}/${path}`,
+	async: false
+}))
