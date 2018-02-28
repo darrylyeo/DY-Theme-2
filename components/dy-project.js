@@ -55,22 +55,6 @@ class DYProject extends DYElement {
 			})
 		}
 
-		// Add terms
-		/*const $terms = root.find('.terms')
-		for(const taxonomyName in DY.data.taxonomies){
-			if(taxonomyName === 'page-category') continue
-
-			const terms = data[DY.mapTaxonomyName(taxonomyName)]
-			if(!terms.length) continue
-			for(const termID of terms){
-				const term = DY.data.terms[termID]
-
-				const $term = $$$('a').attr('rel', 'tag').appendTo($terms)
-				$term.innerHTML = term.name
-				this.addClass(`${taxonomyName}-${term.slug}`)
-			}
-		}*/
-
 		root.find('dy-terms').initialize(data.terms)
 
 		this.on({
