@@ -148,10 +148,7 @@ var DY = {
 				throw data
 			}
 		})
-		.catch(e => {
-			X(e.message, e)
-			return
-		}),
+		.catch(e => X(e.message, e)),
 
 	data: async key => {
 		if(key in data) return data[key]
