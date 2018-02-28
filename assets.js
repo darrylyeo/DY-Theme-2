@@ -89,3 +89,5 @@ const ASSETS_COMPILED = {
 	CSS: ['build/all.css'],
 	JS: ['build/all.js']
 }
+
+if(typeof module !== 'undefined') module.exports = { ASSETS, ASSETS_COMPILED }
