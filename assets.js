@@ -85,13 +85,7 @@ const ASSETS = {
 	]
 }
 
-
-for(const path of ASSETS.CSS) document.head.appendChild(Object.assign(document.createElement('link'), {
-	rel: 'stylesheet',
-	href: `${WP.parentTheme}/${path}`
-}))
-for(const path of ASSETS.JS) document.body.appendChild(Object.assign(document.createElement('script'), {
-	type: 'text/javascript',
-	src: `${WP.parentTheme}/${path}`,
-	async: false
-}))
+const ASSETS_COMPILED = {
+	CSS: ['build/all.css'],
+	JS: ['build/all.js']
+}

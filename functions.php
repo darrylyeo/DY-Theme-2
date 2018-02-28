@@ -37,6 +37,7 @@ foreach([
 add_action('wp_enqueue_scripts', function(){
 	foreach([
 		'first' => 'assets.js',
+		'assets-load.js'
 	] as $handle => $script){
 		wp_enqueue_script($handle, get_theme_file_uri($script), null, null, true);
 	}
