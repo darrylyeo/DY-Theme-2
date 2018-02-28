@@ -102,6 +102,7 @@ document.on('DOMContentLoaded', () => {
 			'components/dy-khan-stats.js',
 			
 			'js/experiments.js',
+			'js/main.js',
 		].map(path => `${WP.parentTheme}/${path}`).map(loadGlobalScript)
 	}
 })
