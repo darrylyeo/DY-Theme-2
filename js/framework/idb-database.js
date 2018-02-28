@@ -36,6 +36,20 @@ IDBFactory.prototype.openDatabase = (name, version = 1, structure = {}, {error, 
 	})
 })
 
+IDBFactory.prototype.removeDatabase = function(name){
+	return new Promise((resolve, reject) => {
+		this.deleteDatabase(name)
+			.then(result => {
+				console.log(`Deleted database ${name}`, result)
+				resolve()
+			})
+			.catch(e => {
+				console.log(`Error deleting database ${name}`, e)
+				reject(e)
+			})
+	})
+}
+
 IDBDatabase.prototype.getObjectStore = function(storeName, allowWrite = false, complete){
 	const transaction = this.transaction(storeName, allowWrite ? 'readwrite' : 'readonly')
 	
@@ -51,6 +65,13 @@ IDBRequest.prototype.then = function(callback){
 	this.addEventListener('success', e => {
 		callback.call(this, e.target.result)
 	})
+	return this
+}
+IDBRequest.prototype.catch = function(callback){
+	this.addEventListener('error', e => {
+		callback.call(this, e.target.error)
+	})
+	return this
 }
 
 IDBRequest.prototype.getResult = function(callback){

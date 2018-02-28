@@ -160,7 +160,16 @@ var DY = {
 		const value = dataObj && dataObj.value || {}
 		data[key] = value
 		return value
-	}
+	},
+
+	clearData: async () => {
+		(await DY.getDatabase).getObjectStore('data', true)
+			.clear()
+			.then( () => console.log('Deleted object store "data".'))
+		data = {}
+	},
+
+	clearDatabase: () => indexedDB.removeDatabase('Darryl-Yeo')
 }
 
 window.on({
