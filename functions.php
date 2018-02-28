@@ -36,10 +36,7 @@ foreach([
 
 add_action('wp_enqueue_scripts', function(){
 	foreach([
-		'first' => 'js/libraries/custom-elements.min.js',
-		'js/libraries/web-animations.min.js',
-		'js/framework/framework.js',
-		'assets.js'
+		'first' => 'assets.js',
 	] as $handle => $script){
 		wp_enqueue_script($handle, get_theme_file_uri($script), null, null, true);
 	}

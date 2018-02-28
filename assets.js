@@ -33,6 +33,9 @@ const ASSETS = {
 	],
 
 	JS: [
+		'js/libraries/custom-elements.min.js',
+		'js/libraries/web-animations.min.js',
+		'js/framework/framework.js',
 		'js/libraries/moment.min.js',
 		'js/libraries/intersection-observer.js',
 
