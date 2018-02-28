@@ -160,10 +160,10 @@ var DY = {
 	},
 
 	clearData: async () => {
+		data = {},
 		(await DY.getDatabase).getObjectStore('data', true)
 			.clear()
 			.then( () => console.log('Deleted object store "data".'))
-		data = {}
 	},
 
 	clearDatabase: () => indexedDB.removeDatabase('Darryl-Yeo')
