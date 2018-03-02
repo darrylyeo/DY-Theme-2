@@ -78,7 +78,7 @@ class DYNav extends DYElement {
 
 	get currentCategory(){
 		const {data} = this
-		return data.category &&  WP.current.categories.includes(data.category)
+		return data.category && WP.current.categories.includes(data.category)
 			? data.category
 			: WP.current.categories[0]
 	}
