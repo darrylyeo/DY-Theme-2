@@ -19,8 +19,10 @@ article > * + * {
 article h1, article section h2 {
 	line-height: 1.5;
 }
-article h1 {
+article > h1 {
 	font-size: 2em;
+	padding: var(--padding);
+    padding-bottom: 0;
 }
 
 article section {
