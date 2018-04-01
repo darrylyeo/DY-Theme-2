@@ -26,6 +26,7 @@ foreach([
 	'disable-wp-mediaelement',
 	'disable-oembed',
 	'disable-emojis',
+	'disable-wptexturize',
 
 	// Feature Disabling - Back End
 	'disable-wordpress-events-and-news'
