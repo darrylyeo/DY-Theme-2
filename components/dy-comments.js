@@ -61,9 +61,7 @@ class DYComment extends DYElement {
 				</header>
 				<div class="content"></div>
 			</blockquote>
-			<div class="replies">
-
-			</div>
+			<div class="replies"></div>
 		`
 	}
 
