@@ -119,7 +119,7 @@ dy-project-header.dark .title {
 dy-project-header .excerpt {
 	grid-area: excerpt;
 
-	background-color: rgba(255, 255, 255, 0.2);
+	background-color: rgba(255, 255, 255, 0.3);
 	box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.05);
 	border-radius: 0.5em;
 	font-size: 0.9em;
