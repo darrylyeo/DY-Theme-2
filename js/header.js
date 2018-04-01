@@ -35,5 +35,12 @@ window.on({
 				}
 			}
 		}
+		if(WP.postType === 'post'){
+			for(const $link of $header.findAll('a')){
+				if($link.pathname.endsWith('/blog')){
+					$link.addClass('current')
+				}
+			}
+		}
 	}
 })
