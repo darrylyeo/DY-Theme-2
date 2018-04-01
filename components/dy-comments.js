@@ -169,7 +169,7 @@ class DYCommentReply extends DYElement {
 		if(this._inited) return
 		this._inited = true
 
-		root.find('form').on('submit', e => {
+		this.find('form').on('submit', e => {
 			e.preventDefault()
 
 			const formData = new FormData(e.target)
@@ -203,8 +203,8 @@ class DYCommentReply extends DYElement {
 			})
 		})
 
-		const $submit = root.find('[type=submit]')
-		const $textarea = root.find('textarea')
+		const $submit = this.find('[type=submit]')
+		const $textarea = this.find('[name=content]')
 
 		const update = () => {
 			const text = $textarea.value.trim()
