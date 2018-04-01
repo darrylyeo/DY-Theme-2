@@ -105,6 +105,7 @@ dy-notification .icon:not([icon]) {
 }
 
 dy-notification .inner-wrapper {
+	flex: 1;
 	overflow-y: auto;
 	max-height: 10rem;
 	padding: 0.4em 0.5em;
