@@ -26,8 +26,10 @@ class DYInput extends DYElement {
 		$editor.on({
 			paste: e => {
 				e.preventDefault()
-				const text = this.clean(e.clipboardData.getData('Text'))
-				document.execCommand('inserttext', false, text)
+				// const text = this.clean(e.clipboardData.getData('Text'))
+				const text = this.clean(e.clipboardData.getData('text/plain'))
+				document.execCommand('insertHTML', false, text.replace(/\n/g, '<br>'))
+				// document.execCommand('inserttext', false, text)
 			},
 
 			// https://stackoverflow.com/questions/48517637/ie11-drop-plain-text-into-contenteditable-div
