@@ -46,12 +46,12 @@ class DYProject extends DYElement {
 			//this.css('backgroundImage', `url(${data.featuredImage.source_url})`)
 			root.updateWithModel({
 				'img[src]': data.featuredImage.source_url,
-				'img[alt]': data.featuredImage.alt_text
+				'img[alt]': data.featuredImage.alt_text.decodeHTMLEntities()
 			})
 		}else{
 			this.addClass('no-featured-image')
 			root.updateWithModel({
-				'img[alt]': data.title.rendered
+				'img[alt]': data.title.rendered.decodeHTMLEntities()
 			})
 		}
 

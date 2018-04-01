@@ -40,7 +40,7 @@ class DYPost extends DYElement {
 		if(data.featuredImage){
 			root.updateWithModel({
 				'img[src]': data.featuredImage.source_url,
-				'img[alt]': data.featuredImage.alt_text
+				'img[alt]': data.featuredImage.alt_text.decodeHTMLEntities()
 			})
 
 			blurImage(data.featuredImage.source_url)

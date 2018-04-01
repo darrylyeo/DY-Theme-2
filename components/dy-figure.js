@@ -29,7 +29,7 @@ class DYFigure extends DYElement {
 		
 		this.root.updateWithModel({
 			'img[src]': data.source_url,
-			'img[alt]': data.alt_text,
+			'img[alt]': data.alt_text.decodeHTMLEntities(),
 			'figcaption': data.caption.rendered || data.alt_text
 		})
 

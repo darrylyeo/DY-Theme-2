@@ -132,6 +132,9 @@ String.prototype.replaceAll = function(replace, replaceWith) {
 	return this
 }
 
+String.prototype.decodeHTMLEntities = function(){
+	return this.replace(/&#(\d+);/g, (match, dec) => String.fromCharCode(dec))
+}
 
 Array.prototype.mapSort = function(map, sort = (a, b) => a < b ? -1 : 1){
 	let i = 0
