@@ -20,24 +20,29 @@ class DYComments extends DYElement {
 		`
 	}
 
-	connectedCallback(){
-		const root = this.root
-		getJSON(`${WP.rest}/comments?post=${WP.current.id}&per_page=100`).then(comments => {
-			root.updateWithModel({
-				'h2': `${comments.length} Reaction${comments.length === 1 ? '' : 's'}`
-			})
+	constructor(){
+		super()
+		this.getComments()
+	}
 
-			const $comments = {}
-			for(const comment of comments){
-				const $comment = new DYComment(comment).appendTo(this)
-				$comments[comment.id] = $comment
-			}
-			for(const comment of comments){
-				if(comment.parent){
-					$comments[comment.parent].$replies.append($comments[comment.id])
-				}
-			}
+	async getComments(){
+		const comments = await getJSON(`${WP.rest}/comments?post=${WP.current.id}&per_page=100`)
+		console.log(comments)
+
+		this.updateWithModel({
+			'h2': `${comments.length} Reaction${comments.length === 1 ? '' : 's'}`
 		})
+
+		const $comments = {}
+		for(const comment of comments){
+			const $comment = new DYComment(comment).appendTo(this)
+			$comments[comment.id] = $comment
+		}
+		for(const comment of comments){
+			if(comment.parent){
+				$comments[comment.parent].$replies.append($comments[comment.id])
+			}
+		}
 	}
 }
 customElements.define('dy-comments', DYComments)
