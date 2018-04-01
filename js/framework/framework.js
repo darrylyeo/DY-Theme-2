@@ -218,8 +218,8 @@ Object.assign(Node.prototype, {
 	},
 
 	empty(){
-		while (this.firstChild) {
-			this.removeChild(this.firstChild)
+		while (this.hasChildNodes()) {
+			this.removeChild(this.lastChild)
 		}
 		return this
 	},
