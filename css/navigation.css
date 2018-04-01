@@ -237,6 +237,7 @@ header.sticky.show-post-nav #main-nav:before {
 #main-nav #logo ~ * > a {
 	font-family: var(--heading-font);
 	text-transform: uppercase;
+	width: max-content;
 }
 
 #main-nav:after {
