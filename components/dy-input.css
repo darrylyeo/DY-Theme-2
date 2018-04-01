@@ -1,28 +1,46 @@
-dy-input {
-	display: inline-block;
+dy-input, dy-textarea {
+	cursor: text;
+	display: inline-grid;
 	width: 100%;
 	position: relative;
 }
-dy-input [contenteditable] {
-	width: 100%;
-	-webkit-user-modify: read-write-plaintext-only;
-}
-dy-input [contenteditable]:empty {
-	display: inline-block;
-}
-dy-input [contenteditable] * {
-	color: inherit !important;
-	font: inherit !important;
-}
-
-dy-input .placeholder {
-	position: absolute;
-	left: 0;
-	top: 0;
-	opacity: 0.5;
-	pointer-events: none;
+dy-input [contenteditable],
+dy-textarea [contenteditable] {
+	display: inline-grid;
+	align-items: center;
 	transition: 0.3s;
 }
-dy-input [contenteditable]:not(:empty) ~ .placeholder {
+dy-input [contenteditable]:empty,
+dy-textarea [contenteditable]:empty {
+	opacity: 0.5;
+}
+dy-input [contenteditable]:empty:after,
+dy-textarea [contenteditable]:empty:after {
+	content: attr(placeholder);
+}
+dy-input [contenteditable]:empty:not([placeholder]):after,
+dy-textarea [contenteditable]:empty:not([placeholder]):after {
+	content: '\a0';
+}
+@supports not (word-break: break-word) {
+	dy-input [contenteditable],
+	dy-textarea [contenteditable] {
+		word-break: break-all;
+	}
+}
+dy-input [contenteditable]:before,
+dy-textarea [contenteditable]:before,
+dy-input .input,
+dy-textarea .input {
+	content: '';
+	position: absolute;
 	opacity: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	left: 0;
+}
+dy-input .input,
+dy-textarea .input {
+	pointer-events: none;
 }

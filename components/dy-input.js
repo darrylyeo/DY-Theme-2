@@ -2,67 +2,129 @@ class DYInput extends DYElement {
 	static get templateHTML(){
 		return `
 			<span contenteditable></span>
-			<span class="placeholder"></span>
-			<input tabindex="-1">
+			<input class="input" type="hidden" tabindex="-1">
 		`
 	}
-	
-	static get observedAttributes() {
-		return ['value', 'required', 'placeholder']
-	}
 
-	attributeChangedCallback(attr, oldVal, newVal){
-		if(attr === 'placeholder'){
-			this.$placeholder.innerText = newVal
+	constructor(){
+		super()
+
+		const initialValue = this.textContent || this.attr('value')
+
+		this.root
+		const {$editor, $input} = this
+
+		for(const {name, value} of this.attributes){
+			if(name === 'class' || name === 'id') continue
+			if(name !== 'name') this.$editor.attr(name, value)
+			this.$input.attr(name, value)
 		}
-		this.$input.attr(attr, newVal)
-	}
+		if(initialValue) this.value = initialValue
 
-	connectedCallback(){
-		const {$editor} = this
+		try { $editor.contentEditable = 'plaintext-only' }catch(e){}
 
 		$editor.on({
-			['drop paste copy focus blur'](e){
-				const text = this.innerText.replace(/\n/g, '')
-				const html = this.innerHTML.replace(/<br>/g, '')
-				
-				if (text !== html) {
-					this.innerText = this.innerText
-				}
-				X(text, html)
+			paste: e => {
+				e.preventDefault()
+				const text = this.clean(e.clipboardData.getData('Text'))
+				document.execCommand('inserttext', false, text)
 			},
+
+			// https://stackoverflow.com/questions/48517637/ie11-drop-plain-text-into-contenteditable-div
+			drop: e => {
+				e.preventDefault()
+				const text = this.clean(e.dataTransfer.getData('Text'))
+
+				const range = document.caretRangeFromPoint(e.clientX, e.clientY)
+				range.deleteContents()
+				const textNode = document.createTextNode(text)
+				range.insertNode(textNode)
+				range.selectNodeContents(textNode)
+				range.collapse(false)
 			
-			copy(e){
+				const selection = window.getSelection()
+				selection.removeAllRanges()
+				selection.addRange(range)
+			},
+
+			copy: e => {
 				if (e.clipboardData) {
 					const text = window.getSelection().toString()
-					e.preventDefault()
 					e.clipboardData.setData('text/plain', text)
+					e.preventDefault()
 				}
 			},
 
 			input: e => {
-				this.value = $editor.innerText
+				this.value = $editor.textContent
+			},
+
+			blur: e => {
+				this.value = this.value.trim()
+			}
+		})
+
+		$input.on({
+			input: () => {
+				this.value = $input.value
+			},
+			focus: () => {
+				this.$editor.focus()
 			}
 		})
 	}
 	
-	get $editor(){
-		return this.root.find('[contenteditable]')
+	/*static get observedAttributes() {
+		return ['type', 'name', 'value', 'required', 'placeholder', 'autocomplete', 'spellcheck']
 	}
 
-	get $placeholder(){
-		return this.root.find('.placeholder')
+	attributeChangedCallback(attr, oldVal, newVal){
+		if(attr === 'value'){
+			this.value = newVal
+		}else{
+			this.$editor.attr(attr, newVal)
+			this.$input.attr(attr, newVal)
+		}
+	}*/
+	
+	get $editor(){
+		return this.find('[contenteditable]')
 	}
 
 	get $input(){
-		return this.root.find('input')
+		return this.find('.input')
 	}
 
 	get value(){
 		return this.$input.value
 	}
 	set value(value){
-		this.$input.value = this.$editor.innerText = value
+		value = this.clean(value)
+		if(value !== this.$input.value) this.$input.value = value
+		if(value !== this.$editor.textContent) this.$editor.textContent = value
+	}
+
+	clean(t){
+		return t.replace(/\n/g, ' ')
+	}
+
+	addEventListener(){
+		this.$editor.addEventListener(...arguments)
 	}
 }
 customElements.define('dy-input', DYInput)
+
+
+class DYTextArea extends DYInput {
+	static get templateHTML(){
+		return `
+			<span contenteditable></span>
+			<textarea class="input" tabindex="-1"></textarea>
+		`
+	}
+
+	clean(t){
+		return t
+	}
+}
+customElements.define('dy-textarea', DYTextArea)
