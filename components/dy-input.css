@@ -4,10 +4,12 @@ dy-input, dy-textarea {
 	width: 100%;
 	position: relative;
 }
+dy-input [contenteditable] {
+	align-items: center;
+}
 dy-input [contenteditable],
 dy-textarea [contenteditable] {
 	display: inline-grid;
-	align-items: center;
 	transition: 0.3s;
 }
 dy-input [contenteditable]:empty,
