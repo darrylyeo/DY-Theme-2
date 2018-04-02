@@ -28,6 +28,7 @@ class DYNotifications extends DYElement {
 
 		if(buttonText) $notification.buttonText = buttonText
 		if(icon) $notification.icon = icon
+		if(iconImage) $notification.iconImage = iconImage
 
 		return $notification
 	}
@@ -118,6 +119,10 @@ class DYNotification extends DYElement {
 	}
 	set icon(icon){
 		this.$icon.attr('icon', icon)
+		return this
+	}
+	set iconImage(url){
+		this.$icon.style.backgroundImage = `url(${url})`
 		return this
 	}
 

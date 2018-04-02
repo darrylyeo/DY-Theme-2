@@ -95,12 +95,12 @@ dy-notification.hide {
 }
 
 dy-notification .icon {
-	background-color: rgba(0, 0, 0, 0.05);
+	background: rgba(0, 0, 0, 0.05) center/80% no-repeat;
 	color: #000;
 	min-width: 2.25em;
 }
 
-dy-notification .icon:not([icon]) {
+dy-notification .icon:not([icon]):not([style*=background-image]) {
 	display: none;
 }
 
