@@ -10,6 +10,7 @@ class DYProjectHeader extends DYElement {
 				</div>
 			</div>
 			<blockquote class="excerpt"></blockquote>
+			<div class="actions"></div>
 			<div class="featured-image-wrapper">
 				<dy-figure class="featured-image"></dy-figure>
 			</div>
@@ -31,6 +32,14 @@ class DYProjectHeader extends DYElement {
 			'.link[href]': data.link,
 			'.excerpt': data.excerpt.rendered
 		})
+
+		const {projectPlayUrl, kaId: khanID} = data.meta
+		
+		this.$actions.innerHTML = [
+			projectPlayUrl && `<a class="play" href="${projectPlayUrl === 'PLAY' ? `https://play.darryl-yeo.com${location.pathname}` : projectPlayUrl}"><dy-button theme="accented heavy 3D">Play</dy-button></a>`,
+			khanID && `<a class="khan" href="https://www.khanacademy.org/computer-programming/p/${khanID}"><dy-button theme="plain heavy 3D"><i icon="KhanAcademy"></i>View On Khan Academy</dy-button></a>`
+		].filter(_ => _).join('')
+
 		//root.find('.title').fitText('7.5em')
 
 		this.toggleClass(data.meta.projectHeaderDarkMode === 'true', 'dark')
@@ -54,6 +63,10 @@ class DYProjectHeader extends DYElement {
 	
 	get $featuredImage(){
 		return this.find('.featured-image')
+	}
+
+	get $actions(){
+		return this.find('.actions')
 	}
 
 	// get $termsContainer(){
