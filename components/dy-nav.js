@@ -17,9 +17,14 @@ class DYNav extends DYElement {
 
 		DYNav.instance = this
 
-		//window.on('pagerender', () => this.update())
+		window.on('pagerender', () => {
+			this.update()
 
-		DY.data('navigation').then(navigation => this.data = navigation)
+			DY.data('navigation').then(navigation => {
+				this.data = navigation
+				this.updatePreviousNext()
+			})
+		})
 	}
 
 	// <dy-terms>
@@ -37,12 +42,22 @@ class DYNav extends DYElement {
 				$term.active = true
 			}
 		})
-		this.update()
+		this.updatePreviousNext()
 	}
 
-	async update(termChanged){
-		const isSinglePost = WP.queryType === 'single' && WP.postType !== 'page'
-		if(!isSinglePost) return
+	async update(){
+		const currentPost = WP.current
+		this.updateWithModel({
+			'.current-title': currentPost.title.rendered
+		})
+		this.updatePreviousNext()
+	}
+
+	async updatePreviousNext(termChanged){
+		// Show prev next only on single posts
+		const hasPrevNext = WP.queryType === 'single' && WP.postType !== 'page'
+		this.toggleClass(hasPrevNext, 'has-prev-next')
+		if(!hasPrevNext) return
 
 		const currentPost = WP.current
 
@@ -59,7 +74,6 @@ class DYNav extends DYElement {
 		const term = await DY.getTermById(this.currentTerm)
 
 		this.updateWithModel({
-			'.current-title': currentPost.title.rendered,
 			'[rel=prev]': previousPost && previousPost.title.rendered,
 			'[rel=prev][href]': previousPost && previousPost.link,
 			'[rel=next]': nextPost && nextPost.title.rendered,
@@ -84,7 +98,7 @@ class DYNav extends DYElement {
 	}
 	set currentCategory(categoryID){
 		this.data.category = categoryID
-		this.update()
+		this.updatePreviousNext()
 	}
 
 	get currentTerm(){
@@ -95,7 +109,7 @@ class DYNav extends DYElement {
 	}
 	set currentTerm(termID){
 		this.data.term = termID
-		this.update(true)
+		this.updatePreviousNext(true)
 	}
 
 	get $currentTermWrapper(){
