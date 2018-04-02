@@ -31,8 +31,6 @@ const DYNavigation = {
 			return false
 		}
 
-		this.navigatingTo = url
-
 		if(pushNewState) {
 			history.pushState({
 				url
@@ -42,7 +40,9 @@ const DYNavigation = {
 		this.location =  Object.assign({}, location)
 
 		DYPage.onNavigation()
-		/*fetch(url).then(data => data.text()).then(html => {
+		/*
+		this.navigatingTo = url
+		fetch(url).then(data => data.text()).then(html => {
 			if(this.navigatingTo !== url) return
 
 			const $$document = document.createRange().createContextualFragment(html)
