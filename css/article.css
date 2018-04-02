@@ -6,6 +6,8 @@ article {
 	display: flex;
     flex-direction: column;
 
+	padding: var(--padding) 0;
+
 	text-align: justify;
 }
 article > * {
@@ -21,8 +23,7 @@ article h1, article section h2 {
 }
 article > h1 {
 	font-size: 2em;
-	padding: var(--padding);
-    padding-bottom: 0;
+	padding: 0 var(--padding);
 }
 
 article section {
