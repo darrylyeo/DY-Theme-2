@@ -193,13 +193,27 @@ class DYCommentReply extends DYElement {
 			.then(async response => {
 				const data = await response.json()
 				X(response, data)
+				let message
 				if(response.status === 201){
-					notify('Posted comment. Thanks for participating!', {icon: '💬'})
+					message = 'Posted comment. Thanks for participating!'
 					this.replaceWith(new DYComment(data))
-				}else if(response.status === 409){
-					// response.code: comment_duplicate
-					notify(data.message, {id: data.code, icon: '💬'})
+				}else if(response.status >= 400 && response.status <= 499){
+					message = data.message
+					if(response.status === 401 || response.status === 409){
+						// response.code: comment_duplicate
+						message = data.message
+					}else if(response.status === 400 && data.message.includes('Invalid parameter(s):')){
+						const parameters = data.message.split(': ')[1].split(',')
+						message = parameters.map(p => {
+							return {
+								'author_email': 'Whoops! Double-check your email address.'
+							}[p]
+						}).join('\n')
+					}else{
+						message = 'Whoops! Your comment couldn\'t be posted.'
+					}
 				}
+				notify(message, {id: 'comment', icon: '💬'})
 			})
 			.catch(e => {
 				console.error(e.json())
