@@ -38,6 +38,7 @@ const ASSETS = {
 		'js/framework/framework.js',
 		'js/libraries/moment.min.js',
 		'js/libraries/intersection-observer.js',
+		'js/libraries/snarkdown.js',
 
 		'js/workers.js',
 		'js/bind.js',
