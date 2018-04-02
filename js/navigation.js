@@ -88,9 +88,11 @@ const DYNavigation = {
 		}
 	},
 
-	onLinkMouseOver(){
-		if(this.href){
-			DYNavigation.prerender(this.href)
+	onLinkMouseOver(e){
+		const {href} = e.currentTarget
+
+		if(href){
+			DYNavigation.prerender(href)
 		}
 	},
 
