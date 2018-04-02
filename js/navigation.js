@@ -1,4 +1,6 @@
 const DYNavigation = {
+	location: Object.assign({}, location),
+
 	navigatingTo: undefined,
 	prerenderedURLs: [],
 
@@ -8,8 +10,8 @@ const DYNavigation = {
 		if(!url) return false
 		const {pathname, host, hash} = new URL(url)
 		
-		if(host === location.host){
-			if(pathname === location.pathname){
+		if(host === this.location.host){
+			if(pathname === this.location.pathname){
 				if(hash){
 					// const {pageXOffset, pageYOffset} = window
 					// window.on('scroll.once', () => window.scrollTo(pageXOffset, pageYOffset))
@@ -36,6 +38,8 @@ const DYNavigation = {
 				url
 			}, 'bloink', url)
 		}
+
+		this.location =  Object.assign({}, location)
 
 		DYPage.onNavigation()
 		/*fetch(url).then(data => data.text()).then(html => {
@@ -70,16 +74,16 @@ const DYNavigation = {
 	},
 
 	onLinkClick(e){
-		const href = this.href
+		const {href, host} = e.currentTarget
 
 		if(!href) return
-		if(location.href === href) return
+		if(DYNavigation.location.href === href) return
 		if(e.metaKey) return
 		
-		if(this.host !== location.host){
-			window.open(this.href, '_blank', 'noopener')
+		if(host !== DYNavigation.location.host){
+			window.open(href, '_blank', 'noopener')
 			e.preventDefault()
-		}else if(DYNavigation.navigateTo(this.href, true)){
+		}else if(DYNavigation.navigateTo(href, true)){
 			e.preventDefault()
 		}
 	},
@@ -111,10 +115,10 @@ window.on({
 	pagerender(){
 		window.scrollTo(0, 0)
 		for(const $link of DYNavigation.$links){
-			$link.toggleClass($link.href === location.href, 'current')
+			$link.toggleClass($link.href === DYNavigation.location.href, 'current')
 		}
 	},
 	popstate(e){
-		DYPage.onNavigation()
+		DYNavigation.navigateTo(location.href)
 	}
 })
