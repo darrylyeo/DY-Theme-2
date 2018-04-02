@@ -4,7 +4,7 @@ class DYNotifications extends DYElement {
 		DYNotifications.instance = this
 	}
 
-	notify(message, {dismiss, type = 'info', buttonText, id, icon} = {}){
+	notify(message, {dismiss, type = 'info', buttonText = 'OK', id, icon, iconImage} = {}){
 		// Check if a notification already has this message.
 		let $notification = [...this.$notifications].find($n =>
 			(id && $n.dataset.id == id) || $n.content == message // && $this.childNodes.length === 0
@@ -26,7 +26,7 @@ class DYNotifications extends DYElement {
 				.appendTo(this)
 		}
 
-		if(buttonText) $notification.buttonText = buttonText
+		$notification.buttonText = buttonText
 		if(icon) $notification.icon = icon
 		if(iconImage) $notification.iconImage = iconImage
 
@@ -46,7 +46,7 @@ class DYNotification extends DYElement {
 		return `
 			<i class="icon"></i>
 			<div class="inner-wrapper">
-				<dy-button theme="accented heavy 3D small">OK</dy-button>
+				<dy-button theme="accented heavy 3D small"></dy-button>
 				<div class="content"></div>
 			</div>
 		`
@@ -108,9 +108,7 @@ class DYNotification extends DYElement {
 		return this.root.find('dy-button')
 	}
 	set buttonText(text){
-		if(text){
-			this.$button.html(text)
-		}
+		this.$button.html(text)
 		return this
 	}
 

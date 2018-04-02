@@ -115,6 +115,9 @@ dy-notification .inner-wrapper > dy-button {
 	margin-left: 1ch;
 	font-size: 0.7em;
 }
+dy-notification .inner-wrapper > dy-button:empty {
+	display: none;
+}
 
 dy-notification .content {
 	display: inline;
