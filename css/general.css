@@ -20,6 +20,16 @@
 :nth-child(14) { --index: 14 }
 :nth-child(15) { --index: 15 }
 :nth-child(16) { --index: 16 }
+:nth-child(17) { --index: 17 }
+:nth-child(18) { --index: 18 }
+:nth-child(19) { --index: 19 }
+:nth-child(20) { --index: 20 }
+:nth-child(21) { --index: 21 }
+:nth-child(22) { --index: 22 }
+:nth-child(23) { --index: 23 }
+:nth-child(24) { --index: 24 }
+:nth-child(25) { --index: 25 }
+:nth-child(26) { --index: 26 }
 
 a, :link {
 	border-radius: 1px;
