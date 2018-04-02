@@ -35,12 +35,17 @@ dy-page {
 
 
 dy-page * {
-	animation: PageContentIn calc(0.5s + var(--index) * 0.15s);
+	/* animation: PageContentIn calc(0.5s + var(--index) * 0.15s);
+	animation: PageContentIn calc(0.5s + var(--index) * 0.15s) 0.2s backwards; */
+	animation: PageContentIn 0.5s calc(var(--index) * 0.15s) backwards;
 }
 
 @keyframes PageContentIn {
 	from {
+		overflow: visible;
 		transform: translateZ(calc(var(--index) * 1rem));
+		pointer-events: none;
+		opacity: 0;
 	}
 }
 
