@@ -10,12 +10,16 @@ dy-comments {
 
 dy-comment, dy-comment-reply {
 	display: grid;
-	grid-template-areas:
+	grid-template:
 		'avatar content'
-		'avatar replies';
-	grid-template-columns: auto 1fr;
+		'. replies'
+		/ auto 1fr;
 	grid-gap: 0.75rem;
 	width: 100%;
+}
+dy-comment-reply {
+	grid-template-areas:
+		'avatar content';
 }
 
 dy-comments .avatar {
@@ -30,9 +34,9 @@ dy-comments .avatar {
 dy-comments .comment {
 	grid-area: content;
 	display: grid;
-	grid-gap: 0.25em;
+	grid-gap: 0.5em;
 	min-height: 1em;
-	padding: 0.75em 1em;
+	padding: 1em 1em 0.75em;
 	position: relative;
 	background-color: rgba(255, 255, 255, 0.5);
 	box-shadow: var(--shadow);
@@ -48,23 +52,25 @@ dy-comments .comment:before {
 	top: 2em;
 }
 
-dy-comments .comment > header {
+dy-comments dy-comment .comment > header,
+dy-comments dy-comment-reply .comment > header {
 	display: grid;
 	grid-auto-flow: column;
 	grid-gap: 0.5em;
-	grid-auto-columns: 1fr max-content;
-	align-items: center;
 	font-size: 0.8em;
 }
 dy-comments dy-comment > .comment > header {
-	justify-items: flex-start;
-	grid-auto-columns: 1fr max-content max-content;
+	grid-auto-columns: 1fr auto auto;
+	align-items: center;
+}
+dy-comments dy-comment-reply .comment > header {
+	grid-auto-columns: minmax(50%, 1fr) minmax(10rem, auto);
 }
 dy-comments .author {
 	font-family: var(--heading-font);
 	font-size: 1.5em;
 	font-weight: bold;
-
+	line-height: 1;
 	text-transform: uppercase;
 }
 dy-comments .comment-date {
@@ -107,7 +113,7 @@ dy-comment-reply {
 	}
 }
 
-dy-comment-reply input, dy-comment-reply input:focus, dy-comment-reply textarea, dy-comment-reply textarea:focus {
+/*dy-comment-reply input, dy-comment-reply input:focus, dy-comment-reply textarea, dy-comment-reply textarea:focus {
 	background: unset;
 	border: unset;
 	border-radius: unset;
@@ -117,11 +123,11 @@ dy-comment-reply input, dy-comment-reply input:focus, dy-comment-reply textarea,
 	padding: unset;
 	display: inline;
 	width: 100%;
-}
-dy-comment-reply textarea {
+}*/
+dy-comment-reply dy-textarea {
 	max-width: 100%;
 	width: 100%;
-	min-height: 10em;
+	min-height: 8em;
 }
 
 dy-comment-reply [name='author_email'] {
@@ -137,12 +143,9 @@ dy-comment-reply footer {
 }
 
 dy-comment-reply .meta {
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
 	font-size: 0.9em;
-}
-dy-comment-reply .meta div {
-	flex: 1 10rem;
-	padding: 0.5em;
+	grid-gap: 1em;
+	padding: 0 0.5em;
 }
