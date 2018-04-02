@@ -30,6 +30,9 @@ dy-nav .prev-next {
 	overflow-x: auto;
 	max-width: 100%;
 }
+dy-nav:not(.has-prev-next) .prev-next {
+	font-size: 0;
+}
 dy-nav .inner-wrapper:not(:hover) .current-title,
 dy-nav .inner-wrapper:not(:hover) [rel] {
 	overflow: hidden;
