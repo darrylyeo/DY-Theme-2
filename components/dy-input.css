@@ -10,6 +10,7 @@ dy-input [contenteditable] {
 dy-input [contenteditable],
 dy-textarea [contenteditable] {
 	display: inline-grid;
+	white-space: pre-wrap;
 	transition: 0.3s;
 }
 dy-input [contenteditable]:empty,
