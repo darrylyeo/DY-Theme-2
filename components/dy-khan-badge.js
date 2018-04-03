@@ -3,11 +3,11 @@ class DYKhanBadge extends DYElement {
 	static get templateHTML(){
 		return `
 			<a class="link">
-				<img id="thumbnail">
+				<img class="thumbnail">
 			</a>
 			<div>
-				<p><span id="title-prefix"></span> <a class="link"><span id="title"></span></a></p>
-				<dy-khan-stats id="stats"></dy-khan-stats>
+				<p><span class="title-prefix"></span> <a class="link"><span class="title"></span></a></p>
+				<dy-khan-stats class="stats"></dy-khan-stats>
 			</div>
 		`
 	}
@@ -25,18 +25,18 @@ class DYKhanBadge extends DYElement {
 			const project = KhanProject(id)
 			getJSON(project.scratchpad).then(data => {
 				root.updateWithModel({
-					'#title': data.title,
-					'#stats[votes]': data.sumVotesIncremented,
-					'#stats[spin-offs]': data.spinoffCount,
-					'#stats[lines]': data.revision.code.split('\n').length,
-					'#thumbnail[src]': data.imageUrl,
+					'.title': data.title,
+					'.stats[votes]': data.sumVotesIncremented,
+					'.stats[spin-offs]': data.spinoffCount,
+					'.stats[lines]': data.revision.code.split('\n').length,
+					'.thumbnail[src]': data.imageUrl,
 					'.link[href]': data.url
 				})
 			})
 		}else if(attr === 'title-prefix'){
 			const titlePrefix = newVal
 			root.updateWithModel({
-				'#title-prefix': titlePrefix
+				'.title-prefix': titlePrefix
 			})
 		}
 	}
