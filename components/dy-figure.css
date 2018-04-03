@@ -33,7 +33,7 @@ dy-figure:hover figure.zoomable img {
 }
 
 dy-figure img {
-	border-radius: 1rem;
+	border-radius: 0.5rem;
 	box-shadow: rgba(0,0,0,.15) 0 2px 5px;
 	transition: border-radius var(--duration);
 }
