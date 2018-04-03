@@ -8,9 +8,13 @@ dy-project {
 
 	display: flex;
 
+	width: 16rem;
 	max-height: 100%;
 	transform-style: preserve-3d;
 	transition: opacity 0.3s;
+}
+dy-projects.perspective-positioning dy-project {
+	will-change: transform;
 }
 dy-project:not(.focused) {
 	--mask-start: 0rem;
@@ -25,16 +29,28 @@ dy-project:not(.focused):hover {
 }
 dy-project.focused {
 	--tilt: 0;
-	/* transform-style: inherit; */
 	z-index: 2;
 
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	--perspective-intensity: 6;
+}
+dy-projects.perspective-positioning dy-project.focused {
 	transform: scale(var(--perspective-intensity)) translateZ(calc(
 		var(--perspective) * -1 * (var(--perspective-intensity) - 1)
 	));
+}
+dy-projects:not(.perspective-positioning) dy-project.focused {
+	/* transform-style: inherit; */
+	width: -webkit-max-content;
+	width: -moz-max-content;
+	width: max-content;
+	margin: 0 -5rem;
+	margin: 0 -100vw;
+	max-width: 100vw;
+	grid-row: 1 / -1;
+	transform-style: inherit;
 }
 dy-project.hide {
 	opacity: 0;
@@ -54,9 +70,9 @@ dy-project:not(.focused) * {
 
 dy-project .positioning-wrapper {
 	display: grid;
-	justify-content: center;
 	align-items: safe center;
 	transition: transform 0.3s cubic-bezier(0.1, 2, 1, 1);
+	width: 100%;
 }
 dy-project:not(.focused):hover .positioning-wrapper {
 	transform: translate3d(0, -0.1rem, 0.75rem);
@@ -66,18 +82,22 @@ dy-project:not(.focused):active .positioning-wrapper {
 	transform: translate3d(0, 0.1rem, -0.5rem) scale(0.9);
 }
 dy-project.focused .positioning-wrapper {
+	justify-content: center;
 	grid-auto-rows: 100%;
+	pointer-events: none;
+	height: 100%;
+	/* -webkit-backdrop-filter: blur(2px);
+	backdrop-filter: blur(2px); */
+}
+dy-projects:not(.perspective-positioning) dy-project.focused .positioning-wrapper {
 	/* position: fixed;
 	left: 0;
 	top: 0;
 	width: 100%;
 	height: 100%;
 	padding: 2%;*/
-	pointer-events: none;
-	height: 100%;
-	/* -webkit-backdrop-filter: blur(2px);
-	backdrop-filter: blur(2px); */
-
+}
+dy-projects.perspective-positioning dy-project.focused .positioning-wrapper {
 	min-width: 90vw;
 }
 dy-project .positioning-wrapper.animating-position {
@@ -97,6 +117,7 @@ dy-project .inner-wrapper {
 	transform-origin: top;
 	transform-style: preserve-3d;
 	transition: transform 0.3s;
+	/* will-change: transform; */
 }
 dy-project.focused .inner-wrapper {
 	max-width: 50rem;
@@ -112,6 +133,7 @@ dy-project .title-wrapper {
 	font-size: 0.85em;
 	line-height: 1.2;
 	display: flex;
+	justify-content: space-between;
 	transform: rotateX(calc(var(--tilt) * -1));
 	transition: transform 0.3s, opacity 0.3s;
 }
@@ -206,7 +228,10 @@ dy-project img {
 	max-width: 100%;
 }
 dy-project.no-featured-image img {
-	height: 15rem;
+	height: 16rem;
+}
+dy-project.no-featured-image.focused img {
+	height: 18rem;
 }
 
 dy-project .details {
@@ -251,6 +276,10 @@ dy-project .modified-date-wrapper {
 
 
 @media (max-width: 45rem) {
+	dy-projects:not(.perspective-positioning) dy-project.focused {
+		grid-row: auto;
+		grid-column: 1 / -1;
+	}
 	dy-project.focused .card {
 		display: block;
 		overflow-y: auto;

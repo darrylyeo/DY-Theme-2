@@ -34,8 +34,8 @@ dy-projects:not(.has-focused-project) dy-project-filters {
 dy-projects .projects-wrapper {
 	grid-area: projects;
 	grid-column-start: 1;
-
 	display: grid;
+	width: 100%;
 }
 dy-projects:not(.has-focused-project) .projects-wrapper {
 	-webkit-mask-image: linear-gradient(
@@ -62,9 +62,9 @@ dy-projects .projects {
 	display: grid;
 	grid-auto-flow: column;
 	grid-template-rows: repeat(auto-fit, minmax(12rem, 1fr));
-	grid-auto-columns: minmax(16rem, 1fr);
-	grid-auto-columns: 16rem;
+	grid-auto-columns: max-content;
 	justify-content: safe center;
+	justify-items: center;
 
 	padding: var(--projects-padding);
 	padding-left: var(--filters-width);
@@ -78,6 +78,10 @@ dy-projects .projects {
 
 	perspective: var(--perspective);
 }
+/*dy-projects:not(.perspective-positioning).has-focused-project .projects {
+	position: relative;
+	perspective: none;
+}*/
 
 
 @media (max-width: 34rem) {
