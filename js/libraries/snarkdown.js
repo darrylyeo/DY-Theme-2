@@ -52,7 +52,7 @@ function markdown(md, prevLinks) {
 		}
 		// Code/Indent blocks:
 		else if (_3 || _4) {
-			chunk = `<pre class="code ${_4 ? 'poetry' : _2.toLowerCase()}">${outdent(encodeAttr(_3 || _4).replace(/^\n+|\n+$/g, ''))}</pre>`
+			chunk = `<pre><code class="${_4 ? 'poetry' : _2.toLowerCase()}">${outdent(encodeAttr(_3 || _4).replace(/^\n+|\n+$/g, ''))}</code></pre>`
 		}
 		// > Quotes, -* lists:
 		else if (_6) {
