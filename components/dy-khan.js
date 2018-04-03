@@ -11,7 +11,7 @@ class DYKhan extends DYElement {
 		return `
 			<div>
 				<i icon="KhanAcademy"></i>
-				<a class="link"><h3 class="title"></h3></a>
+				<h3 class="title"><a></a></h3>
 				<dy-khan-stats class="stats"></dy-khan-stats>
 			</div>
 			<div class="project">
@@ -44,7 +44,8 @@ class DYKhan extends DYElement {
 			getJSON(project.scratchpad).then(data => {
 				this.addClass('load')
 				root.updateWithModel({
-					'.title': data.title,
+					'.title a': data.title,
+					'.title a[href]': data.url,
 					'.stats[votes]': data.sumVotesIncremented,
 					'.stats[spin-offs]': data.spinoffCount,
 					'.stats[lines]': data.revision.code.split('\n').length,
@@ -53,8 +54,7 @@ class DYKhan extends DYElement {
 						'width': data.width + 'px',
 						'min-height': data.height + 'px',
 					},
-					'.fork[data-id]': data.originScratchpadId,
-					'.link[href]': data.url
+					'.fork[data-id]': data.originScratchpadId
 				})
 
 				this.toggleClass(!!data.originScratchpadId, 'is-fork')
