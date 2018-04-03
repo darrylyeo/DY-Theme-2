@@ -52,18 +52,18 @@ dy-comments .comment:before {
 	top: 2em;
 }
 
-dy-comments dy-comment .comment > header,
-dy-comments dy-comment-reply .comment > header {
+dy-comments dy-comment .comment header,
+dy-comments dy-comment-reply .comment header {
 	display: grid;
 	grid-auto-flow: column;
 	grid-gap: 0.5em;
 	font-size: 0.8em;
 }
-dy-comments dy-comment > .comment > header {
+dy-comments dy-comment > .comment header {
 	grid-auto-columns: 1fr auto auto;
 	align-items: center;
 }
-dy-comments dy-comment-reply .comment > header {
+dy-comments dy-comment-reply .comment header {
 	grid-auto-columns: minmax(50%, 1fr) minmax(10rem, auto);
 }
 dy-comments .author {
