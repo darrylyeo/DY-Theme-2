@@ -171,6 +171,16 @@ th, td {
 	padding: 0 0.5em;
 }
 
+
+hr {
+	border: none;
+	border-top: 1px solid;
+	opacity: 0.25;
+	margin: 0.5em 0;
+	width: 100%;
+}
+
+
 ::selection {
 	background-color: var(--color-1-half);
 	color: #fff;
