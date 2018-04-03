@@ -74,8 +74,8 @@ article section > h2:after {
 	margin-left: 1ch;
 }
 
-article section:first-of-type > p:first-of-type:first-letter,
-.excerpt:first-letter {
+article section:first-of-type > p:first-of-type::first-letter,
+.excerpt::first-letter {
 	font-family: var(--heading-font);
 	font-weight: bold;
 	color: var(--color-1);
@@ -85,15 +85,15 @@ article section:first-of-type > p:first-of-type:first-letter,
 	font-style: normal;
 }
 /* @supports (-webkit-initial-letter: 3) {
-	article section:first-of-type > p:first-of-type:first-letter,
-	.excerpt:first-letter {
+	article section:first-of-type > p:first-of-type::first-letter,
+	.excerpt::first-letter {
 		-webkit-initial-letter: 3;
 		initial-letter: 3;
 	}
 }
 @supports not (-webkit-initial-letter: 3) { */
-	article section:first-of-type > p:first-of-type:first-letter,
-	.excerpt:first-letter {
+	article section:first-of-type > p:first-of-type::first-letter,
+	.excerpt::first-letter {
 		float: left;
 		font-size: 5.1em;
 		margin-left: -0.04em;
