@@ -22,6 +22,7 @@ class DYComments extends DYElement {
 
 	constructor(){
 		super()
+		this.root
 		this.getComments()
 	}
 
