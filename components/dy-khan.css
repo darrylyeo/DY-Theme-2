@@ -25,7 +25,7 @@ dy-khan i[icon] {
 	opacity: 0.15;
 }
 
-dy-khan:not(.load) #title:before {
+dy-khan:not(.load) .title:before {
 	content: 'Loading...';
 	animation: Loading 2s infinite linear;
 }
@@ -40,7 +40,7 @@ dy-khan:not(.load) dy-khan-stats, dy-khan:not(.load) dy-buttons {
 	transform: scale(0);
 }
 
-dy-khan #project {
+dy-khan .project {
 	display: grid;
 	background-color: rgba(0, 0, 0, 0.02);
 	border-radius: 5px;
@@ -49,11 +49,11 @@ dy-khan #project {
 	position: relative;
 	will-change: transform;
 }
-dy-khan:not(.load) #project {
+dy-khan:not(.load) .project {
 	width: 400px;
 	/* height: 400px; */
 }
-dy-khan #project * {
+dy-khan .project * {
 	grid-area: 1 / 1 / -1 / -1;
 	width: 100%;
 }
@@ -62,27 +62,27 @@ dy-khan iframe {
 	height: 100%;
 	transform-origin: left top;
 }
-dy-khan #project.playing iframe ~ * {
+dy-khan .project.playing iframe ~ * {
 	pointer-events: none;
 }
-dy-khan #project img {
-	background-color: #000;
-	background: radial-gradient(rgba(0, 0, 0, 0.6), #000);
+dy-khan .project img {
+	background-color: .000;
+	background: radial-gradient(rgba(0, 0, 0, 0.6), .000);
 	transition: 0.3s;
 }
-dy-khan #project img:not([src]) {
+dy-khan .project img:not([src]) {
 	width: 400px;
 	padding-top: 100%;
 }
-dy-khan #project:hover img {
+dy-khan .project:hover img {
 	transform: scale(1.05);
 }
-dy-khan #project.playing img {
+dy-khan .project.playing img {
 	opacity: 0;
 	pointer-events: none;
 	transform: scale(1.2);
 }
-dy-khan #project span {
+dy-khan .project span {
 	background-image: radial-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5));
 	color: #fff;
 	cursor: pointer;
@@ -95,17 +95,17 @@ dy-khan #project span {
 	transition: 0.3s;
 	width: 100%;
 }
-dy-khan #project:hover span {
+dy-khan .project:hover span {
 	opacity: 1;
 	transform: scale(1.2);
 }
-dy-khan #project.playing span {
+dy-khan .project.playing span {
 	opacity: 0;
 	transform: scale(2);
 }
 
-dy-khan #project:not(.playing) ~ dy-buttons.show-if-playing, 
-dy-khan #project.playing ~ dy-buttons.show-if-not-playing {
+dy-khan .project:not(.playing) ~ dy-buttons.show-if-playing, 
+dy-khan .project.playing ~ dy-buttons.show-if-not-playing {
 	display: none;
 }
 
