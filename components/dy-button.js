@@ -44,6 +44,7 @@ class DYButton extends DYElement {
 	}
 
 	connectedCallback(){
+		if(this.parentNode.matches('a')) this.parentNode.tabIndex = -1
 		this.tabIndex = 0
 	}
 
