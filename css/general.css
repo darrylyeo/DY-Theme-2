@@ -113,7 +113,7 @@ img:before {
 	min-height: 100%;
 }
 
-p, ol, ul, li, blockquote, dl, dt, dd, form {
+p, ol, ul, li, blockquote, pre, dl, dt, dd, form {
 	margin: 0;
 }
 h1, h2, h3, h4, h5, h6, dt, legend, time {
