@@ -78,7 +78,7 @@ class DYComment extends DYElement {
 		this.commentID = data.id
 
 		root.updateWithModel({
-			'.content': markdown(data.content.raw || data.content.rendered),
+			'.content': markdown(data.content.rendered),
 			'.comment-date[datetime]': data.date,
 			'.link[href]': data.link,
 			'.author': data.author_name,
