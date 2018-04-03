@@ -145,7 +145,9 @@ pre code {
 }
 pre[class*=language],
 pre:not([class*=language]) > code {
-	background: rgba(255, 255, 255, 0.6) linear-gradient(rgba(255, 255, 255, 0.4) 50%, transparent 50%) 1px 1em/1px 3em;
+	background: rgba(255, 255, 255, 0.6) linear-gradient(rgba(255, 255, 255, 0.3) 50%, transparent 50%) 0 0/1px 3em;
+	/* background: rgba(255, 255, 255, 0.6) repeating-linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3) 1.5em, transparent 1.5em, transparent 3em); */
+	background-origin: content-box;
 	border-radius: 1em;
 	box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.05);
 	padding: 1em;
