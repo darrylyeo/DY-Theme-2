@@ -21,7 +21,13 @@ const DYPage = {
 	async onNavigation(){
 		$('main').addClass('loading')
 
-		const data = await this.route()
+		const dataPromise = this.route()
+		notify('Loading...', {
+			iconImage: `${WP.childTheme}/logo/DY-Logo-Animated.svg`,
+			buttonText: '',
+			dismiss: dataPromise.then(() => new Promise(r => setTimeout(r, 1000)))
+		})
+		const data = await dataPromise
 
 		// <head> content - experimental
 
