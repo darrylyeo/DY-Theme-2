@@ -5,31 +5,26 @@
 	scroll-behavior: smooth;
 }
 
-a, :link {
+a {
 	border-radius: 1px;
-	text-shadow: rgba(0, 0, 0, 0.1) 0 1px 1px;
-	color: var(--link-color, var(--color-1));
+	text-shadow: var(--text-shadow);
+	color: var(--link-color, inherit);
 	transition: 0.2s;
 }
-:link {
+:link, :visited {
 	text-decoration: var(--link-underline, none);
-}
-a {
-	box-shadow:
-		var(--link-highlight-color) 0 0 0 var(--link-highlight-size),
-		var(--link-highlight-color) 0 0 0 100vmax inset;
-	--link-highlight:
-		var(--link-highlight-color) 0 0 0 var(--link-highlight-size),
-		var(--link-highlight-color) 0 0 0 100vmax inset;
-	--link-highlight-color: transparent;
-	--link-highlight-size: 0;
-
-	--link-hover-opacity: 0.9;
-
-	box-shadow: var(--link-highlight);
 }
 a:hover, a:focus {
 	opacity: var(--link-hover-opacity);
+}
+:link:hover, :visited:hover, a:focus {
+	--link-highlight:
+		var(--link-highlight-color) 0 0 0 var(--link-highlight-size),
+		var(--link-highlight-color) 0 0 0 100vmax inset;
+	
+	box-shadow: var(--link-highlight);
+	color: var(--link-hover-color, var(--link-color));
+	text-shadow: var(--link-hover-shadow, var(--link-shadow));
 }
 a.current, a.active {
 	font-weight: bold;
@@ -40,21 +35,15 @@ a[tabindex]:not([tabindex="-1"]) {
 
 article {
 	--link-underline: underline;
-}
-article :not(h2):not(h3) > :link:hover, article :visited:hover,
-article :not(h2):not(h3) > :link:focus, article :visited:focus {
-	--link-color: #fff;
-	text-shadow: var(--shadow-dark-1);
-}
-article :not(h2):not(h3) > :link:hover, article :visited:hover,
-article :not(h2):not(h3) > :link:focus, article :visited:focus {
+	--link-hover-color: #fff;
 	--link-highlight-color: var(--color-1);
 	--link-highlight-size: 0.2em;
 }
 
-h2 :link, h3 :link {
+h2, h3 {
 	--link-color: var(--color);
 	--link-underline: none;
+	--link-highlight-color: transparent;
 }
 
 i[icon] {

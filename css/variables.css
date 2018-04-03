@@ -20,8 +20,14 @@
 	--body-font: 'Hallo Sans', Asap, Roboto, sans-serif;
 	--color: rgba(0, 0, 0, 0.66);
 	--heading-font: 'Fun Font', 'Klinic Slab', 'Slabo 13px', var(--body-font);
+
 	--link-color: var(--color-1-dark);
 	--link-hover-color: var(--color-1);
+	--link-highlight-color: transparent;
+	--link-highlight-size: 0;
+	--link-hover-opacity: 0.9;
+	--link-shadow: rgba(0, 0, 0, 0.1) 0 1px 1px;
+	--link-hover-shadow: var(--shadow-dark-1);
 	
 	--page-background-image: radial-gradient(var(--color-1) 30%, rgba(112, 255, 246, 0.96));
 	--page-background: var(--page-background-image) fixed center center/100vmax 100vmax;

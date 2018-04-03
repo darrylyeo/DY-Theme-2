@@ -11,7 +11,6 @@ nav {
 	min-width: 0;
 }
 #main-nav {
-	--link-color: currentColor;
 	height: var(--main-menu-height);
 	/* background-color: rgba(255, 255, 255, 0.95); */
 	background-image: radial-gradient(circle, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.95));
@@ -25,7 +24,6 @@ nav {
 #secondary-nav, #screen-reader-nav {
 	height: var(--secondary-menu-height);
 	background-color: var(--color-1);
-	--link-color: #fff;
 	font-size: 0.8rem;
 	white-space: nowrap;
 
@@ -52,6 +50,7 @@ nav > * {
 	perspective-origin: bottom; */
 }
 nav > * > a {
+	--link-hover-color: var(--link-color);
 	display: flex;
 	align-items: center;
 	padding: 0 1em;
@@ -67,6 +66,7 @@ nav > :last-child > a {
 	position: relative;
 }
 #main-nav > * > a {
+	--link-color: currentColor;
 	letter-spacing: 0.04em;
 	z-index: 1;
 	transition: 0.3s, transform 0.3s 0.05s cubic-bezier(.87,-1,.19,2);
@@ -93,6 +93,10 @@ header.show-post-nav #main-nav > * > a:not(.current) {
 #main-nav > * > a.current + dy-icon {
 	opacity: 0.8;
 	transform: scale(1.2);
+}
+
+#secondary-nav > * > a {
+	--link-color: #fff;
 }
 
 /* Sub menu */
