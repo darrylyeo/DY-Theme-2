@@ -8,71 +8,74 @@ URL.pathName = function(url){
 {
 let data = {}
 
-var DY = {
-	getDatabase: (async () => {
-		const DB_VERSION = 1
+const DB_VERSION = 1
 
+var DY = {
+	database: indexedDB.open('Darryl-Yeo', DB_VERSION).withStructure({
+		'data': {
+			keyPath: 'key'
+		},
+
+		'wp-objects': {
+			keyPath: 'link',
+			//autoIncrement: true,
+			indices: {
+				'link': {
+					unique: true
+				},
+				'id': {
+					unique: true
+				},
+				'term_id': {
+					unique: true
+				},
+				'objectType': {
+					unique: false
+				},
+				'date_gmt': {
+					unique: false
+				},
+				'modified_gmt': {
+					unique: false
+				}
+			}
+		},
+
+		'wp-taxonomies': {
+			keyPath: 'order',
+			indices: {
+				'slug': {
+					unique: true
+				}
+			}
+		}
+	})
+}
+
+Object.assign(DY, {
+	// Block until updated if necessary
+	updatedDatabase: (async () => {
 		let updateNeeded = false
 		
-		const db = await indexedDB.openDatabase('Darryl-Yeo', DB_VERSION, {
-			'data': {
-				keyPath: 'key'
-			},
-
-			'wp-objects': {
-				keyPath: 'link',
-				//autoIncrement: true,
-				indices: {
-					'link': {
-						unique: true
-					},
-					'id': {
-						unique: true
-					},
-					'term_id': {
-						unique: true
-					},
-					'objectType': {
-						unique: false
-					},
-					'date_gmt': {
-						unique: false
-					},
-					'modified_gmt': {
-						unique: false
-					}
-				}
-			},
-
-			'wp-taxonomies': {
-				keyPath: 'order',
-				indices: {
-					'slug': {
-						unique: true
-					}
-				}
-			}
-		}, {
-			upgrade(){
-				updateNeeded = true
-			}
-		})
+		const db = await DY.database
+			.on('upgradeneeded', e => updateNeeded = true)
 
 		X('Database accessed.')
 
 		if(updateNeeded){
-			X('Database has been upgraded. Waiting to update data...')
-			await DY.updateDatabase(db)
+			X('Database needs to be upgraded. Waiting to update data...')
+			await DY.clearObjects()
+			await DY.updateDatabase()
 			X('Data updated.')
 		}else{
 			X('Updating data in background...')
-			DY.updateDatabase(db).then(() => X('Data updated.'))
+			DY.updateDatabase().then(() => X('Data updated.'))
 		}
 
 		return db
 	})(),
 
-	updateDatabase: async db => {
+	updateDatabase: async () => {
 		const [
 			pages,
 			posts,
@@ -85,7 +88,7 @@ var DY = {
 			getJSON(`${WP.rest}/terms`)
 		])
 
-		db = db || await DY.getDatabase
+		const db = await DY.database
 
 		const terms = Object.values(termsByTaxonomy).flatten()
 		const projectsCategory = termsByTaxonomy['page-category'].find(term => term.slug === 'project')
@@ -113,22 +116,22 @@ var DY = {
 		return db
 	},
 	
-	getObjectForURL: async url => (await DY.getDatabase)
+	getObjectForURL: async url => (await DY.updatedDatabase)
 		.getObjectStore('wp-objects')
 		.index('link')
 		.get(url),
 
-	getObjectsByType: async type => (await DY.getDatabase)
+	getObjectsByType: async type => (await DY.updatedDatabase)
 		.getObjectStore('wp-objects')
 		.index('objectType')
 		.getAll(type),
 
-	getTermById: async id => (await DY.getDatabase)
+	getTermById: async id => (await DY.updatedDatabase)
 		.getObjectStore('wp-objects')
 		.index('term_id')
 		.get(id),
 
-	getTaxonomies: async () => (await DY.getDatabase)
+	getTaxonomies: async () => (await DY.updatedDatabase)
 		.getObjectStore('wp-taxonomies')
 		.getAll(),
 
@@ -153,7 +156,7 @@ var DY = {
 	data: async key => {
 		if(key in data) return data[key]
 
-		const dataObj = await (await DY.getDatabase).getObjectStore('data').get(key)
+		const dataObj = await (await DY.updatedDatabase).getObjectStore('data').get(key)
 		const value = dataObj && dataObj.value || {}
 		data[key] = value
 		return value
@@ -161,20 +164,26 @@ var DY = {
 
 	clearData: async () => {
 		data = {},
-		(await DY.getDatabase).getObjectStore('data', true)
+		await (await DY.database).getObjectStore('data', true)
 			.clear()
-			.then( () => console.log('Deleted object store "data".'))
+		console.log('Deleted object store "data".')
+	},
+
+	clearObjects: async () => {
+		await (await DY.database).getObjectStore('wp-objects', true)
+			.clear()
+		console.log('Deleted object store "objects".')
 	},
 
 	clearDatabase: () => indexedDB.removeDatabase('Darryl-Yeo')
-}
+})
 
 window.on({
 	beforeunload: () => {
 		(async () => {
 			(await DY.data('lastSession')).date = Date.now()
 			
-			const store = (await DY.getDatabase).getObjectStore('data', true)
+			const store = (await DY.database).getObjectStore('data', true)
 			for(const key in data){
 				store.put({
 					key,
