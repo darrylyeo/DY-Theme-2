@@ -110,8 +110,7 @@ dy-projects.has-focused-project dy-project:not(.focused) .positioning-wrapper {
 dy-project .inner-wrapper {
 	display: grid;
 	grid-gap: 0.5rem;
-	grid-auto-rows: -webkit-max-content 1fr;
-	grid-auto-rows: max-content 1fr;
+	grid-template-rows: auto 1fr;
 	padding: 0.5em;
 	transform: rotateX(var(--tilt));
 	transform-origin: top;
