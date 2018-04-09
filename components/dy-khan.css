@@ -25,6 +25,7 @@ dy-khan i[icon] {
 	line-height: 1;
 	text-shadow: #fff 0 0 1rem;
 	opacity: 0.15;
+	pointer-events: none;
 }
 
 dy-khan:not(.load) .title:before {
