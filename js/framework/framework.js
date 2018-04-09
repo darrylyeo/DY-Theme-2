@@ -467,6 +467,7 @@ Object.assign(EventTarget.prototype, {
 			const callback = eventListeners[eventName]
 			this.addEventListener(eventName, callback, eventName === 'scroll' ? {passive: true} : undefined)
 		}
+		return this
 	},
 	
 	trigger(event, options){
