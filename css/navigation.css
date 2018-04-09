@@ -20,6 +20,8 @@ nav {
 
 	-webkit-backdrop-filter: var(--backdrop-blur);
 	backdrop-filter: var(--backdrop-blur);
+
+	--link-color: currentColor;
 }
 #secondary-nav, #screen-reader-nav {
 	height: var(--secondary-menu-height);
@@ -66,7 +68,6 @@ nav > :last-child > a {
 	position: relative;
 }
 #main-nav > * > a {
-	--link-color: currentColor;
 	letter-spacing: 0.04em;
 	z-index: 1;
 	transition: 0.3s, transform 0.3s 0.05s cubic-bezier(.87,-1,.19,2);

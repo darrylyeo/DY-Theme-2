@@ -179,6 +179,7 @@ dy-project .featured-image {
 	overflow: auto;
 	grid-auto-columns: 100%;
 	--link-color: rgba(255, 255, 255, 0.8);
+	--link-hover-color: var(--link-color);
 	--link-hover-opacity: 1;
 }
 dy-project.focused .featured-image img {
