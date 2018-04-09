@@ -39,9 +39,13 @@ dy-notification {
 	overflow: hidden;
 	margin: 3px;
 	/* padding: 0.4em 0.5em; */
+	width: -webkit-min-content;
+	width: -moz-min-content;
 	width: max-content;
 	min-width: 10vw;
 	max-width: 22rem;
+	min-height: -webkit-min-content;
+	min-height: -moz-min-content;
 	min-height: min-content;
 	transform-origin: right bottom;
 	animation: NotificationShow .5s;
