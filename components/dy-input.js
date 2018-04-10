@@ -28,7 +28,7 @@ class DYInput extends DYElement {
 				e.preventDefault()
 				// const text = this.clean(e.clipboardData.getData('Text'))
 				const text = this.clean(e.clipboardData.getData('text/plain'))
-				document.execCommand('insertHTML', false, text.replace(/\n/g, '<br>'))
+				document.execCommand('insertHTML', false, text.replace(/</g, '&lt;').replace(/\n/g, '<br>'))
 				// document.execCommand('inserttext', false, text)
 			},
 
