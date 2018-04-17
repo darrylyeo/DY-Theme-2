@@ -39,7 +39,7 @@ const ASSETS = {
 		'js/libraries/moment.min.js',
 		'js/libraries/intersection-observer.js',
 
-		'js/workers.js',
+		'js/service-workers.js',
 		'js/bind.js',
 		'js/navigation.js',
 		'js/notify.js',
