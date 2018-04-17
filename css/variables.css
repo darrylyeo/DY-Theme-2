@@ -29,6 +29,8 @@
 	--link-shadow: rgba(0, 0, 0, 0.1) 0 1px 1px;
 	--link-hover-shadow: var(--shadow-dark-1);
 	
+	--box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.05);
+	
 	--page-background-image: radial-gradient(var(--color-1) 30%, rgba(112, 255, 246, 0.96));
 	--page-background: var(--page-background-image) fixed center center/100vmax 100vmax;
 

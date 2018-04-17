@@ -1,5 +1,4 @@
 dy-comments {
-	--shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.05);
 	display: grid;
 	grid-gap: 0.5rem;
 	padding: 0 var(--padding);
@@ -28,7 +27,7 @@ dy-comments .avatar {
 	max-width: 10vw;
 	width: 5em;
 	height: 5em;
-	box-shadow: var(--shadow);
+	box-shadow: var(--box-shadow);
 }
 
 dy-comments .comment {
@@ -39,7 +38,7 @@ dy-comments .comment {
 	padding: 1em 1em 0.75em;
 	position: relative;
 	background-color: rgba(255, 255, 255, 0.5);
-	box-shadow: var(--shadow);
+	box-shadow: var(--box-shadow);
 	border-radius: 0.75rem;
 }
 dy-comments .comment:before {
