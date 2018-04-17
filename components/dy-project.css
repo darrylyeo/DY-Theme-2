@@ -236,12 +236,12 @@ dy-project.no-featured-image.focused img {
 
 dy-project .details {
 	background-color: rgba(255, 255, 255, 0.5);
-	display: grid;
+	/* display: grid;
 	grid-gap: 1em;
+	grid-auto-rows: auto auto 1fr; */
 	overflow-y: auto;
 	min-height: 100%;
 	height: 0;
-	grid-auto-rows: auto auto 1fr;
 	padding: 1.5rem;
 }
 dy-project:not(.focused) .details {
@@ -258,6 +258,8 @@ dy-project .details .dates {
 	display: flex;
 	justify-content: center;
 	align-items: baseline;
+
+	margin: 1em 0;
 }
 dy-project .details .dates:before {
 	content: '•';
