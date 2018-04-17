@@ -1,14 +1,3 @@
-let stackBlurWorker
-const stackBlur = (...args) => new Promise(resolve => {
-	if(!stackBlurWorker) stackBlurWorker = new Worker(`${WP.childTheme}/js/workers/stack-blur.js`)
-	stackBlurWorker.postMessage(args)
-	stackBlurWorker.addEventListener(
-		'message',
-		e => resolve(e.data),
-		{once: true}
-	)
-})
-
 {
 const $canvas = document.createElement('canvas')
 const ctx = $canvas.getContext('2d')
@@ -36,5 +25,4 @@ var blurImage = (src, blur = 17) => new Promise(resolve => {
 		resolve(`url(${$canvas.toDataURL()})`)
 	})
 })
-
 }

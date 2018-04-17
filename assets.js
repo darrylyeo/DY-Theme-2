@@ -38,7 +38,6 @@ const ASSETS = {
 		'js/framework/framework.js',
 		'js/libraries/moment.min.js',
 		'js/libraries/intersection-observer.js',
-		'js/libraries/snarkdown.js',
 
 		'js/workers.js',
 		'js/bind.js',
@@ -83,7 +82,12 @@ const ASSETS = {
 		
 		'js/experiments.js',
 		'js/main.js',
-	]
+	],
+
+	WORKER_FUNCTIONS: {
+		'markdown': 'js/libraries/markdown.worker.js',
+		'stackBlur': 'js/libraries/stack-blur.worker.js',
+	}
 }
 
 const ASSETS_COMPILED = {

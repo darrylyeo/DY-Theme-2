@@ -25,4 +25,16 @@ function loadAssets(ASSETS){
 		src: `${WP.parentTheme}/${path}`,
 		async: false
 	}))
+	for(const [func, path] of Object.entries(ASSETS.WORKER_FUNCTIONS)){
+		window[func] = new WorkerFunction(`${WP.parentTheme}/${path}`)
+	}
 }
+
+function WorkerFunction(url){
+	return (...args) => new Promise(resolve => {
+		const worker = WorkerFunction.workers[url] || (WorkerFunction.workers[url] = new Worker(url))
+		worker.postMessage(args)
+		worker.addEventListener('message', e => resolve(e.data), {once: true})
+	})
+}
+WorkerFunction.workers = {}
