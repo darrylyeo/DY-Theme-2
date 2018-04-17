@@ -139,7 +139,7 @@ const DYPage = {
 				<dy-project-header></dy-project-header>
 				<article>
 					${data.meta.kaId ? `
-						<dy-khan data-id="${data.meta.kaId}" thumbnail="${data.featuredImage.source_url}"></dy-khan>
+						<dy-khan data-id="${data.meta.kaId}" thumbnail="${data.featuredImage ? data.featuredImage.source_url : ''}"></dy-khan>
 					` : ''}
 					${data.content.rendered}
 					${data.comment_status === 'open' ? `<dy-comments id="comments"></dy-comments>` : ''}
