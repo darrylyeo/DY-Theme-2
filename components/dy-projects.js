@@ -77,7 +77,7 @@ class DYProjects extends DYElement {
 		})
 		
 		const categoryID = this.attr('category')
-		this.projects = categoryID
+		this.projects = this.filteredProjects = categoryID
 			? await DYProjects.projectsByCategory(categoryID)
 			: await DYProjects.projects()
 	}
@@ -108,13 +108,11 @@ class DYProjects extends DYElement {
 	getFilteredProjects(){
 		const activeTermIDs = this.$filters.activeTerms.map(term => term.term_id)
 
-		if(activeTermIDs.length){
-			return this.projects.filter(project =>
+		return this.filteredProjects = activeTermIDs.length
+			? this.projects.filter(project =>
 				activeTermIDs.every(termID => project.terms.includes(termID))
 			)
-		}else{
-			return this.projects
-		}
+			: this.projects
 	}
 
 	onFilterChange(){
@@ -171,12 +169,12 @@ class DYProjects extends DYElement {
 	}
 
 	previousProject(){
-		const filteredProjects = this.getFilteredProjects()
+		const {filteredProjects} = this
 		const i = filteredProjects.indexOf(this.focusedProject)
 		this.focusedProject = filteredProjects[i - 1]
 	}
 	nextProject(){
-		const filteredProjects = this.getFilteredProjects()
+		const {filteredProjects} = this
 		const i = filteredProjects.indexOf(this.focusedProject)
 		this.focusedProject = filteredProjects[i + 1]
 	}
