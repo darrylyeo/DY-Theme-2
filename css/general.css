@@ -42,6 +42,7 @@ article {
 
 h2, h3 {
 	--link-color: var(--color);
+	--link-hover-color: var(--color-1);
 	--link-underline: none;
 	--link-highlight-color: transparent;
 }
