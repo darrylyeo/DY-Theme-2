@@ -117,6 +117,8 @@ dy-notification .inner-wrapper > dy-button {
 	float: right;
 	margin-left: 1ch;
 	font-size: 0.7em;
+	/* position: sticky;
+	top: 6px; */
 }
 dy-notification .inner-wrapper > dy-button:empty {
 	display: none;
