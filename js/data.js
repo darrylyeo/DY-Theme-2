@@ -98,6 +98,7 @@ Object.assign(DY, {
 		function putObject(object, objectType){
 			object.objectType = objectType
 			objectsStore.put(object)
+				.catch(e => console.error(e, object))
 		}
 
 		for(const page of pages){
