@@ -181,12 +181,12 @@ Promise.resolver = () => {
 
 {
 
-function keyValueSignature(arguments){
-	if(arguments.length >= 2){
-		const [key, value] = arguments
+function keyValueSignature(args){
+	if(args.length >= 2){
+		const [key, value] = args
 		return {[key]: value}
-	}else if(arguments.length === 1 && arguments[0] instanceof Object){
-		return arguments[0]
+	}else if(args.length === 1 && args[0] instanceof Object){
+		return args[0]
 	}
 }
 
