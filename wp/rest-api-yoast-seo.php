@@ -2,7 +2,10 @@
 // Adds Yoast SEO fields to page and post metadata to WP REST API responses
 
 add_action('rest_api_init', function(){
-	include_once WP_PLUGIN_DIR . '/wordpress-seo/wp-seo.php';
+	include_once ABSPATH . 'wp-admin/includes/plugin.php';
+	if(!is_plugin_active('wordpress-seo/wp-seo.php')) return;
+	
+	//include_once WP_PLUGIN_DIR . '/wordpress-seo/wp-seo.php';
 	
 	$getYoastMeta = function($object, $field_name, $request) {
 		extreme_get_posts([
