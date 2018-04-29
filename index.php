@@ -5,6 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <link rel="author" href="https://darryl-yeo.com/about">
 
+<link rel="apple-touch-icon" sizes="180x180" href="/media/icon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/media/icon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/media/icon/favicon-16x16.png">
+<link rel="manifest" href="/media/icon/site.webmanifest">
+<link rel="mask-icon" href="/media/icon/safari-pinned-tab.svg" color="#67b7e1">
+<link rel="shortcut icon" href="/media/icon/favicon.ico">
+<meta name="msapplication-TileColor" content="#67b7e1">
+<meta name="msapplication-config" content="/media/icon/browserconfig.xml">
+<meta name="theme-color" content="#67b7e1">
+
 <!-- head -->
 <?= wp_head() ?>
 <!-- /head -->
