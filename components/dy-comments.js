@@ -79,9 +79,9 @@ class DYComment extends DYElement {
 		this.commentID = data.id
 
 		root.updateWithModel({
-			'.content': markdown(data.content.rendered),
+			'.content': sanitizeHTML(data.content.rendered).innerHTML,
 			'.comment-date[datetime]': data.date,
-			'.link[href]': data.link,
+			'.link[href]': sanitizeURL(data.link),
 			'.author': data.author_name,
 			'.author[href]': data.author_url || undefined,
 			'.avatar[src]': data.author_avatar_urls[96]

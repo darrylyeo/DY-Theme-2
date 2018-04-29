@@ -56,6 +56,8 @@ const ASSETS = {
 		// 'js/framework/gsap-web-animation.js',
 		'js/framework/animate-state.js',
 
+		'js/framework/sanitize.js',
+
 		'components/dy-style.js',
 		
 		'components/dy-button.js',
