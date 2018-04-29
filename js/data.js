@@ -94,9 +94,9 @@ Object.assign(DY, {
 		const projectsCategory = termsByTaxonomy['page-category'].find(term => term.slug === 'project')
 		const PROJECT_CATEGORY_ID = projectsCategory.term_id
 
-		const objectsStore = db.getObjectStore('wp-objects', true)
 		function putObject(object, objectType){
 			object.objectType = objectType
+			const objectsStore = db.getObjectStore('wp-objects', true)
 			objectsStore.put(object)
 				.catch(e => console.error(e, object))
 		}
