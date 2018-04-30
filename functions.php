@@ -12,7 +12,6 @@ foreach([
 	
 	// Templating
 	'post-content-sections',
-	'default-content',
 	
 	// WP Rest API
 	'rest-api-terms',
