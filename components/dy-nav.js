@@ -48,7 +48,7 @@ class DYNav extends DYElement {
 	async update(){
 		const currentPost = WP.current
 		this.updateWithModel({
-			'.current-title': currentPost.title.rendered
+			'.current-title': currentPost.title ? currentPost.title.rendered : ''
 		})
 		this.updatePreviousNext()
 	}
