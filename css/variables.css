@@ -17,9 +17,9 @@
 	--padding: calc(10px + 2vw);
 	--padding-neg: calc(var(--padding) * -1);
 
-	--body-font: 'Hallo Sans', Asap, Roboto, sans-serif;
+	--body-font: Asap, Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Oxygen-Sans, Ubuntu, Cantarell, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 	--color: rgba(0, 0, 0, 0.66);
-	--heading-font: 'Fun Font', 'Klinic Slab', 'Slabo 13px', var(--body-font);
+	--heading-font: 'Fun Font', 'Slabo 13px', var(--body-font);
 
 	--link-color: var(--color-1-dark);
 	--link-hover-color: var(--color-1);
