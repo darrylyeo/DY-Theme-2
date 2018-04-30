@@ -175,7 +175,7 @@ nav a:focus i[icon] {
 	font-size: 5.08em; */
 
 	order: 1;
-	height: calc(50px + 3.5vw);
+	height: var(--main-menu-height);
 
 	color: transparent;
 	font-family: Darryl-Yeo, var(--heading-font);
