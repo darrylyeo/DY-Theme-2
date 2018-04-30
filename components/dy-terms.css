@@ -1,3 +1,6 @@
+dy-terms {
+	display: flex;
+}
 dy-terms dl,
 dy-project-filters dl {
 	/*display: grid;
